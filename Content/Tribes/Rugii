@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Expandable Sections</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 0;
+      }
+      .section {
+        background-color: #f4f4f4;
+        color: #333;
+        margin-bottom: 20px;
+        padding: 20px;
+      }
+      .section h2 {
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+      .section p {
+        display: none; 
+      }
+    </style>
+    <script>
+      function toggleSection(event) {
+          var section = event.target.parentNode; 
+          var content = section.querySelector('p'); 
+          if (content.style.display === 'none') { 
+              content.style.display = 'block'; 
+          } else { 
+              content.style.display = 'none'; 
+          }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+       <a href="../../index.html">Return to main page</a>     
+    </div>
+    <div class="container">
+      <div class="section">
+        <h2 onclick="toggleSection(event)">Blossom</h2>
+        <p>The ancient seat of the Rugii, Blossom is home of the Mayking Starkemer and his family the Hufins. They are the only permanent residents of Blossom, though Starkemer spends much of his time in the larger military burg of Highwall, where the majority of the Reudigni reside. Southflour serves as market and port for the mostly inland tribe and is the site of any trading that happens between the Rugii and other tribes.</p>  
+         <body>
+    <div class="container">
+      <div class="section">
+        <h2 onclick="toggleSection(event)">Tinder Lake</h2>
+        <p>Tinderlake is a lake front farm town that is the principal producer of food for the Reudigni. Vast irrigated fields of crops rival any farmland in Erulia, with the except for those of the Avarpi. Tinder Lake is also a major producer of Tin and Copper ore. Tinderlake represents the only significant crop producing region in all of South Erulia and historically traded food for coin in harsher times when neighboring tribes were unable to gather enough resources. Most of the townsfolk in Tinderlake are full time miners, the farm work being handled by workers from highwall that come down into the farmland to work for the day before heading back up to their fortress home.</p>  
+         <body>
+    <div class="container">
+      <div class="section">
+        <h2 onclick="toggleSection(event)">High Wall</h2>
+        <p>Highwall is an ancient and mysterious structure built on the top of an imposing plateau which stands watch over the easiest entry way into the lands of the Reudigni. The craggy and perilous sides of the plateau stand up 40’ at their lowest point and at the top of the plateau is a high wall, some 25’, making it an incredible defensive position, almost unassailable. There are three ways into the city, the south east gates, the west gates, and the north gates. All three must be traversed by a winding ramp up the side of the cliffs. The narrow edges, wide enough only for one wagon, have caused many traveling merchants to simply sell their wares in the easy to access Southflour. The north gate is especially inauspicious, since to enter from that side, one must walk from one teetering crest of rocks across a draw bridge over a 60’ chasm. Rising over the hard stone wall a wooden towers are visible, offering vantage points against any warriors who would be fool enough to advance upon the burg. The stone walls of Highwall are a curiosity of historians. It is not clear from the legends if the Reudigni are responsible for its construction. Rather, the legends say that Highwall has simply always been, perhaps forged by the gods in the time of creation. The Reudigni have built extra wooden structures where needed around the fortress. High wall is the home of some 70% of the Reudigni, a number which has risen since the threat of the Confederate Sibini and Fervir have threatened their neighbors. Some of the craftsmen that live within the walls almost never leave, while the laborers and the warriors of the settlement make frequent ventures out into the surrounding countryside. Falconing is a popular hobby in Highwall, as is hunting in the north forest. Highwall residents are a truly free people since they are the most secure in their defense out of all Erulians. The Reudigni have a rising middle class of merchants who buy up the various products of Highwall and either sail them out via Karvi from Southflour or more commonly take them by wagon to Cove for trade. These merchants bring back goods and guests from other tribes and created a lively market. This in turn gave rise to taverns which serve guests from other tribes during their stay. Guests from other tribes have often said of Highwall that the journey isn’t easy, but it is worth the trouble.</p>  
+         <body>

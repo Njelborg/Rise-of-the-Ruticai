@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Expandable Sections</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 0;
+      }
+      .section {
+        background-color: #f4f4f4;
+        color: #333;
+        margin-bottom: 20px;
+        padding: 20px;
+      }
+      .section h2 {
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+      .section p {
+        display: none; 
+      }
+    </style>
+    <script>
+      function toggleSection(event) {
+          var section = event.target.parentNode; 
+          var content = section.querySelector('p'); 
+          if (content.style.display === 'none') { 
+              content.style.display = 'block'; 
+          } else { 
+              content.style.display = 'none'; 
+          }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+       <a href="../../index.html">Return to main page</a>     
+    </div>
+    <div class="container">
+      <div class="section">
+        <h2 onclick="toggleSection(event)">Gehemaweg</h2>
+        <p>Gehemaweg is an ancient elven settlement which was completed before the histories of man. It currently houses around 100 settlers. Its original purpose is not known, but there are many stone buildings and fortifications. The most important feature is the canal which runs into the walled settlement from inland and runs out the gates to sea. The entire settlement is surrounded by a formidable stone wall 15’ high with ramparts, turrets, and crenellations. These are built up on the interior with earthworks. In good weather ships can dock outside the walls and ships can pass through the canal gates to the interior harbor with the permission of the Queen. Merchants are allowed to dock to buy Stone or to sell other supplies, but they are not permitted to stay. Exchange of goods must be brief.</p>
+         <body>
+    <div class="container">
+      <div class="section">
+        <h2 onclick="toggleSection(event)">Helm</h2>
+        <p>Helm is an inland river town downstream from a large lake which is in turn fed by two rivers flowing down from western mountains. Helm has a population of about 1200 and is best known for it’s stone production, Granite and Limestone, which is sold primarily to the Builder’s guild in Moon Wane Cove, known as the Stone Men. Helm is also a minor producer of military equipment.  Most other resources consumed by helm have to be shipped in from the trading post called Gehemeweg, which is the seat of the Bwyngavi. </p>  
+         <body>    

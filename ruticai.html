@@ -1,231 +1,46 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ruticai Tribe Data - My RPG Content</title>
+    <title>Expandable Sections</title>
     <style>
       body {
-        text-align: center;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
       }
-      p {
-        white-space: pre-wrap;
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 0;
+      }
+      .section {
+        background-color: #f4f4f4;
+        color: #333;
+        margin-bottom: 20px;
+        padding: 20px;
+      }
+      .section h2 {
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+      .section p {
+        display: none; 
       }
     </style>
+    <script>
+      function toggleSection(event) {
+          var section = event.target.parentNode; 
+          var content = section.querySelector('p'); 
+          if (content.style.display === 'none') { 
+              content.style.display = 'block'; 
+          } else { 
+              content.style.display = 'none'; 
+          }
+      }
+    </script>
   </head>
   <body>
-    <h1>Ruticai Tribe Data</h1>
-    <p>The Ruticuli
-
-Ruticuli Families
- 
-Ulvdreps – The family of the old mayking who ruled when the Fervir came.  They now live mostly scattered around the Ruticuli’s lands in various settlements.  
-Important Members: 
-1.	Hermit Sorcerer Senjir
-2.	Former Mayqueen Baerblomst.
-3.	Shipmaker Brynjar
-4.	Tanner Nils
-Sirkrigs – The ruling family in shield harbor and in Seaspear.  
-Important Members: 
-1.	Mayking Rogart of the Ruticuli
-2.	Hearthguard Venneblad of Seaspear
-3.	Ranger Frekki
-4.	Hearthguard and Horse master Rolfe
-5.	Loremaster Thorstein
-6.	Ola
-7.	Karl
-8.	Tanto
-Blodsetrs – The Ruling family of Talon’s peak, and a mining family.  
-Important Members: 
-1.	Hearthguard Ole
-2.	Jarl and Mine Owner Dahl
-3.	Einar (Black Smith)
-4.	Tanner Arvid
-5.	Ingel (Smokehouse operator)
-6.	Hearthguard Dolgun 
-7.	Hearthguard Dothgun
-8.	Huntsman Trotjut
-Havethests – A family of hermits and Carnyx makers.  
-Important Members: 
-1.	Carnyx maker Alblog.
-2.	Tanner Brangjor
-Sverdkin – A family of hunters and warriors living mostly in Seaspear. 
-Important Members: 
-1.	Jarl Rassuil of Seaspear, Ettin Slayer
-2.	Valkyrie Frigga
-3.	Brewer Arne
-4.	Signy (Operates Seaspear’s smokehouse)
-Sanginrs – A family with a proud warrior tradition living mostly in Fisherman’s wharf: 
-Manenfolk – A family living primarily in Seapear.  
-Important members: 
-1.	Sorcerer Apprentice Yoth
-2.	Ivar
-3.	Dinius
-4.	Woodworker Ragna
-5.	Logger Toggi
-Bjornpannens – A family of warriors and hunters living in fishermen’s Wharf 
-Important Members:
-1.	Hearthguard Sven
-2.	Tanner Ander
-3.	Nel (Operates smokehouse
-SvartBani – A family of warriors and fishermen living in fishermen’s wharf
-Important Members:
-1.	Master of Arms, Hearthguard, swordmaster: Sigurd
-2.	Ship Maker Arvid
-3.	Ship Maker Asbjorn
-4.	Jarl and Chief fisherman Bernhard
- 
-
-
-
- 
-Shield Harbor
- 
-Shield harbor is the primary port and a site of great historical significance for the Ruticuli. Though the origin of the tribe is shrouded in mystery, it is believed that Shield harbor was the first settlement of the tribe.  For hundreds of years, the dreaded Ruticuli fleet set sail each summer from Shield Harbor and brought destruction and ruin to many a foe. Shield harbor is home to three important annual celebrations of the Ruticuli: the awakening, the Al-thing, and the first lights.
-The awakening is a coming of age festival at the end of winter in which all the young men from every Ruticuli family gather in Shield harbor and go on their first hunt. This is a very dangerous undertaking for these inexperienced young tribesmen and usually at least one perishes on their hunt, but such is life in Thule. The young man who brings back the most impressive and most dangerous game is crowned the prince of the Ruticuli, which is a coveted title and brings honor and respect to his family all year.
-The Al-thing is a mid-winter event in which all the noble men of the Ruticuli gather to discuss what to do for the year, often picking the targets of the summer raids. The first thing that happens at the Al-thing is the vote for Mayking. From a few nominated candidates, the nobles vote for the next mayking and the winner holds the title for the rest of the year. The mayking’s family is highly honored and guarded by the prestigious warriors of shield harbor. After a Mayking is selected, he may appoint up to five men to join the hearthguard of shield harbor, and must dismiss a man for each one he has appointed. Being appointed to the hearthguard of Shield Harbor is amongst the highest honors for a warrior of the Ruticuli. The Mayking must provide for these men all year, and the mayking is expected to be generous. The Mayking’s vote is weighted very heavily against his tribesmen, and generally his decisions are obeyed.  After the Mayking is appointed, the tribesmen will debate publicly the plans for the year while the Mayking listens, unspeaking. After days of discussion, the mayking then nominates from those proposed, a few plans. After this, a vote is cast deciding the general course of action for the tribe until the next Al-thing.
-The First Lights is a raucous drunken celebration that happens as soon as the sun first returns from the winter dark.  It goes on for 5 days and the Jarls of each settlement compete to show who is the most generous. Warriors gather in the proving grounds to show who is best and many duels to the blood occur. The Al-thing begins only a few days after the First Lights.
- 
-Trade Modifiers: -3
-In Demand: Food
-In Surplus: Ships
-Important Locations and People
- 
-a.	Well
-b.	Warrior’s Lodge (Famous Hearth guard Ole, Rolfe, Sven)
-c.	Proving Grounds (Master of Arms Sigurd)
-d.	Sacred Grove of WodanaR
-e.	Raider’s Port (Shipwright Brynjar, Arvid, Asbjorn)
-f.	Meeting Grounds
-g.	King Rogart’s Hold
-h.	Storage Pit
-i.	Nils (Tanner)
-j.	Loremaster Thorstein’s Hut
-k.	Rolfe’s Horse Pens
- 
- 
-Well – A fresh water well north of town.
-Vikingholm – A place of honor where the warriors of Ruticuli gather to discuss their accomplishments, retell tales, and discuss warfare and fighting technique.  Several Famous hearthguard are a common site here:
-1.	Ole – Honored Hearthguard and old raiding hero. Ole often tells the tale that made him famous: When he was raiding as a young man his family was locked in a fierce naval battle.  While he stood on the edge of his boat roaring curses at his enemies he was knocked into the water by a well-placed arrow.  When he came to the surface, his ship was far away and an enemy vessel was upon him. When a young man from the enemy tribe tried to stab him with a spear from the enemy vessel, he grabbed the spear and yanked the young man into the water clambering aboard afterward. With his sword drawn he hewed through man after man, killing seven before the remaining men dove overboard to escape leaving Ole to single handedly capture their vessel.
-2.	Rolfe – A young man who was practically born in the saddle, Rolfe has been surpassing the best riders of the Ruticuli since his young days. Being Rogart’s Nephew, Rolfe lived a charmed young life of privilege. He was the winner of his awaking ceremony, but this was no surprise since he went into it so well equipped. When the Fervir came, Rolfe fought very hard killing a handful of seasoned enemy warriors. When he became injured he wanted to fight to the death, but his father stopped him taking his place on the battle field. Rolfe’s father died that day and it is said that no man hates the Fervir so much as Rolfe.  Not a year passes when Rolfe does not recommend rebellion at the Al-thing.
-3.	Sven – Old man Sven never cared much for war, but he was cursed with a warrior’s body and mind. Sven was the old mayking’s best friend and fought at his side to the end when the Fervir attacked. After his friend died, it was Sven that called the surrender to the Fervir and negotiated the terms of their defeat. Sven is a man of the sea who only wishes to spend his last days as a quiet fisherman. It seems though that the need to do violence forever pulls him away from his dream. 
-The Proving Grounds – the proving grounds is a fenced in arena where warriors are trained, challenges of honor are decided, and disputes are settled by the blade. The master of the proving grounds is Swordmaster Sigurd whose skill with the blade and knowledge of warfare is acknowledged throughout the tribe. Sigurd spends his days training young Ruticuli the ways of the sword and spear, and keeping old fighters from becoming lazy with their swordplay.
-Sacred Grove of WodanaR – a new addition to Shield harbor. The old sorcerer’s grove has been repurposed to honor WodanaR.  It is a young and simple temple.
-Raider’s Port – a fine port for swift and shallow bottomed raiding vessels.  The great shipmakers of Ruticuli are often seen here.  It is said that Ruticuli ships are the finest on the seas.
-1.	Brynjar – The old mayking’s brother Brynjar is a master shipmaker. He has been driven partially mad since his tribe’s partial demise.  He keeps mostly to himself and his wife.
-2.	Arvid and Asbjorn – Master shipmakers and brothers from Fisherman’s wharf. It is a poorly kept secret that they have hidden some small boats so that their village can continue to fish.
-Meeting Grounds – Near the ports is an open forum where men can meet and talk in the open. It is shaded by some trees and has seating for the elderly.  Some stadium seating lies vacant most of the year except during the Al-thing.
-King Rogart’s Hold – a cozy if not modest hall for a Mayking, the structure is large enough to host a hundred men for drinking and festivities. 
-1.	Mayking Rogart Vaugrsson – Rogart is concerned mostly with gathering enough resources to satisfy the Fervir and his attention is hard to gain. He often tells a story about when he was a boy. One of his father’s hirdsmen took him to a sacred grove in the top of the mountains. When he was there, he witnessed a giant Ettin fighting with a man who wielded a spear which crackled with lightning. The man drove the spear through the heart of the ettin which killed it and turned it to stone. The man could not pull the spear free from the ettin, so he left it there. The Jarl never returned to that place, but he believes that the man he saw was Wodanaz, the god of Erulia. That’s why he has become Asatru. 
-2.	Laetha Rogartsdottir – The underaged daughter of Rogart who is secretly marked for sorcerous talents.  
-3.	Jawni Rogartson – A very young boy who has advanced skills at archery, and seems cleverer than his other young brothers.
-4.	Wuldon Rogartson – a headstrong but powerful young boy, close to becoming a man.  His natural strength is very high; thus he is expected to become quite a warrior as he ages.
-Storage Pit – A deeply dug pit where members of the tribe can safely store valuables or provisions for winter.  The ownership of the items within is kept tallied by a woman named Ola and her Son Karl.
-Tannery – A common Tannery operated by a man named Nils and his family.
-Loremaster’s Hut – Home of Thorstein, the bard of the Ruticuli.  Thorstein keeps the records of the Ruticuli and helps administer the law alongside the Mayking.
-Rolfe’s Horse Pens – A piece of land in front of Rolfe’s house where he keeps the horses of the Ruticuli.
- 
- 
-
- 
-Seaspear
- 
-1.	Seaspear 
-a.	Mineral Spring
-b.	Well
-c.	Arne (Brewer)
-d.	Ragna (Woodworker)
-e.	Toggi’s Logging camp
-f.	Brangjor (Tanner)
-g.	Jarl Venneblad’s Hold
-h.	Signy’s Smoke House
-i.	Storage Pit
- 
-The largest settlement of the Ruticuli is still merely a small hamlet of a few hundred.  Seaspear is home of the most religious members of the Ruticuli, who converted the tribe to Asatru after the massacre. The tribesmen that live here eak out a living hunting and gathering berries and vegetables.  Seaspear is a ring of some 45 shoddily built wooden structures, rimmed by the forest a couple hundred feet away.  Seaspear is off the beaten path. They rarely see a visitor from another tribe.
-Mineral Spring – a natural source of clean and pure water springing from the ground just west of town.
-Well – A convenient water source in the middle of town.
-Brewery – Arne brews dark thick ale from imported Rye.
-Woodworker – Ragna, an old widow, carries on the work of her deceased husband who was a carpenter.  Her many grandchildren have learned much from her. They will be competent woodworker’s someday.  In the meantime, Ragna helps everyone build what they need.
-Logging Camp – Ragna’s grandson Toggi has only recently come of age but is ambitious.  He has convinced a group of men to help him invest in a shipment of tools which has allowed him to start up a logging camp.  They have only been operating for one year, but the extra timber has already significantly helped seaspear’s residents.  
-Tannery – This tannery is operated by Brangjor who came to Seaspear as a youth after he fell out with his own family at alblog’s thorp. His only relative in Seaspear is his daughter who is also skilled in tanning.
-Jarl Venneblad’s Hold – formerly his father Rogart’s house, Venneblad rules from this meager hold in his absence.  The capacity is about 35.
-1.	Young Jarl Venneblad Rogartsson – While his father is away doing his duties as Mayking, Venneblad is in charge of Seaspear. Venneblad tries to defend his village in any way he can and is receptive to suggestions.
-2.	Frekki Vaugresson – Brother of the Mayking, Frekki is a ranger and can always be relied upon to go on dangerous missions alone. While he is not a good orator, he does what he can for the survival of his people. Though popular, he is not an ambitious man and only desires to help his people in any way he can.
-Signy’s Smokehouse – Signy’s smokehouse serves the best smoked meat in the Ruticuli lands.  Signy’s combination of smoked game, berry preserves, Arne’s dark ale, and and warm soups are the envy of the tribe. Signy has received a comical amount of offers of marriage from the men of the tribe, but manages somehow to resist.  Close to winter, Signy is busy at work transforming raw food stuff into preserved stock that can last through the darkness.
-Storage pit: This storage pit can be used by any person living in Seaspear to store food or valuables. It is managed by Jarl Venneblad, who is surprisingly good at math. 
-Fisherman’s Wharf
- 
-a.	Mineral Spring
-b.	Bernhard’s Fishermen’s Huts
-c.	Jarl Bernhard’s Hold
-d.	Ander (Tanner)
-e.	Storage Pits
-f.	The Salty Maiden (Restaurant)
- 
-	Fisherman’s wharf was once a lively fishing hamlet with many visitors who were passing through on their way to Shield Harbor. At the end of the summer, Fervir, Sabalingi and other tribes traveled to shield harbor buy what the Ruticli had looted on their raids. Now Fisherman’s Wharf is a shadow of its former self, sporting empty docks and salt cracked faces of hardened warriors without any opportunity to use their skills. One of the most striking features of fisherman’s wharf is the dozen or so vessels which were dragged up onto land, scuttled, and left to rot.
-Mineral Spring – Fresh water can be found at this natural spring only half a mile into the woods from the wharf. Children go every morning to gather buckets of water.
-Bernhard’s Fishermen’s Huts – These huts which are set up for the processing of fish fresh from the sea, belong to Bernhard the Jarl of Fisherman’s Wharf and his family.
-Jarl Bernhard’s Hold – A small hall which only holds about 25 people.
-1.	Jarl Bernhard – a capable captain and owner of the old fishing fleets of Fisherman’s Wharf, Jarl Bernhard yearns for the old days of raiding when the Ruticuli were the scourge of the seas. It is obvious to everyone in the tribe that Bernhard has hidden vessels somewhere, since the village still produces so many fish. No one is sure of the extent of his current vessels, and everyone tries not to bring it up too much.
-Tannery – A common tannery run by Ander.
-Storage Pits – A storage pit for the residents of Fisherman’s wharf, which is managed by Nel the chef.  Since so much fish is kept in the pit, no one really tries to store valuables in there.
-The Salty Maiden – A smokehouse run by Nel that specializes in salted fish, porpoise, seaweed, and squid paired with imported oatmeal and mead. The Salty Maiden is also an inn which can hold about 100 people, though no one comes through the land of the Ruticuli anymore.
-Alblog’s Thorp
-	Alblog and his family are considered very strange by most Ruticuli. They live in their own thorp away from everyone else, and are rumored to intermarry. They are, however, always keen to show up for battle though. The thorp is a collection of huts deep in the woods at the foot of the mountain.
-Carnyx Maker – Alblog is best known for the Carnyx horns he crafts. Their ominous sonorous blast pierces above the din of battle and for more than a decade they foretold of the terrifying approach of a Ruticuli fleet. So horrifying is the sound of the Carnyx, many leaders across Erulia wish to buy them.  Alblog, not caring for riches, only bestows them upon the most savage leaders of the Ruticuli.
-Storage Pit – This storage pit allows Alblogs family to last out the winter without help from the rest of the tribe, though he does go and barter every year for preserves from Signy in seaspear.
-Tannery – A common tannery operated by Alborg’s cousin and Brangjor’s father, Knute. 
-Talon’s Peak
- 
-a.	Mineral Spring
-b.	Dahl’s Mineshaft (Iron)
-c.	Jarl Dahl’s Hold
-d.	Storage Pit
-e.	Einar’s Black Smith 
-f.	Arvid (Tanner)
-g.	High Mountain Inn
- 
-	Talon’s peak is a mountain top hamlet, nuzzled into a crevice where the wind doesn’t rake the mountainside. Talon’s Peak is so located due to an iron mine which is the primary source of the Ruticuli’s iron. Residents of Talon’s peak are proud of their warrior heritage and are frequently in Shield harbor at the proving grounds. The mining work done in Talon’s peak has made it the richest Ruticuli settlement in the post raiding era.
-Mineral Spring – The people of Talon’s peak draw their water from a clean mineral spring high in the mountains. It is hundreds of feet deep. Some say it goes on forever, into the realm of dwarves.
-Dahl’s Mine Shaft: this rich iron mineshaft a mile outside of Talon’s Peak is owned by Jarl Dahl.
-Jarl Dahl’s Hold: Jarl Dahl’s Hold is a nice hall seating 50 people. Since everyone that lives in Talon’s peak is related to Dahl, it’s important to attract and impress guests. Dahl’s hold is often visited by Ruticuli from around the Tribe who are looking for a wife or a husband.
-1.	Jarl Dahl – The richest of the Ruticuli, Jarl Dahl is the only purveyor of metal in the Ruticuli lands. Alongside his smith Einar, Talon’s peak has a powerful monopoly in the region. Jarl Dahl is especially unkind to foreigners, since their imports ruin his monopoly. Regardless, Dahl is popular because he is so generous with his wealth.  Dahl fancies himself a great warrior, and perhaps he is…but maybe not by the high standards of the Ruticuli.
-Storage Pit – This storage pit is full of carrots and other roots harvested from the mountain. They are communally shared. The residents of Talon’s peak consider food gathering to be mostly women’s work, since the men are often working in the mine.
-Einar’s Smithy – His work isn’t great, but it’s the best a Ruticuli can get without importing.
-Tannery – A common Tanner run by Arvid and his kin.
-High Mountain Inn – a small dwelling place with 1 rentable room, which is often rented by a suitor or a traveling maiden. It is operated by Ingel, a single young man who is desperately looking for a wife. Ingel wasn’t gifted with a warrior’s skills, but he is a great cook. He cooks for anyone who will pay with a cuisine of roots, leafy greens, and goat meat, cheese, and milk. Not to mention ale brought up by the barrel from Seaspear.
-Other Locations
-Senjir’s Dwelling – Home of last sorcerer of the Ruticuli, an Earth Sorcerer that faked his own death to live in peace after his tribe turned their back on the old ways.
-King Ritik’s Tomb – A thousand year old Carne which can only be found with the Black mask of the Ruticuli. The story of King Ritik is carved there in the walls.
-The Lava Font – a volcanic spout which can be seen from Seaspear. 
-Alab Amik ibn Wahab’s Cave – A cave where a hostile group of Khemtians where found hiding.
- 
-Ruticuli Military
-1.	Shield Harbor (Village 105) F63
-a.	17 Noble Riders
-b.	20 Round Shield Swordsmen
-c.	5 Youths
-2.	Seaspear (Hamlet 344) F229
-a.	27 Sword Masters
-b.	41 Round Shield Swordsmen
-c.	19 Spear Brothers
-d.	24 Youths
-e.	21 Archer Women
-3.	Fisherman’s Wharf (Hamlet 293) F196
-a.	23 Sword Masters
-b.	44 Round Shield Swordsmen
-c.	30 Youths
-4.	Talon Peak (Hamlet 134) F73
-a.	22 Sword Masters
-b.	19 Round Shield Swordsmen
-c.	20 Youths
-5.	Alblog’s (Thorp 30) F17
-a.	1 Sword Master
-b.	8 Round Shield Swordsmen
-c.	7 Youths
-
-Total Forces
-Command: 4
-Hearthguard: 90
-Warriors: 151
-Youths and Women: 107</p>
-  </body>
-</html>
+    <div class="container">
+      <div class="section">
+        <h2 onclick="toggleSection(event)">Section One</h2>
+        <p>This is the content for section one.</p>  

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Expandable Sections</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 0;
+      }
+      .section {
+        background-color: #f4f4f4;
+        color: #333;
+        margin-bottom: 20px;
+        padding: 20px;
+      }
+      .section h2 {
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+      .section p {
+        display: none; 
+      }
+    </style>
+    <script>
+      function toggleSection(event) {
+          var section = event.target.parentNode; 
+          var content = section.querySelector('p'); 
+          if (content.style.display === 'none') { 
+              content.style.display = 'block'; 
+          } else { 
+              content.style.display = 'none'; 
+          }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+       <a href="../../index.html">Return to main page</a>     
+    </div>
+    <div class="container">
+      <div class="section">
+        <h2 onclick="toggleSection(event)">Spirit Cove</h2>
+        <p>Spirit cove is the end of the world of Thule.  Northward is unknown land; allegedly the home of Khemetians.  From Spirit Cove one gazes southward towards all of Thule.  Perhaps it is the warmth of the north wind, perhaps it is the lack of any aggressive neighbors, but whatever the reason, the men of the Viruni are friendly folk, and their enterprising society is welcoming to strangers both Thulean and Khemetian.  From the moment one enters Spirit Cove, one can’t help but notice the diversity of its people.  Indeed, only 2/3s of Spirit Cove’s population are Viruni.  Faces from all the tribes of Thule are not uncommon there, and even Thuleans from the other eight realms travel there for trade and sometimes for vacation. There is often warm sunlight on the Viruni beaches, which are said to be the most pleasant in all of Thule, not just Erulia.  
+The denizens of spirit cove who are friendly and accommodating in personal matters often catch travelers off-guard when it comes time for coin to move from pocket to pocket. The best of the shrewd Viruni merchants and traders are swift to capitalize on relaxed visitors. Most travelers to Spirit Cove find themselves leaving with quite a few less coins in their pockets than when they arrived.  The leadership of Spirit Cove is very relaxed, and their military tradition is much less emphasized than other tribes. The armies and fleet of the Viruni is used for defense exclusively, protecting traders and businesses, which are the life blood of Spirit Cove. The Viruni also stand out because they do not take the title of Mayking very seriously. For twelve straight years, the Viruni have elected a Mayking from a small family, without much power or wealth. His famous motto is: No Tyrants, No Wars. With this man in charge, Spirit Cove has been open to all travelers, the laws loosely enforced, and the guilds have ruled the Viruni. 
+Spirit Cove is a crescent shaped town sitting on a northern facing Peninsula, with the two horns of the crescent pointing upwards toward the harbor and the broad outwardly curving section facing south towards the Alfarway. In the structure-less hollow of the center of the town is the fairgrounds, a market place which can only be matched in Erulia by the fairgrounds of Ettin’s Island.  At the center of the fair grounds are three massive and ancient trees, each one dedicated to one of the three principle gods of Spirit Cove. It is here that the worshipers of the Viruni show respects to the gods amidst the commotion of the marketplace. The edge of the fairgrounds is sprinkled with all the craftsmen of the Viruni, and some of the Khemetians. In the heart of the fair grounds are stores and shops selling valuables from Viruni craftsmen and imports from all over the world.
+The Viruni have a nagging enmity for the Fervir, who are their competitors as traders. The Viruni view the Fervir as bad faith traders because of their aggressive military. In the mind of the Viruni, the Fervir only succeed in their mercantilism because their neighbors are so afraid of them. The Viruni find this despicable.  None-the-less, the Viruni must do trade with the Fervir, because each tribes has many exclusive contracts for goods and imports, and it’s best not to start a trade war. 
+There are only two easy ways in and out of the peninsula town of Spirit Cove, the south end entry from the Alfarway, and the way by sea at the port. Spirit cove does not have walls, the cliffs on the east and west make good natural barriers. 
+Spirit cove is split into six districts:
+1.	The Alfargate is the southern residential zone by the road into town.
+2.	The Great Fair is the merchant district in the heart of the crescent.
+3.	The docks is the northern part of the city and sits in between the two crescent points
+4.	West Crest is the western crescent point and is where most of the poorer Viruni live.
+5.	East Crest is the eastern crescent point and is a district largely for foreigners.
+6.	Founder’s Lake is the rich part of town which is to the southeast and adjoins the surrounding farmland.</p>        

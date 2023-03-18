@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Expandable Sections</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 0;
+      }
+      .section {
+        background-color: #f4f4f4;
+        color: #333;
+        margin-bottom: 20px;
+        padding: 20px;
+      }
+      .section h2 {
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+      .section p {
+        display: none; 
+      }
+    </style>
+    <script>
+      function toggleSection(event) {
+          var section = event.target.parentNode; 
+          var content = section.querySelector('p'); 
+          if (content.style.display === 'none') { 
+              content.style.display = 'block'; 
+          } else { 
+              content.style.display = 'none'; 
+          }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+       <a href="../../index.html">Return to main page</a>     
+    </div>
+    <div class="container">
+      <div class="section">
+        <h2 onclick="toggleSection(event)">Skein</h2>
+        <p>Skein is the only home of the reclusive and mysterious Sabines, a tribe of men with a unique appearance and accent for the Suebia region. The Sabines migrated to Suebia from Troskinia after their leaders heard of the defeat of a powerful monster in Suebia, though this occurred before recorded history and the details are long forgotten. Skein itself is a hilltop burg built strong with wooden palisades. Skein is a motte and bailey, featuring two hills both of which are surrounded by a deep man made trench filled with water. The Motte (known as Dark Tower) is on the higher hill and is only accessible from the larger bailey (known as The Mud Flats) on the lower hill. The moat of Skein surrounds both, a hanging bridge connecting the two fortresses. Dark Tower is the more fortified part of the settlement and is where the Spruzzarii (sorcerers) and the non-magical leadership of the tribe dwell, the vast majority of Sabines live in The Mud Flats. Skein, and thus the Sabines, are led by a Repervida, or king for life. The title is passed down as decided by the sorcerers of the Sabines. The common folk and even the warrior class have little say. Skein is famous for having more sorcerers than any tribe except for the Triboki and they specialize in the control of fire spirits.
+The Mud Flats is a muddy, dirty, and dull colored place with no trees and the grass cut low by sheep and cattle. The people of The Mud Flats are surprisingly well dressed in fine wool and leather clothing which is widely available for purchase at the Speaker’s Cabin.
+The culture and habits of the Sabines are not well known to any tribe, even their allies the Erevir. Skein has never been a particularly rich place due to their land locked Seat and xenophobic behavior. They have become significantly wealthier since allying with the Erevir. The Sabines are happy now to help the Erevir with any violence they need to do in return for financial support. The Erevir leave the Sabines well enough alone during times of peace. 
+</p>        

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Expandable Sections</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 0;
+      }
+      .section {
+        background-color: #f4f4f4;
+        color: #333;
+        margin-bottom: 20px;
+        padding: 20px;
+      }
+      .section h2 {
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+      .section p {
+        display: none; 
+      }
+    </style>
+    <script>
+      function toggleSection(event) {
+          var section = event.target.parentNode; 
+          var content = section.querySelector('p'); 
+          if (content.style.display === 'none') { 
+              content.style.display = 'block'; 
+          } else { 
+              content.style.display = 'none'; 
+          }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="section">
+        <h2 onclick="toggleSection(event)">Wedge</h2>
+        <p>Wedge is the seat of the Angavi, home of King Bruno, and the trade hub of the Angavi. Goods are shipped in by merchants from Moonwane Cove and Eyebite Bay.  These goods are usually exchanged for Quality stonework, household goods, martial equipment, salted fish, and jewelry made throughout the Angavi lands. Wedge is an important part of many merchant trade routes, however, wedge is inhospitable to outsiders, so it is important to make sure that one does not need to stay in wedge. The Angavi will force travelers to sleep on board their vessels and demand that they leave after one day. Wedge is lightly guarded, but the hird can be summoned from Heroholm in a moment’s notice. Wedge is home of many stone structures, and the buildings tend to have beautiful marble floors.</p>  
+         <body>
+    <div class="container">
+      <div class="section">
+        <h2 onclick="toggleSection(event)">Dragon Scale</h2>
+        <p>Dragonscale is a prosperous mining town of about 400 that is situated on the western end of Angavi Territory at the foot of the mountains which represent the border of their territory. Dragon scale once was a site for Tin and Copper mines, but those have long since run dry, a relic of a bronze forge still standing on the center of the town. Now Dragonscale focuses on Iron mining and the crafting of various metal objects.  Those Objects are then loaded on river rafts and dragged to the east to the other settlements of the Angavi.  Those things which are not purchased by Angavi tribesmen wind up in the storehouse of the king in Wedge and are sold to traveling merchants as the sale up and down the coast from Eyebite bay to the warmer north.</p>  
+         <body>
+    <div class="container">
+      <div class="section">
+        <h2 onclick="toggleSection(event)">Forktooth</h2>
+        <p>A crafting town which is quite distant from the rest of the settlements of the Angavi, Forktooth is the site of an important sorcererous grove, which is the only grove established under the Angavi (the other grove having been an original Gavi Grove). The residents of Forktooth practice animal husbandry and keep cattle which were purchased from Erevir merchants. Thus, Forktooth has quite a different array of foodstuffs than does the rest of the Angavi settlements.  However, due to the remoteness of Forktooth, rarely are their products seen in other towns, although, sometimes cattle are walked down for slaughter in rituals in wedge.</p>  
+         <body>
+    <div class="container">
+      <div class="section">
+        <h2 onclick="toggleSection(event)">Heroholm</h2>
+        <p>The last stop on a trip from Dragon Scale to Wedge is at Heroholm. Heroholm is a lake fishing village of about 400, with river access to the seas for salt water fishing. Heroholm’s fishing makes up about half the food served in the Angavi territory, with the other half being imported or wild game. The main output of Heroholm is of course, fish. They also produce leather goods which are sold to the river tradesmen on their trips between Wedge and Dragonscale. The fishermen of Heroholm are the most accomplished warriors and make up much of the Hirdsmen. In Heroholm, the warriors of legend are honored, and their stories are kept alive.</p>  
+        <div class="container">
+      <div class="section">
+        <h2 onclick="toggleSection(event)">Vengeance</h2>
+        <p>Vengeance is the middle point village of 150 on the river path from Dragon scale to Wedge. Vengeance relies largely on it’s Jarl, who is a Sorcerer and a Jeweler, capable of embuing the power of jewels in artifacts. A close relationship with Dragonscale keeps Vengeance well stocked with goods and foodstuffs beyond what their hunters can collect. Rafts carrying metalworks and gems from the mines in Dragonscale are pulled ashore in Vengeance, and the jewels are embued into the metalworks before they arrive at market in Wedge. Vengeance is across the lake from Heroholm, and the two villages trade Woodworks and pottery for Leather goods and Fish.</p>  

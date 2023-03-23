@@ -115,7 +115,34 @@
          <label><input type="radio" name="Armor2">Fur Coat</label><br>
          <label><input type="radio" name="Armor2">No Warm Armor</label><br>
        </div>  
+           <td style="padding-left:4px;">
+       <div style="display:flex;">
+       <div style="margin-right:10px;">
+         <label><input type="checkbox" id="mountedCheckbox2">Mounted</label><br>
+         <select id="mountedSelect2" disabled>
+             <option value="none">None</option>
+             <option value="driver">Driver</option>
+             <option value="passenger">Passenger</option>
+             <option value="officer">Officer</option>
+             <option value="crew">Crew</option>
+           </select>
+           <script>
+               const mountedCheckbox2 = document.querySelector('#mountedCheckbox2');
+               const mountedSelect2 = document.querySelector('#mountedSelect2');
+             
+               mountedCheckbox2.addEventListener('change', () => {
+                     if (mountedCheckbox2.checked) {
+                             mountedSelect2.disabled = false;
+                           } else {
+                                   mountedSelect2.disabled = true;
+                                   mountedSelect2.value = 'none';
+                                  }
+  });
+</script>
+</div>  
+
     </tr>
+        
     <tr>
      <td><label for="nameInput3a">Name</label><br>
      <input type="text" id="nameInput3a" maxlength="20" value="Character 3">
@@ -145,7 +172,33 @@
          <label><input type="radio" name="Armor3">Fur Coat</label><br>
          <label><input type="radio" name="Armor3">No Warm Armor</label><br>
        </div>  
+            <td style="padding-left:4px;">
+       <div style="display:flex;">
+       <div style="margin-right:10px;">
+         <label><input type="checkbox" id="mountedCheckbox3">Mounted</label><br>
+         <select id="mountedSelect3" disabled>
+             <option value="none">None</option>
+             <option value="driver">Driver</option>
+             <option value="passenger">Passenger</option>
+             <option value="officer">Officer</option>
+             <option value="crew">Crew</option>
+           </select>
+           <script>
+               const mountedCheckbox3 = document.querySelector('#mountedCheckbox3');
+               const mountedSelect3 = document.querySelector('#mountedSelect3');
+             
+               mountedCheckbox3.addEventListener('change', () => {
+                     if (mountedCheckbox3.checked) {
+                             mountedSelect3.disabled = false;
+                           } else {
+                                   mountedSelect3.disabled = true;
+                                   mountedSelect3.value = 'none';
+                                  }
+  });
+</script>
+         </Div>
     </tr>
+        
     <tr>
      <td><label for="nameInput4a">Name</label><br>
      <input type="text" id="nameInput4a" maxlength="20" value="Character 4">
@@ -175,7 +228,33 @@
          <label><input type="radio" name="Armor4">Fur Coat</label><br>
          <label><input type="radio" name="Armor4">No Warm Armor</label><br>
        </div>  
+                     <td style="padding-left:4px;">
+       <div style="display:flex;">
+       <div style="margin-right:10px;">
+         <label><input type="checkbox" id="mountedCheckbox4">Mounted</label><br>
+         <select id="mountedSelect4" disabled>
+             <option value="none">None</option>
+             <option value="driver">Driver</option>
+             <option value="passenger">Passenger</option>
+             <option value="officer">Officer</option>
+             <option value="crew">Crew</option>
+           </select>
+           <script>
+               const mountedCheckbox4 = document.querySelector('#mountedCheckbox4');
+               const mountedSelect4 = document.querySelector('#mountedSelect4');
+             
+               mountedCheckbox4.addEventListener('change', () => {
+                     if (mountedCheckbox4.checked) {
+                             mountedSelect4.disabled = false;
+                           } else {
+                                   mountedSelect4.disabled = true;
+                                   mountedSelect42.value = 'none';
+                                  }
+  });
+</script>
+</div>  
     </tr>
+        
     <tr>
      <td><label for="nameInput5a">Name</label><br>
      <input type="text" id="nameInput5a" maxlength="20" value="Character 5">
@@ -205,7 +284,33 @@
          <label><input type="radio" name="Armor5">Fur Coat</label><br>
          <label><input type="radio" name="Armor5">No Warm Armor</label><br>
        </div>  
+                     <td style="padding-left:4px;">
+       <div style="display:flex;">
+       <div style="margin-right:10px;">
+         <label><input type="checkbox" id="mountedCheckbox5">Mounted</label><br>
+         <select id="mountedSelect5" disabled>
+             <option value="none">None</option>
+             <option value="driver">Driver</option>
+             <option value="passenger">Passenger</option>
+             <option value="officer">Officer</option>
+             <option value="crew">Crew</option>
+           </select>
+           <script>
+               const mountedCheckbox5 = document.querySelector('#mountedCheckbox5');
+               const mountedSelect5 = document.querySelector('#mountedSelect5');
+             
+               mountedCheckbox5.addEventListener('change', () => {
+                     if (mountedCheckbox5.checked) {
+                             mountedSelect5.disabled = false;
+                           } else {
+                                   mountedSelect5.disabled = true;
+                                   mountedSelect5.value = 'none';
+                                  }
+  });
+</script>
+</div>  
     </tr>
+        
     <tr>
      <td><label for="nameInput6a">Name</label><br>
      <input type="text" id="nameInput6a" maxlength="20" value="Character 6">
@@ -235,6 +340,31 @@
          <label><input type="radio" name="Armor6">Fur Coat</label><br>
          <label><input type="radio" name="Armor6">No Warm Armor</label><br>
        </div>  
+                     <td style="padding-left:4px;">
+       <div style="display:flex;">
+       <div style="margin-right:10px;">
+         <label><input type="checkbox" id="mountedCheckbox6">Mounted</label><br>
+         <select id="mountedSelect6" disabled>
+             <option value="none">None</option>
+             <option value="driver">Driver</option>
+             <option value="passenger">Passenger</option>
+             <option value="officer">Officer</option>
+             <option value="crew">Crew</option>
+           </select>
+           <script>
+               const mountedCheckbox6 = document.querySelector('#mountedCheckbox6');
+               const mountedSelect6 = document.querySelector('#mountedSelect6');
+             
+               mountedCheckbox6.addEventListener('change', () => {
+                     if (mountedCheckbox6.checked) {
+                             mountedSelect6.disabled = false;
+                           } else {
+                                   mountedSelect6.disabled = true;
+                                   mountedSelect6.value = 'none';
+                                  }
+  });
+</script>
+</div>  
     </tr>       
 </table>
   </body>

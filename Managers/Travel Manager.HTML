@@ -30,7 +30,16 @@
       <th style="padding-left:4px;">Riding</th>
     </tr>
     <tr>
-      <td><input type="text" maxlength="20" value="Character 1"></td>
+     <label for="nameInput">Name</label><br>
+     <input type="text" id="nameInput" maxlength="20" value="Character 1">
+     <label for="nameInput">Stamina</label><br>
+     <input type="text" id="nameInput" maxlength="3" value="Character 1">
+     <label for="nameInput">MS Penalty</label><br>
+     <input type="text" id="nameInput" maxlength="3" value="Character 1">
+     <label for="nameInput">Heat Penalty</label><br>
+     <input type="text" id="nameInput" maxlength="3" value="Character 1">
+     <label for="nameInput">Cold Resistance</label><br>
+     <input type="text" id="nameInput" maxlength="3" value="Character 1">
       <td style="padding-left:10px;">
        <div style="display:flex;">
        <div style="margin-right:10px;">
@@ -47,13 +56,13 @@
          <label><input type="radio" name="Armor1">Fur Armor</label><br>
          <label><input type="radio" name="Armor1">Fur Coat</label><br>
          <label><input type="radio" name="Armor1">No Warm Armor</label><br>
-         <Label><input type="Checkbox">Sun Hat</label><br>
+         <Label><input type="Checkbox">Sun Hat1</label><br>
        </div>  
      <td style="padding-left:4px;">
        <div style="display:flex;">
        <div style="margin-right:10px;">
-         <label><input type="checkbox" id="mountedCheckbox">Mounted</label><br>
-         <select id="mountedSelect" disabled>
+         <label><input type="checkbox" id="mountedCheckbox1">Mounted</label><br>
+         <select id="mountedSelect1" disabled>
              <option value="none">None</option>
              <option value="driver">Driver</option>
              <option value="passenger">Passenger</option>
@@ -61,15 +70,15 @@
              <option value="crew">Crew</option>
            </select>
            <script>
-               const mountedCheckbox = document.querySelector('#mountedCheckbox');
-               const mountedSelect = document.querySelector('#mountedSelect');
+               const mountedCheckbox1 = document.querySelector('#mountedCheckbox1');
+               const mountedSelect1 = document.querySelector('#mountedSelect1');
              
                mountedCheckbox.addEventListener('change', () => {
-                     if (mountedCheckbox.checked) {
-                             mountedSelect.disabled = false;
+                     if (mountedCheckbox1.checked) {
+                             mountedSelect1.disabled = false;
                            } else {
-                                   mountedSelect.disabled = true;
-                                   mountedSelect.value = 'none';
+                                   mountedSelect1.disabled = true;
+                                   mountedSelect1.value = 'none';
                                   }
   });
 </script>

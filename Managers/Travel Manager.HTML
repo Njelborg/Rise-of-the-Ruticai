@@ -26,7 +26,8 @@
       <table>
     <tr>
       <th>Character Name</th>
-      <th style="padding-left:10px;">Clothing</th>
+      <th style="padding-left:10px;">Clothing</th>      
+      <th style="padding-left:10px;">Riding</th>
     </tr>
     <tr>
       <td><input type="text" maxlength="20" value="Character 1"></td>
@@ -51,7 +52,28 @@
      <td style="padding-left:10px;">
        <div style="display:flex;">
        <div style="margin-right:10px;">
-         <label><input type="radio" name="Clothes1">Nude</label><br>  
+         <label><input type="checkbox">Mounted</label><br>  
+         <label><input type="checkbox" id="mountedCheckbox">Mounted</label><br>
+         <select id="mountedSelect" disabled>
+             <option value="none">None</option>
+             <option value="driver">Driver</option>
+             <option value="passenger">Passenger</option>
+             <option value="officer">Officer</option>
+             <option value="crew">Crew</option>
+           <script>
+               const mountedCheckbox = document.querySelector('#mountedCheckbox');
+               const mountedSelect = document.querySelector('#mountedSelect');
+             
+               mountedCheckbox.addEventListener('change', () => {
+                     if (mountedCheckbox.checked) {
+                             mountedSelect.disabled = false;
+                           } else {
+                                   mountedSelect.disabled = true;
+                                   mountedSelect.value = 'none';
+                                  }
+  });
+</script>
+</select>
        </div>  
          
     </tr>
@@ -150,27 +172,7 @@
          <label><input type="radio" name="Armor6">Fur Coat</label><br>
          <label><input type="radio" name="Armor6">No Warm Armor</label><br>
        </div>  
-    </tr>   
-    
+    </tr>       
 </table>
-<script>
-
-     document.getElementById("save-button").onclick = function() {
-       // Get all input elements in the table
-       var inputs = document.querySelectorAll("table input[type='text']");
-       // Create an array to store the data
-       var data = [];
-       // Loop through each input element and add its value to the data array
-       for (var i = 0; i < inputs.length; i++) {
-         data.push(inputs[i].value);
-       }
-       // Convert the data array to JSON
-       var jsonData = JSON.stringify(data);
-       
-       // Send the JSON data to a server-side script or database here
-       
-     };
-
-   </script>
   </body>
 </html>

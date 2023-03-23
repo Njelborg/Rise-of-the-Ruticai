@@ -16,13 +16,16 @@
             for (var i = 0; i < formElements.length; i++) {
                 var element = formElements[i];
                 var elementType = element.type;
-                var elementId = element.id;
-                var savedValue = getCookie(elementId);
+                var savedValue;
 
-                if (savedValue !== undefined) {
-                    if (elementType === 'checkbox' || elementType === 'radio') {
-            savedValue = getCookie(element.name);
-                    } else {
+                if (elementType === 'checkbox' || elementType === 'radio') {
+                    savedValue = getCookie(element.name);
+                    if (savedValue !== undefined) {
+                        element.checked = (savedValue === 'true');
+                    }
+                } else {
+                    savedValue = getCookie(element.id);
+                    if (savedValue !== undefined) {
                         element.value = savedValue;
                     }
                 }

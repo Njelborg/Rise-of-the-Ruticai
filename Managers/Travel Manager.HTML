@@ -21,7 +21,7 @@
 
                 if (savedValue !== undefined) {
                     if (elementType === 'checkbox' || elementType === 'radio') {
-                        element.checked = (savedValue === 'true');
+            savedValue = getCookie(element.name);
                     } else {
                         element.value = savedValue;
                     }
@@ -60,16 +60,15 @@
         for (var i = 0; i < formElements.length; i++) {
             var element = formElements[i];
             var elementType = element.type;
-            var elementId = element.id;
+            var elementName = element.name;
             var elementValue;
 
             if (elementType === 'checkbox' || elementType === 'radio') {
                 elementValue = element.checked;
+                document.cookie = `${elementName}=${elementValue}`;
             } else {
                 elementValue = element.value;
-            }
-
-            document.cookie = `${elementId}=${elementValue}`;
+                document.cookie = `${elementId}=${elementValue}`;
         }
     });
 </script>

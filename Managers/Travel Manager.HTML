@@ -2,6 +2,36 @@
 <html>
   <head>
     <title>Travel Manager</title>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function getCookie(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+        }
+
+        function setFormValuesFromCookies() {
+            var formElements = document.querySelectorAll('input, select, textarea');
+
+            for (var i = 0; i < formElements.length; i++) {
+                var element = formElements[i];
+                var elementType = element.type;
+                var elementId = element.id;
+                var savedValue = getCookie(elementId);
+
+                if (savedValue !== undefined) {
+                    if (elementType === 'checkbox' || elementType === 'radio') {
+                        element.checked = (savedValue === 'true');
+                    } else {
+                        element.value = savedValue;
+                    }
+                }
+            }
+        }
+
+        window.addEventListener('load', setFormValuesFromCookies);
+    });
+</script>
         <style>
       table {
         border-collapse: separate;

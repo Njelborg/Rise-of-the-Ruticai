@@ -134,8 +134,8 @@ document.getElementById('save-button').addEventListener('click', function() {
        <div style="margin-right:15px;">
          <label><input type="radio" name="Armor1" value="Leather Armor">Leather Armor</label><br>
          <label><input type="radio" name="Armor1" value="Fur Armor">Fur Armor</label><br>
-         <label><input type="radio" name="Armor1" value="Fur Coat">Fur Coat</label><br>
          <label><input type="radio" name="Armor1" value="No Warm Armor">No Warm Armor</label><br>
+         <label><input type="Checkbox" name="fur cloak1" value="Fur cloak">Fur cloak</label><br>
          <Label><input type="Checkbox" name="Hat1" value="Sunhat">Sun Hat</label><br>
        </div>  
      <td style="padding-left:4px;">
@@ -229,8 +229,8 @@ document.getElementById('save-button').addEventListener('click', function() {
 <div style="margin-right:15px;">
     <label><input type="radio" name="Armor2" value="Leather Armor">Leather Armor</label><br>
     <label><input type="radio" name="Armor2" value="Fur Armor">Fur Armor</label><br>
-    <label><input type="radio" name="Armor2" value="Fur Coat">Fur Coat</label><br>
     <label><input type="radio" name="Armor2" value="No Warm Armor">No Warm Armor</label><br>
+    <label><input type="Checkbox" name="fur cloak2" value="Fur cloak">Fur cloak</label><br>
     <Label><input type="Checkbox" name="Hat2" value="Sunhat">Sun Hat</label><br>
 </div>  
            <td style="padding-left:4px;">
@@ -291,8 +291,8 @@ document.getElementById('save-button').addEventListener('click', function() {
 <div style="margin-right:15px;">
     <label><input type="radio" name="Armor3" value="Leather Armor">Leather Armor</label><br>
     <label><input type="radio" name="Armor3" value="Fur Armor">Fur Armor</label><br>
-    <label><input type="radio" name="Armor3" value="Fur Coat">Fur Coat</label><br>
     <label><input type="radio" name="Armor3" value="No Warm Armor">No Warm Armor</label><br>
+    <label><input type="Checkbox" name="fur cloak3" value="Fur cloak">Fur cloak</label><br>
     <Label><input type="Checkbox" name="Hat3" value="Sunhat">Sun Hat</label><br>
 </div>  
             <td style="padding-left:4px;">
@@ -348,8 +348,8 @@ document.getElementById('save-button').addEventListener('click', function() {
 <div style="margin-right:15px;">
     <label><input type="radio" name="Armor4" value="Leather Armor">Leather Armor</label><br>
     <label><input type="radio" name="Armor4" value="Fur Armor">Fur Armor</label><br>
-    <label><input type="radio" name="Armor4" value="Fur Coat">Fur Coat</label><br>
     <label><input type="radio" name="Armor4" value="No Warm Armor">No Warm Armor</label><br>
+    <label><input type="Checkbox" name="fur cloak4" value="Fur cloak">Fur cloak</label><br>  
     <Label><input type="Checkbox" name="Hat4" value="Sunhat">Sun Hat</label><br>
 </div>  
                      <td style="padding-left:4px;">
@@ -405,8 +405,8 @@ document.getElementById('save-button').addEventListener('click', function() {
 <div style="margin-right:15px;">
     <label><input type="radio" name="Armor5" value="Leather Armor">Leather Armor</label><br>
     <label><input type="radio" name="Armor5" value="Fur Armor">Fur Armor</label><br>
-    <label><input type="radio" name="Armor5" value="Fur Coat">Fur Coat</label><br>
     <label><input type="radio" name="Armor5" value="No Warm Armor">No Warm Armor</label><br>
+    <label><input type="Checkbox" name="fur cloak5" value="Fur cloak">Fur cloak</label><br>
     <Label><input type="Checkbox" name="Hat5" value="Sunhat">Sun Hat</label><br>
 </div>  
                      <td style="padding-left:4px;">
@@ -462,8 +462,8 @@ document.getElementById('save-button').addEventListener('click', function() {
 <div style="margin-right:15px;">
     <label><input type="radio" name="Armor6" value="Leather Armor">Leather Armor</label><br>
     <label><input type="radio" name="Armor6" value="Fur Armor">Fur Armor</label><br>
-    <label><input type="radio" name="Armor6" value="Fur Coat">Fur Coat</label><br>
-    <label><input type="radio" name="Armor6" value="No Warm Armor">No Warm Armor</label><br>
+    <label><input type="radio" name="Armor6" value="No Warm Armor">No Warm Armor</label><br>  
+    <label><input type="Checkbox" name="fur cloak6" value="Fur cloak">Fur cloak</label><br>
     <Label><input type="Checkbox" name="Hat6" value="Sunhat">Sun Hat</label><br>
 </div>  
                      <td style="padding-left:4px;">
@@ -502,6 +502,10 @@ const temperatureSelect = document.querySelector('#temperature');
 const heatPenaltyInputs = document.querySelectorAll('[id^="nameInput"][id$="d"]');
 const coldPenaltyInputs = document.querySelectorAll('[id^="nameInput"][id$="e"]');
 const clothesRadios = Array.from({ length: 6 }, (_, i) => document.querySelectorAll(`[name="Clothes${i + 1}"]`));
+const footgearRadios = Array.from({ length: 6 }, (_, i) => document.querySelectorAll(`[name="Footgear${i + 1}"]`));
+const armorRadios = Array.from({ length: 6 }, (_, i) => document.querySelectorAll(`[name="Armor${i + 1}"]`));
+const furCloakCheckboxes = Array.from({ length: 6 }, (_, i) => document.querySelector(`[name="fur cloak${i + 1}"]`));
+const hatCheckboxes = Array.from({ length: 6 }, (_, i) => document.querySelector(`[name="Hat${i + 1}"]`));
 
 const initialHeatPenalties = Array.from(heatPenaltyInputs).map(input => parseInt(input.value) || 0);
 const initialColdPenalties = Array.from(coldPenaltyInputs).map(input => parseInt(input.value) || 0);
@@ -557,6 +561,54 @@ function updatePenalties() {
     });
   });
 
+  footgearRadios.forEach((radios, index) => {
+    radios.forEach(radio => {
+      if (radio.checked) {
+        const footgear = radio.value;
+        switch (footgear) {
+          case 'Bearfoot':
+            coldPenalties[index] -= 1;
+            break;
+          case 'Boots':
+            coldPenalties[index] += 1;
+            break;
+          default:
+            break;
+        }
+      }
+    });
+  });
+
+  armorRadios.forEach((radios, index) => {
+    radios.forEach(radio => {
+      if (radio.checked) {
+        const armor = radio.value;
+        switch (armor) {
+          case 'Leather Armor':
+            coldPenalties[index] += 1;
+            break;
+          case 'Fur Armor':
+            coldPenalties[index] += 2;
+            break;
+          default:
+            break;
+        }
+      }
+    });
+  });
+
+  furCloakCheckboxes.forEach((checkbox, index) => {
+    if (checkbox.checked) {
+      coldPenalties[index] += 1;
+    }
+  });
+
+  hatCheckboxes.forEach((checkbox, index) => {
+    if (checkbox.checked) {
+      heatPenalties[index] += 1;
+    }
+  });
+
   heatPenaltyInputs.forEach((input, index) => {
     input.value = heatPenalties[index];
   });
@@ -572,6 +624,26 @@ clothesRadios.forEach(radios => {
   radios.forEach(radio => {
     radio.addEventListener('change', updatePenalties);
   });
+});
+
+footgearRadios.forEach(radios => {
+  radios.forEach(radio => {
+    radio.addEventListener('change', updatePenalties);
+  });
+});
+
+armorRadios.forEach(radios => {
+  radios.forEach(radio => {
+    radio.addEventListener('change', updatePenalties);
+  });
+});
+
+furCloakCheckboxes.forEach(checkbox => {
+  checkbox.addEventListener('change', updatePenalties);
+});
+
+hatCheckboxes.forEach(checkbox => {
+  checkbox.addEventListener('change', updatePenalties);
 });
     
     function roll3d6() {

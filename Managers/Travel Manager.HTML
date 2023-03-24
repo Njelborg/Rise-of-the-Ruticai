@@ -66,11 +66,11 @@
         var elementName = element.name;
         var elementValue;
 
-        if (elementType === 'checkbox' || elementType === 'radio') 
-            If (Element.checked) { 
-            elementValue = element.value;
-            document.cookie = `${element.name}-${elementValue}=${elementValue}`;
-        }
+        if (elementType === 'checkbox' || elementType === 'radio') {
+            if (element.checked) {
+                elementValue = element.value;
+                document.cookie = `${element.name}-${elementValue}=${elementValue}`;
+            }
         } else {
             elementValue = element.value;
             document.cookie = `${element.name}=${elementValue}`;

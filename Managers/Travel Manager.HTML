@@ -116,9 +116,9 @@ document.getElementById('save-button').addEventListener('click', function() {
      <label for="nameInput1c">MS Penalty</label><br>
      <input type="text" id="nameInput1c" maxlength="3" value="">
      <label for="nameInput1d">Heat Penalty</label><br>
-     <input type="text" id="nameInput1d" maxlength="3" value="">
-     <label for="nameInput1e">Cold Resistance</label><br>
-     <input type="text" id="nameInput1e" maxlength="3" value=""> 
+     <input type="text" id="nameInput1d" maxlength="3" value="" readonly>
+     <label for="nameInput1e">Cold Penalty</label><br>
+     <input type="text" id="nameInput1e" maxlength="3" value="" readonly>
 
       <td style="padding-left:10px;">
        <div style="display:flex;">
@@ -210,7 +210,7 @@ document.getElementById('save-button').addEventListener('click', function() {
      <input type="text" id="nameInput2c" maxlength="3" value="">
      <label for="nameInput2d">Heat Penalty</label><br>
      <input type="text" id="nameInput2d" maxlength="3" value="">
-     <label for="nameInput2e">Cold Resistance</label><br>
+     <label for="nameInput2e">Cold Penalty</label><br>
      <input type="text" id="nameInput2e" maxlength="3" value="">
        
       <td style="padding-left:10px;">
@@ -272,7 +272,7 @@ document.getElementById('save-button').addEventListener('click', function() {
      <input type="text" id="nameInput3c" maxlength="3" value="">
      <label for="nameInput3d">Heat Penalty</label><br>
      <input type="text" id="nameInput3d" maxlength="3" value="">
-     <label for="nameInput3e">Cold Resistance</label><br>
+     <label for="nameInput3e">Cold Penalty</label><br>
      <input type="text" id="nameInput3e" maxlength="3" value=""> 
        
       <td style="padding-left:10px;">
@@ -329,7 +329,7 @@ document.getElementById('save-button').addEventListener('click', function() {
      <input type="text" id="nameInput4c" maxlength="3" value="">
      <label for="nameInput4d">Heat Penalty</label><br>
      <input type="text" id="nameInput4d" maxlength="3" value="">
-     <label for="nameInput4e">Cold Resistance</label><br>
+     <label for="nameInput4e">Cold Penalty</label><br>
      <input type="text" id="nameInput4e" maxlength="3" value="">
        
       <td style="padding-left:10px;">
@@ -386,7 +386,7 @@ document.getElementById('save-button').addEventListener('click', function() {
      <input type="text" id="nameInput5c" maxlength="3" value="">
      <label for="nameInput5d">Heat Penalty</label><br>
      <input type="text" id="nameInput5d" maxlength="3" value="">
-     <label for="nameInput5e">Cold Resistance</label><br>
+     <label for="nameInput5e">Cold Penalty</label><br>
      <input type="text" id="nameInput5e" maxlength="3" value="">
             
       <td style="padding-left:10px;">
@@ -443,7 +443,7 @@ document.getElementById('save-button').addEventListener('click', function() {
      <input type="text" id="nameInput6c" maxlength="3" value="">
      <label for="nameInput6d">Heat Penalty</label><br>
      <input type="text" id="nameInput6d" maxlength="3" value="">
-     <label for="nameInput6e">Cold Resistance</label><br>
+     <label for="nameInput6e">Cold Penalty</label><br>
      <input type="text" id="nameInput6e" maxlength="3" value="">
        
       <td style="padding-left:10px;">
@@ -496,6 +496,44 @@ document.getElementById('save-button').addEventListener('click', function() {
 
 </table>
   <script>
+    const temperatureSelect = document.querySelector('#temperature');
+const heatPenaltyInput = document.querySelector('#nameInput1d');
+const coldPenaltyInput = document.querySelector('#nameInput1e');
+
+temperatureSelect.addEventListener('change', (event) => {
+  const temperature = event.target.value;
+  let heatPenalty = parseInt(heatPenaltyInput.value) || 0;
+  let coldPenalty = parseInt(coldPenaltyInput.value) || 0;
+
+  switch (temperature) {
+    case 'fair':
+      break;
+    case 'warm':
+      heatPenalty -= 1;
+      break;
+    case 'hot':
+      heatPenalty -= 2;
+      break;
+    case 'brutal':
+      heatPenalty -= 4;
+      break;
+    case 'chilly':
+      coldPenalty -= 1;
+      break;
+    case 'cold':
+      coldPenalty -= 2;
+      break;
+    case 'frigid':
+      coldPenalty -= 4;
+      break;
+    default:
+      break;
+  }
+
+  heatPenaltyInput.value = heatPenalty;
+  coldPenaltyInput.value = coldPenalty;
+});
+    
     function roll3d6() {
     var total = 0;
     for (var i = 0; i < 3; i++) {
@@ -511,12 +549,12 @@ document.getElementById('take-trip-button').addEventListener('click', function()
         var staminaInput = document.getElementById(`nameInput${i + 1}b`);
         var msPenaltyInput = document.getElementById(`nameInput${i + 1}c`);
         var heatPenaltyInput = document.getElementById(`nameInput${i + 1}d`);
-        var coldResistanceInput = document.getElementById(`nameInput${i + 1}e`);
+        var coldPenaltyInput = document.getElementById(`nameInput${i + 1}e`);
         var result = roll3d6();
         result += parseInt(staminaInput.value) || 0;
         result += parseInt(msPenaltyInput.value) || 0;
         result += parseInt(heatPenaltyInput.value) || 0;
-        result += parseInt(coldResistanceInput.value) || 0;
+        result += parseInt(coldPenaltyInput.value) || 0;
         if (result > 15) {
             passCount++;
         } else {

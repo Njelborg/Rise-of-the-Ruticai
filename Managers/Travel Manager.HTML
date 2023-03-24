@@ -68,7 +68,7 @@
 
             if (elementType === 'checkbox' || elementType === 'radio') {
                 elementValue = element.checked;
-                document.cookie = `${elementName}=${elementValue}`;
+                document.cookie = `${element.name}=${elementValue}`;
             } else {
                 elementValue = element.value;
                 document.cookie = `${element.name}=${elementValue}`;

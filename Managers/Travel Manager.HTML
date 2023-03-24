@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 savedValue = getCookie(`${element.name}-${element.value}`);
                 if (savedValue !== undefined) {
                     element.checked = true;
+                } else {
+                    element.checked = false;
                 }
             } else {
                 savedValue = getCookie(element.name);

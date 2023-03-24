@@ -610,14 +610,11 @@ function updatePenalties() {
   });
 
   heatPenaltyInputs.forEach((input, index) => {
-    let heatPenalty = heatPenalties[index];
-    let coldPenalty = Math.min(coldPenalties[index], 0);
+    input.value = heatPenalties[index];
+  });
 
-    if (coldPenalty > 0) {
-      heatPenalty -= coldPenalty;
-      coldPenalty = 0;
-      input.value = heatPenalty;
-    coldPenaltyInputs[index].value = coldPenalty;
+  coldPenaltyInputs.forEach((input, index) => {
+    input.value = Math.min(coldPenalties[index], 0);
   });
 }
 

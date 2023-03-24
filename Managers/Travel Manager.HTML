@@ -495,13 +495,15 @@ document.getElementById('save-button').addEventListener('click', function() {
     }
     return total;
 }
-    document.getElementById('take-trip-button').addEventListener('click', function() {
-    var result = roll3d6();
+   document.getElementById('take-trip-button').addEventListener('click', function() {
     var dataLog = document.getElementById('dataLog');
-    if (result > 15) {
-        dataLog.value += 'Pass\n';
-    } else {
-        dataLog.value += 'Fail\n';
+    for (var i = 0; i < 6; i++) {
+        var result = roll3d6();
+        if (result > 15) {
+            dataLog.value += 'Pass\n';
+        } else {
+            dataLog.value += 'Fail\n';
+        }
     }
 });
                        </script>

@@ -496,14 +496,17 @@ document.getElementById('save-button').addEventListener('click', function() {
 
 </table>
   <script>
-    const temperatureSelect = document.querySelector('#temperature');
+const temperatureSelect = document.querySelector('#temperature');
 const heatPenaltyInput = document.querySelector('#nameInput1d');
 const coldPenaltyInput = document.querySelector('#nameInput1e');
 
+const initialHeatPenalty = parseInt(heatPenaltyInput.value) || 0;
+const initialColdPenalty = parseInt(coldPenaltyInput.value) || 0;
+
 temperatureSelect.addEventListener('change', (event) => {
   const temperature = event.target.value;
-  let heatPenalty = parseInt(heatPenaltyInput.value) || 0;
-  let coldPenalty = parseInt(coldPenaltyInput.value) || 0;
+  let heatPenalty = initialHeatPenalty;
+  let coldPenalty = initialColdPenalty;
 
   switch (temperature) {
     case 'fair':

@@ -166,8 +166,16 @@ document.getElementById('save-button').addEventListener('click', function() {
        <div style="display:Flex;">
        <div style="margin-right:10px;">
     <h2>Data Log</h2>
- <textarea id="dataLog" rows="10" style="width: 100%; resize: none;" readonly></textarea>  </div>
-       </div>  
+      <textarea id="dataLog" rows="10" style="width: 100%; resize: none;" readonly></textarea>
+      <button id="reset-datalog-button">Reset Datalog</button>
+         <Script>
+           document.getElementById('reset-datalog-button').addEventListener('click', function() {
+            var dataLog = document.getElementById('dataLog');
+            dataLog.value = '';
+          });
+         </Script>         
+         </div>
+         
          <td>
   <label for="precipitation">Precipitation:</label>
   <select id="precipitation">

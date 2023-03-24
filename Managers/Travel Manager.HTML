@@ -195,7 +195,9 @@ document.getElementById('save-button').addEventListener('click', function() {
     <option value="chilly">Chilly</option>
     <option value="cold">Cold</option>
     <option value="frigid">Frigid</option>
-           </select><br>    
+    <option value="deathly">Deathly</option>
+
+           </select><br>               
     <Label><input type="Checkbox" name="Rough Terrain" value="Rough Terrain">Rough Terrain</label><br>
     <Label><input type="Checkbox" name="Jog" value="Jog">Jog</label><br>
     
@@ -497,44 +499,49 @@ document.getElementById('save-button').addEventListener('click', function() {
 </table>
   <script>
 const temperatureSelect = document.querySelector('#temperature');
-const heatPenaltyInput = document.querySelector('#nameInput1d');
-const coldPenaltyInput = document.querySelector('#nameInput1e');
+const heatPenaltyInputs = document.querySelectorAll('[id^="nameInput"][id$="d"]');
+const coldPenaltyInputs = document.querySelectorAll('[id^="nameInput"][id$="e"]');
 
-const initialHeatPenalty = parseInt(heatPenaltyInput.value) || 0;
-const initialColdPenalty = parseInt(coldPenaltyInput.value) || 0;
+const initialHeatPenalties = Array.from(heatPenaltyInputs).map(input => parseInt(input.value) || 0);
+const initialColdPenalties = Array.from(coldPenaltyInputs).map(input => parseInt(input.value) || 0);
 
 temperatureSelect.addEventListener('change', (event) => {
   const temperature = event.target.value;
-  let heatPenalty = initialHeatPenalty;
-  let coldPenalty = initialColdPenalty;
+  let heatPenalties = [...initialHeatPenalties];
+  let coldPenalties = [...initialColdPenalties];
 
   switch (temperature) {
     case 'fair':
       break;
     case 'warm':
-      heatPenalty -= 1;
+      heatPenalties = heatPenalties.map(penalty => penalty - 1);
       break;
     case 'hot':
-      heatPenalty -= 2;
+      heatPenalties = heatPenalties.map(penalty => penalty - 2);
       break;
     case 'brutal':
-      heatPenalty -= 4;
+      heatPenalties = heatPenalties.map(penalty => penalty - 4);
       break;
     case 'chilly':
-      coldPenalty -= 1;
+      coldPenalties = coldPenalties.map(penalty => penalty - 1);
       break;
     case 'cold':
-      coldPenalty -= 2;
+      coldPenalties = coldPenalties.map(penalty => penalty - 2);
       break;
     case 'frigid':
-      coldPenalty -= 4;
+      coldPenalties = coldPenalties.map(penalty => penalty - 4);
       break;
     default:
       break;
   }
 
-  heatPenaltyInput.value = heatPenalty;
-  coldPenaltyInput.value = coldPenalty;
+  heatPenaltyInputs.forEach((input, index) => {
+    input.value = heatPenalties[index];
+  });
+
+  coldPenaltyInputs.forEach((input, index) => {
+    input.value = coldPenalties[index];
+  });
 });
     
     function roll3d6() {

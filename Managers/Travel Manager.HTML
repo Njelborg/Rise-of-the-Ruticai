@@ -620,6 +620,131 @@ function updatePenalties() {
 
 temperatureSelect.addEventListener('change', updatePenalties);
 
+const temperatureSelect = document.querySelector('#temperature');
+const heatPenaltyInputs = document.querySelectorAll('[id^="nameInput"][id$="d"]');
+const coldPenaltyInputs = document.querySelectorAll('[id^="nameInput"][id$="e"]');
+const clothesRadios = Array.from({ length: 6 }, (_, i) => document.querySelectorAll(`[name="Clothes${i + 1}"]`));
+const footgearRadios = Array.from({ length: 6 }, (_, i) => document.querySelectorAll(`[name="Footgear${i + 1}"]`));
+const armorRadios = Array.from({ length: 6 }, (_, i) => document.querySelectorAll(`[name="Armor${i + 1}"]`));
+const furCloakCheckboxes = Array.from({ length: 6 }, (_, i) => document.querySelector(`[name="fur cloak${i + 1}"]`));
+const hatCheckboxes = Array.from({ length: 6 }, (_, i) => document.querySelector(`[name="Hat${i + 1}"]`));
+
+const initialHeatPenalties = Array.from(heatPenaltyInputs).map(input => parseInt(input.value) || 0);
+const initialColdPenalties = Array.from(coldPenaltyInputs).map(input => parseInt(input.value) || 0);
+
+function updatePenalties() {
+  let heatPenalties = [...initialHeatPenalties];
+  let coldPenalties = [...initialColdPenalties];
+
+  const temperature = temperatureSelect.value;
+  switch (temperature) {
+    case 'fair':
+      break;
+    case 'warm':
+      heatPenalties = heatPenalties.map(penalty => penalty - 1);
+      break;
+    case 'hot':
+      heatPenalties = heatPenalties.map(penalty => penalty - 2);
+      break;
+    case 'brutal':
+      heatPenalties = heatPenalties.map(penalty => penalty - 4);
+      break;
+    case 'chilly':
+      coldPenalties = coldPenalties.map(penalty => penalty - 1);
+      break;
+    case 'cold':
+      coldPenalties = coldPenalties.map(penalty => penalty - 2);
+      break;
+    case 'frigid':
+      coldPenalties = coldPenalties.map(penalty => penalty - 4);
+      break;
+    default:
+      break;
+  }
+
+  clothesRadios.forEach((radios, index) => {
+    radios.forEach(radio => {
+      if (radio.checked) {
+        const clothes = radio.value;
+        switch (clothes) {
+          case 'Nude':
+            coldPenalties[index] -= 1;
+            break;
+          case 'Silk':
+          case 'Linen':
+            break;
+          case 'Wool':
+            coldPenalties[index] += 1;
+            break;
+          default:
+            break;
+        }
+      }
+    });
+  });
+
+  footgearRadios.forEach((radios, index) => {
+    radios.forEach(radio => {
+      if (radio.checked) {
+        const footgear = radio.value;
+        switch (footgear) {
+          case 'Bearfoot':
+            coldPenalties[index] -= 1;
+            break;
+          case 'Boots':
+            coldPenalties[index] += 1;
+            break;
+          default:
+            break;
+        }
+      }
+    });
+  });
+
+  armorRadios.forEach((radios, index) => {
+    radios.forEach(radio => {
+      if (radio.checked) {
+        const armor = radio.value;
+        switch (armor) {
+          case 'Leather Armor':
+            coldPenalties[index] += 1;
+            break;
+          case 'Fur Armor':
+            coldPenalties[index] += 2;
+            break;
+          default:
+            break;
+        }
+      }
+    });
+  });
+
+  furCloakCheckboxes.forEach((checkbox, index) => {
+    if (checkbox.checked) {
+      coldPenalties[index] += 1;
+    }
+  });
+
+  hatCheckboxes.forEach((checkbox, index) => {
+    if (checkbox.checked) {
+      heatPenalties[index] += 1;
+    }
+  });
+
+  heatPenaltyInputs.forEach((input, index) => {
+    let heatPenalty = heatPenalties[index];
+    let coldPenalty = Math.min(coldPenalties[index], 0);
+
+    if (coldPenalty > 0) {
+      heatPenalty -= coldPenalty;
+      coldPenalty = 0;
+      input.value = heatPenalty;
+    coldPenaltyInputs[index].value = coldPenalty;
+  });
+}
+
+temperatureSelect.addEventListener('change', updatePenalties);
+
 clothesRadios.forEach(radios => {
   radios.forEach(radio => {
     radio.addEventListener('change', updatePenalties);

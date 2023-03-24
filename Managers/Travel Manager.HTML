@@ -19,12 +19,12 @@
                 var savedValue;
 
                 if (elementType === 'checkbox' || elementType === 'radio') {
-                    savedValue = getCookie(element.name);
+                    savedValue = getCookie(`${element.name}-${element.value}`);
                     if (savedValue !== undefined) {
                         element.checked = (savedValue === 'true');
                     }
                 } else {
-                    savedValue = getCookie(element.id);
+                    savedValue = getCookie(element.name);
                     if (savedValue !== undefined) {
                         element.value = savedValue;
                     }

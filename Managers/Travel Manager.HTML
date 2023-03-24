@@ -3,37 +3,37 @@
   <head>
     <title>Travel Manager</title>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        function getCookie(name) {
-            var value = "; " + document.cookie;
-            var parts = value.split("; " + name + "=");
-            if (parts.length == 2) return parts.pop().split(";").shift();
-        }
+document.addEventListener('DOMContentLoaded', function() {
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+    }
 
-        function setFormValuesFromCookies() {
-            var formElements = document.querySelectorAll('input, select, textarea');
+    function setFormValuesFromCookies() {
+        var formElements = document.querySelectorAll('input, select, textarea');
 
-            for (var i = 0; i < formElements.length; i++) {
-                var element = formElements[i];
-                var elementType = element.type;
-                var savedValue;
+        for (var i = 0; i < formElements.length; i++) {
+            var element = formElements[i];
+            var elementType = element.type;
+            var savedValue;
 
-                if (elementType === 'checkbox' || elementType === 'radio') {
-                    savedValue = getCookie(`${element.name}-${element.value}`);
-                    if (savedValue !== undefined) {
-                        element.checked = (savedValue === 'true');
-                    }
-                } else {
-                    savedValue = getCookie(element.name);
-                    if (savedValue !== undefined) {
-                        element.value = savedValue;
-                    }
+            if (elementType === 'checkbox' || elementType === 'radio') {
+                savedValue = getCookie(`${element.name}-${element.value}`);
+                if (savedValue !== undefined) {
+                    element.checked = true;
+                }
+            } else {
+                savedValue = getCookie(element.name);
+                if (savedValue !== undefined) {
+                    element.value = savedValue;
                 }
             }
         }
+    }
 
-        window.addEventListener('load', setFormValuesFromCookies);
-    });
+    window.addEventListener('load', setFormValuesFromCookies);
+});
 </script>
         <style>
       table {
@@ -57,7 +57,7 @@
   <body>
         <button id="save-button">Save</button>
    <script>
-  document.getElementById('save-button').addEventListener('click', function() {
+document.getElementById('save-button').addEventListener('click', function() {
     var formElements = document.querySelectorAll('input, select, textarea');
 
     for (var i = 0; i < formElements.length; i++) {
@@ -69,11 +69,11 @@
         if (elementType === 'checkbox' || elementType === 'radio') {
             if (element.checked) {
                 elementValue = element.value;
-                document.cookie = `${element.name}=${elementValue}`;
+                document.cookie = `${elementName}-${elementValue}=${elementValue}`;
             }
         } else {
             elementValue = element.value;
-            document.cookie = `${element.name}=${elementValue}`;
+            document.cookie = `${elementName}=${elementValue}`;
         }
     }
 });

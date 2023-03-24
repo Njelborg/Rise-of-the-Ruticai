@@ -501,15 +501,16 @@ document.getElementById('save-button').addEventListener('click', function() {
 const temperatureSelect = document.querySelector('#temperature');
 const heatPenaltyInputs = document.querySelectorAll('[id^="nameInput"][id$="d"]');
 const coldPenaltyInputs = document.querySelectorAll('[id^="nameInput"][id$="e"]');
+const clothesRadios = Array.from({ length: 6 }, (_, i) => document.querySelectorAll(`[name="Clothes${i + 1}"]`));
 
 const initialHeatPenalties = Array.from(heatPenaltyInputs).map(input => parseInt(input.value) || 0);
 const initialColdPenalties = Array.from(coldPenaltyInputs).map(input => parseInt(input.value) || 0);
 
-temperatureSelect.addEventListener('change', (event) => {
-  const temperature = event.target.value;
+function updatePenalties() {
   let heatPenalties = [...initialHeatPenalties];
   let coldPenalties = [...initialColdPenalties];
 
+  const temperature = temperatureSelect.value;
   switch (temperature) {
     case 'fair':
       break;
@@ -531,47 +532,45 @@ temperatureSelect.addEventListener('change', (event) => {
     case 'frigid':
       coldPenalties = coldPenalties.map(penalty => penalty - 4);
       break;
-    case 'Deathly':
-      coldPenalties = coldPenalties.map(penalty => penalty - 8);
-      break;
     default:
       break;
   }
-  const clothesRadios = Array.from({ length: 6 }, (_, i) => document.querySelectorAll(`[name="Clothes${i + 1}"]`));
-const coldPenaltyInputs = Array.from({ length: 6 }, (_, i) => document.querySelector(`#nameInput${i + 1}e`));
 
-clothesRadios.forEach((radios, index) => {
-  radios.forEach(radio => {
-    radio.addEventListener('change', (event) => {
-      const clothes = event.target.value;
-      let coldPenalty = parseInt(coldPenaltyInputs[index].value) || 0;
-
-      switch (clothes) {
-        case 'Nude':
-          coldPenalty -= 1;
-          break;
-        case 'Silk':
-        case 'Linen':
-          break;
-        case 'Wool':
-          coldPenalty += 1;
-          break;
-        default:
-          break;
+  clothesRadios.forEach((radios, index) => {
+    radios.forEach(radio => {
+      if (radio.checked) {
+        const clothes = radio.value;
+        switch (clothes) {
+          case 'Nude':
+            coldPenalties[index] -= 1;
+            break;
+          case 'Silk':
+          case 'Linen':
+            break;
+          case 'Wool':
+            coldPenalties[index] += 1;
+            break;
+          default:
+            break;
+        }
       }
-
-      coldPenalty = Math.min(coldPenalty, 0);
-      coldPenaltyInputs[index].value = coldPenalty;
     });
   });
-});
 
   heatPenaltyInputs.forEach((input, index) => {
     input.value = heatPenalties[index];
   });
 
   coldPenaltyInputs.forEach((input, index) => {
-    input.value = coldPenalties[index];
+    input.value = Math.min(coldPenalties[index], 0);
+  });
+}
+
+temperatureSelect.addEventListener('change', updatePenalties);
+
+clothesRadios.forEach(radios => {
+  radios.forEach(radio => {
+    radio.addEventListener('change', updatePenalties);
   });
 });
     

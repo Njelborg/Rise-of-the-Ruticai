@@ -57,24 +57,26 @@
   <body>
         <button id="save-button">Save</button>
    <script>
-    document.getElementById('save-button').addEventListener('click', function() {
-        var formElements = document.querySelectorAll('input, select, textarea');
+  document.getElementById('save-button').addEventListener('click', function() {
+    var formElements = document.querySelectorAll('input, select, textarea');
 
-        for (var i = 0; i < formElements.length; i++) {
-            var element = formElements[i];
-            var elementType = element.type;
-            var elementName = element.name;
-            var elementValue;
+    for (var i = 0; i < formElements.length; i++) {
+        var element = formElements[i];
+        var elementType = element.type;
+        var elementName = element.name;
+        var elementValue;
 
-            if (elementType === 'checkbox' || elementType === 'radio') {
-                elementValue = element.checked;
-                document.cookie = `${element.name}=${elementValue}`;
-            } else {
-                elementValue = element.value;
+        if (elementType === 'checkbox' || elementType === 'radio') {
+            elementValue = element.checked;
+            if (elementValue) {
                 document.cookie = `${element.name}=${elementValue}`;
             }
+        } else {
+            elementValue = element.value;
+            document.cookie = `${element.name}=${elementValue}`;
         }
-    });
+    }
+});
 </script>
       <table>
     <tr>

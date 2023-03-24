@@ -69,7 +69,7 @@
         if (elementType === 'checkbox' || elementType === 'radio') 
             If (Element.checked) { 
             elementValue = element.value;
-            document.cookie = `${element.name}=${elementValue}`;
+            document.cookie = `${element.name}-${elementValue}=${elementValue}`;
         }
         } else {
             elementValue = element.value;
@@ -99,13 +99,13 @@
       <td style="padding-left:10px;">
        <div style="display:flex;">
        <div style="margin-right:10px;">
-         <label><input type="radio" name="Clothes1">Nude</label><br>
-         <label><input type="radio" name="Clothes1">Silk</label><br>
-         <label><input type="radio" name="Clothes1">Linen</label><br>
-         <label><input type="radio" name="Clothes1">Wool</label><br>         
-         <label><input type="radio" name="Footgear1">Bearfoot</label><br>
-         <label><input type="radio" name="Footgear1">Shoes</label><br>
-         <label><input type="radio" name="Footgear1">Boots</label><br>
+          <label><input type="radio" name="Clothes1" value="Nude">Nude</label><br>
+          <label><input type="radio" name="Clothes1" value="Silk">Silk</label><br>
+          <label><input type="radio" name="Clothes1" value="Linen">Linen</label><br>
+          <label><input type="radio" name="Clothes1" value="Wool">Wool</label><br>         
+          <label><input type="radio" name="Footgear1" value="Bearfoot">Bearfoot</label><br>
+          <label><input type="radio" name="Footgear1" value="Shoes">Shoes</label><br>
+          <label><input type="radio" name="Footgear1" value="Boots">Boots</label><br>
        </div>
        <div style="margin-right:15px;">
          <label><input type="radio" name="Armor1">Leather Armor</label><br>

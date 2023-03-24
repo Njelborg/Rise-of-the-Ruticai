@@ -500,7 +500,15 @@ document.getElementById('take-trip-button').addEventListener('click', function()
     var passCount = 0;
     for (var i = 0; i < 6; i++) {
         var nameInput = document.getElementById(`nameInput${i + 1}a`);
+        var staminaInput = document.getElementById(`nameInput${i + 1}b`);
+        var msPenaltyInput = document.getElementById(`nameInput${i + 1}c`);
+        var heatPenaltyInput = document.getElementById(`nameInput${i + 1}d`);
+        var coldResistanceInput = document.getElementById(`nameInput${i + 1}e`);
         var result = roll3d6();
+        result += parseInt(staminaInput.value) || 0;
+        result += parseInt(msPenaltyInput.value) || 0;
+        result += parseInt(heatPenaltyInput.value) || 0;
+        result += parseInt(coldResistanceInput.value) || 0;
         if (result > 15) {
             passCount++;
         } else {

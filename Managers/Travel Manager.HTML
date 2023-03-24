@@ -497,9 +497,9 @@ document.getElementById('save-button').addEventListener('click', function() {
 }
 document.getElementById('take-trip-button').addEventListener('click', function() {
     var dataLog = document.getElementById('dataLog');
-    var nameInput = document.getElementById('nameInput1a');
     var passCount = 0;
     for (var i = 0; i < 6; i++) {
+        var nameInput = document.getElementById(`nameInput${i + 1}a`);
         var result = roll3d6();
         if (result > 15) {
             passCount++;

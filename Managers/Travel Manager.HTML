@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     element.checked = false;
                 }
             } else {
-                savedValue = getCookie(element.name);
+                savedValue = getCookie(element.id);
                 if (savedValue !== undefined) {
                     element.value = savedValue;
                 }
@@ -74,6 +74,7 @@ document.getElementById('save-button').addEventListener('click', function() {
     for (var i = 0; i < formElements.length; i++) {
         var element = formElements[i];
         var elementType = element.type;
+        var elementId = element.id;
         var elementName = element.name;
         var elementValue;
 
@@ -84,7 +85,7 @@ document.getElementById('save-button').addEventListener('click', function() {
             }
         } else {
             elementValue = element.value;
-            document.cookie = `${elementName}=${elementValue}`;
+            document.cookie = `${elementId}=${elementValue}`;
         }
     }
 });

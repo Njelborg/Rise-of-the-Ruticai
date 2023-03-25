@@ -623,7 +623,7 @@ function updatePenalties() {
 });
 
 coldPenaltyInputs.forEach((input, index) => {
-   const difference = Math.Min(coldPenalties[index], 0);
+   const difference = Math.min(coldPenalties[index], 0);
    input.value = difference;
    heatPenalties[index] -= coldPenalties[index] - difference;
   });

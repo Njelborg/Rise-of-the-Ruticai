@@ -621,6 +621,7 @@ function updatePenalties() {
    input.value = difference;
    heatPenalties[index] -= coldPenalties[index] - difference;
 });
+}
 
 temperatureSelect.addEventListener('change', updatePenalties);
 

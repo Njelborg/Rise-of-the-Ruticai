@@ -623,8 +623,10 @@ function updatePenalties() {
 });
 
 coldPenaltyInputs.forEach((input, index) => {
-  input.value = Math.max(coldPenalties[index], 0);
-});
+   const difference = Math.Min(coldPenalties[index], 0);
+   input.value = difference;
+   heatPenalties[index] -= coldPenalties[index] - difference;
+  });
 }
 
 temperatureSelect.addEventListener('change', updatePenalties);
@@ -654,6 +656,7 @@ furCloakCheckboxes.forEach(checkbox => {
 hatCheckboxes.forEach(checkbox => {
   checkbox.addEventListener('change', updatePenalties);
 });
+}
 </script>    
            <script>
 document.getElementById('take-trip-button').addEventListener('click', function() {

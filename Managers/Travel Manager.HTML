@@ -612,14 +612,12 @@ function updatePenalties() {
     }
   });
 
-  heatPenaltyInputs.forEach((input, index) => {
-    input.value = heatPenalties[index];
-  });
+ heatPenaltyInputs.forEach((input, index) => {
+  input.value = Math.max(heatPenalties[index], 0);
+});
 
   coldPenaltyInputs.forEach((input, index) => {
-   const difference = Math.min(coldPenalties[index], 0);
-   input.value = difference;
-   heatPenalties[index] -= coldPenalties[index] - difference;
+  input.value = Math.max(coldPenalties[index], 0);
 });
 }
 
@@ -650,6 +648,20 @@ furCloakCheckboxes.forEach(checkbox => {
 hatCheckboxes.forEach(checkbox => {
   checkbox.addEventListener('change', updatePenalties);
 });
+const heatPenaltyInputs = document.querySelectorAll('.heat-penalty');
+           const coldPenaltyInputs = document.querySelectorAll('.cold-penalty');
+           let heatPenalties = Array.from(heatPenaltyInputs).map(input => parseInt(input.value));
+let coldPenalties = Array.from(coldPenaltyInputs).map(input => parseInt(input.value));
+const positiveColdFactors = coldPenalties.filter(value => value > 0).reduce((sum, value) => sum + value, 0);
+const negativeColdFactors = coldPenalties.filter(value => value < 0).reduce((sum, value) => sum + value, 0);
+if (positiveColdFactors > Math.abs(negativeColdFactors)) {
+  heatPenalties = heatPenalties.map((value, index) => {
+    const positiveColdFactor = Math.max(0, coldPenalties[index]);
+    const negativeColdFactor = Math.min(0, coldPenalties[index]);
+    const difference = positiveColdFactor - Math.abs(negativeColdFactor);
+    return value - difference;
+  });
+}
            </script>       
     <script>
     function roll3d6() {

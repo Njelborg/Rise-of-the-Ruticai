@@ -148,7 +148,16 @@ document.getElementById('save-button').addEventListener('click', function() {
              <option value="passenger">Passenger</option>
              <option value="officer">Officer</option>
              <option value="crew">Crew</option>
-           </select>
+         </select><br>         
+         <Label><input type="Checkbox" name="Traveler1" value="Traveler Skill">Traveler Skill</label><br>
+         <label><input type="checkbox" id="mountedCheckbox1" name="mountedCheckbox1" value="Mounted">Mounted</label><br>
+         <select id="Fatigue Level" disabled>
+             <option value="0">None</option>
+             <option value="1">Tired</option>
+             <option value="2">Weary</option>
+             <option value="3">Exhausted</option>
+             <option value="4">Depleted</option>
+         </select><br>         
            <script>
                const mountedCheckbox1 = document.querySelector('#mountedCheckbox1');
                const mountedSelect1 = document.querySelector('#mountedSelect1');

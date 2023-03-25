@@ -149,6 +149,8 @@ document.getElementById('save-button').addEventListener('click', function() {
              <option value="officer">Officer</option>
              <option value="crew">Crew</option>
            </select><br>
+         <td><label for="Overheated1">Overheat</label><br>
+   <input type="text" id="Overheated1" maxlength="10" value="" Readonly>
            <script>
                const mountedCheckbox1 = document.querySelector('#mountedCheckbox1');
                const mountedSelect1 = document.querySelector('#mountedSelect1');
@@ -163,8 +165,7 @@ document.getElementById('save-button').addEventListener('click', function() {
   });
              
 </script>
-   <td><label for="Overheated1">Overheat</label><br>
-   <input type="text" id="Overheated1" maxlength="10" value="" Readonly>
+   
 <td style="padding-left:10px;">
        <div style="display:Flex;">
        <div style="margin-right:10px;">
@@ -198,7 +199,7 @@ document.getElementById('save-button').addEventListener('click', function() {
     <option value="chilly">Chilly</option>
     <option value="cold">Cold</option>
     <option value="frigid">Frigid</option>
-    <option value="deathly">Deathly</option>
+    <option value="Deathly">Deathly</option>
 
            </select><br>               
     <Label><input type="Checkbox" name="Rough Terrain" value="Rough Terrain">Rough Terrain</label><br>
@@ -247,6 +248,8 @@ document.getElementById('save-button').addEventListener('click', function() {
              <option value="officer">Officer</option>
              <option value="crew">Crew</option>
            </select><br>
+             <td><label for="Overheated2">Overheat</label><br>
+    <input type="text" id="Overheated2" maxlength="10" value="" Readonly>
            <script>
                const mountedCheckbox2 = document.querySelector('#mountedCheckbox2');
                const mountedSelect2 = document.querySelector('#mountedSelect2');
@@ -260,8 +263,7 @@ document.getElementById('save-button').addEventListener('click', function() {
                                   }
   });
 </script>
-    <td><label for="Overheated2">Overheat</label><br>
-    <input type="text" id="Overheated2" maxlength="10" value="" Readonly>
+
          
 </div>  
          <td style="padding-left:4px;">
@@ -312,6 +314,8 @@ document.getElementById('save-button').addEventListener('click', function() {
              <option value="officer">Officer</option>
              <option value="crew">Crew</option>
            </select><br>
+                        <td><label for="Overheated3">Overheat</label><br>
+   <input type="text" id="Overheated3" maxlength="10" value="" Readonly>
            <script>
                const mountedCheckbox3 = document.querySelector('#mountedCheckbox3');
                const mountedSelect3 = document.querySelector('#mountedSelect3');
@@ -325,8 +329,7 @@ document.getElementById('save-button').addEventListener('click', function() {
                                   }
   });
 </script>
-              <td><label for="Overheated3">Overheat</label><br>
-   <input type="text" id="Overheated3" maxlength="10" value="" Readonly>
+ 
          </Div>
     </tr>
         
@@ -430,6 +433,8 @@ document.getElementById('save-button').addEventListener('click', function() {
              <option value="officer">Officer</option>
              <option value="crew">Crew</option>
            </select><br>
+                         <td><label for="Overheated5">Overheat</label>
+   <input type="text" id="Overheated5" maxlength="10" value="" Readonly>
            <script>
                const mountedCheckbox5 = document.querySelector('#mountedCheckbox5');
                const mountedSelect5 = document.querySelector('#mountedSelect5');
@@ -443,7 +448,7 @@ document.getElementById('save-button').addEventListener('click', function() {
                                   }
   });
 </script>
-              <td><label for="Overheated5">Overheat</label><br>
+              <td><label for="Overheated5">Overheat</label>
    <input type="text" id="Overheated5" maxlength="10" value="" Readonly>
 </div>  
     </tr>
@@ -662,7 +667,8 @@ hatCheckboxes.forEach(checkbox => {
   checkbox.addEventListener('change', updatePenalties);
 });
 }
-           </script>       
+ </script>     
+           
     <script>
     function roll3d6() {
     var total = 0;

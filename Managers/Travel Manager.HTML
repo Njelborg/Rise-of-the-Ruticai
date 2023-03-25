@@ -617,9 +617,10 @@ function updatePenalties() {
   });
 
   coldPenaltyInputs.forEach((input, index) => {
-    input.value = Math.min(coldPenalties[index], 0);
-  });
-}
+   const difference = Math.min(coldPenalties[index], 0);
+   input.value = difference;
+   heatPenalties[index] -= difference;
+});
 
 temperatureSelect.addEventListener('change', updatePenalties);
 

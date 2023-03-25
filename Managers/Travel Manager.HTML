@@ -685,37 +685,42 @@ hatCheckboxes.forEach(checkbox => {
            </script>
            <script>
 document.getElementById('take-trip-button').addEventListener('click', function() {
-    var dataLog = document.getElementById('dataLog');
-    var passCount = 0;
-    var nonBlankNameInputsPassCount = 0;
-    for (var i = 0; i < 6; i++) {
-        var nameInput = document.getElementById(`nameInput${i + 1}a`);
-        var staminaInput = document.getElementById(`nameInput${i + 1}b`);
-        var msPenaltyInput = document.getElementById(`nameInput${i + 1}c`);
-        var heatPenaltyInput = document.getElementById(`nameInput${i + 1}d`);
-        var coldPenaltyInput = document.getElementById(`nameInput${i + 1}e`);
-        
-        if (!nameInput.value.trim()) {
-            continue;
-        }
-        
-        var result = roll3d6();
-        result += parseInt(staminaInput.value) || 0;
-        result += parseInt(msPenaltyInput.value) || 0;
-        result += parseInt(heatPenaltyInput.value) || 0;
-        result += parseInt(coldPenaltyInput.value) || 0;
-        
-        if (result > 15) {
-            passCount++;
-        } else {
-            dataLog.value += `${nameInput.value} failed\n`;
-        }
-        nonBlankNameInputsPassCount++;
+  var dataLog = document.querySelector('#dataLog');
+  var tripNumberSelect = document.querySelector('#tripNumberSelect');
+  var passCount = 0;
+  var nonBlankNameInputsPassCount = 0;
+  for (var i = 0; i < 6; i++) {
+    var nameInput = document.querySelector(`#nameInput${i + 1}a`);
+    var staminaInput = document.querySelector(`#nameInput${i + 1}b`);
+    var msPenaltyInput = document.querySelector(`#nameInput${i + 1}c`);
+    var heatPenaltyInput = document.querySelector(`#nameInput${i + 1}d`);
+    var coldPenaltyInput = document.querySelector(`#nameInput${i + 1}e`);
+
+    if (!nameInput.value.trim()) {
+      continue;
     }
-    
-    if (nonBlankNameInputsPassCount === passCount) {
-        dataLog.value += 'Travelled Well\n';
+
+    var result = roll3d6();
+    result += parseInt(staminaInput.value) || 0;
+    result += parseInt(msPenaltyInput.value) || 0;
+    result += parseInt(heatPenaltyInput.value) || 0;
+    result += parseInt(coldPenaltyInput.value) || 0;
+
+    // Calculate the target number based on the trip number
+    const tripNumber = parseInt(tripNumberSelect.value);
+    const targetNumber = 15 + (tripNumber - 1) * 2;
+
+    if (result > targetNumber) {
+      passCount++;
+    } else {
+      dataLog.value += `${nameInput.value} failed trip ${tripNumber}\n`;
     }
+    nonBlankNameInputsPassCount++;
+  }
+
+  if (nonBlankNameInputsPassCount === passCount) {
+    dataLog.value += `Travelled well on trip ${tripNumber}\n`;
+  }
 });
    </script>
     <Script>

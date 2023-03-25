@@ -663,30 +663,33 @@ hatCheckboxes.forEach(checkbox => {
 document.getElementById('take-trip-button').addEventListener('click', function() {
     var dataLog = document.getElementById('dataLog');
     var passCount = 0;
+    var nonBlankNameInputsPassCount = 0;
     for (var i = 0; i < 6; i++) {
         var nameInput = document.getElementById(`nameInput${i + 1}a`);
         var staminaInput = document.getElementById(`nameInput${i + 1}b`);
         var msPenaltyInput = document.getElementById(`nameInput${i + 1}c`);
         var heatPenaltyInput = document.getElementById(`nameInput${i + 1}d`);
         var coldPenaltyInput = document.getElementById(`nameInput${i + 1}e`);
-        var result = 0;
-        if (nameInput.value !== "") {
-            result += roll3d6();
-            result += parseInt(staminaInput.value) || 0;
-            result += parseInt(msPenaltyInput.value) || 0;
-            if (i === 0 || i === 2 || i === 4) {
-                result += parseInt(coldPenaltyInput.value) || 0;
-            } else if (i === 1 || i === 3 || i === 5) {
-                result += parseInt(heatPenaltyInput.value) || 0;
-            }
-            if (result > 15) {
-                passCount++;
-            } else {
-                dataLog.value += `${nameInput.value} failed\n`;
-            }
+        
+        if (!nameInput.value.trim()) {
+            continue;
         }
+        
+        var result = roll3d6();
+        result += parseInt(staminaInput.value) || 0;
+        result += parseInt(msPenaltyInput.value) || 0;
+        result += parseInt(heatPenaltyInput.value) || 0;
+        result += parseInt(coldPenaltyInput.value) || 0;
+        
+        if (result > 15) {
+            passCount++;
+        } else {
+            dataLog.value += `${nameInput.value} failed\n`;
+        }
+        nonBlankNameInputsPassCount++;
     }
-    if (passCount === 6) {
+    
+    if (nonBlankNameInputsPassCount === passCount) {
         dataLog.value += 'Travelled Well\n';
     }
 });

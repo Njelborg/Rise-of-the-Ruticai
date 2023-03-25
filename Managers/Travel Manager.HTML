@@ -619,7 +619,7 @@ function updatePenalties() {
   });
 
  heatPenaltyInputs.forEach((input, index) => {
-  input.value = Math.max(heatPenalties[index], 0);
+  input.value = Math.min(heatPenalties[index], 0);
 });
 
 coldPenaltyInputs.forEach((input, index) => {

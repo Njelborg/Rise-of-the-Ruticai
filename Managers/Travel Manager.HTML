@@ -718,7 +718,7 @@ document.getElementById('take-trip-button').addEventListener('click', function()
     nonBlankNameInputsPassCount++;
   }
 
-  if (nonBlankNameInputsPassCount === passCount) {
+  if (nonBlankNameInputsPassCount === passCount && nonBlankNameInputsPassCount > 0) {
     dataLog.value += `Travelled well on trip ${tripNumber}\n`;
   }
 });

@@ -503,10 +503,10 @@ document.getElementById('save-button').addEventListener('click', function() {
     </tr>
 
 </table>
-  <script>
+    <script>
 const temperatureSelect = document.querySelector('#temperature');
 const heatPenaltyInputs = document.querySelectorAll('[id^="nameInput"][id$="d"]');
-const coldPenaltyInputs = document.querySelectorAll('[id^="nameInput"][id$="e"]');    
+const coldPenaltyInputs = document.querySelectorAll('[id^="nameInput"][id$="e"]');
 const clothesRadios = Array.from({ length: 6 }, (_, i) => document.querySelectorAll(`[name="Clothes${i + 1}"]`));
 const footgearRadios = Array.from({ length: 6 }, (_, i) => document.querySelectorAll(`[name="Footgear${i + 1}"]`));
 const armorRadios = Array.from({ length: 6 }, (_, i) => document.querySelectorAll(`[name="Armor${i + 1}"]`));
@@ -618,13 +618,16 @@ function updatePenalties() {
     }
   });
 
- heatPenaltyInputs.forEach((input, index) => {
-  input.value = Math.max(heatPenalties[index], 0);
-});
+  heatPenaltyInputs.forEach((input, index) => {
+    input.value = heatPenalties[index];
+  });
 
-coldPenaltyInputs.forEach((input, index) => {
-  input.value = Math.max(coldPenalties[index], 0);
-});
+  coldPenaltyInputs.forEach((input, index) => {
+   const difference = Math.max(coldPenalties[index], 0);
+   input.value = difference;
+   heatPenalties[index] -= coldPenalties[index] - difference;
+  });
+}
 
 temperatureSelect.addEventListener('change', updatePenalties);
 
@@ -653,7 +656,8 @@ furCloakCheckboxes.forEach(checkbox => {
 hatCheckboxes.forEach(checkbox => {
   checkbox.addEventListener('change', updatePenalties);
 });
-</script>
+}
+</script>    
            <script>
 document.getElementById('take-trip-button').addEventListener('click', function() {
     var dataLog = document.getElementById('dataLog');

@@ -263,11 +263,27 @@ document.getElementById('save-button').addEventListener('click', function() {
 
          
 </div>  
-         <td style="padding-left:4px;">
+      <td style="padding-left:4px;">
        <div style="display:flex;">
        <div style="margin-right:10px;">
-         <button id="take-trip-button">Take Trip</button></td>
+         <button id="take-trip-button">Take Trip</button></td><br>
+         <button id="resetTripButton">Reset Trip</button> 
 
+         <td>
+       <td style="padding-left:4px;">
+       <div style="display:flex;">
+       <div style="margin-right:10px;">
+  <label for="tripNumberSelect">Trip Number</label><br>
+  <select id="tripNumberSelect" disabled>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+  </select>
+  
+</td>
     </tr>
         
     <tr>
@@ -378,7 +394,7 @@ document.getElementById('save-button').addEventListener('click', function() {
                              mountedSelect4.disabled = false;
                            } else {
                                    mountedSelect4.disabled = true;
-                                   mountedSelect42.value = 'none';
+                                   mountedSelect4.value = 'none';
                                   }
   });
 </script>
@@ -700,8 +716,23 @@ document.getElementById('take-trip-button').addEventListener('click', function()
         dataLog.value += 'Travelled Well\n';
     }
 });
-                       </script>
+   </script>
+    <Script>
+const takeTripButton = document.querySelector('#take-trip-button');
+const resetTripButton = document.querySelector('#resetTripButton');
+const tripNumberSelect = document.querySelector('#tripNumberSelect');
 
+takeTripButton.addEventListener('click', () => {
+  const currentTripNumber = parseInt(tripNumberSelect.value);
+  if (currentTripNumber < 6) {
+    tripNumberSelect.value = currentTripNumber + 1;
+  }
+});
+
+resetTripButton.addEventListener('click', () => {
+  tripNumberSelect.value = '1';
+});
+           </script>
                        
   </body>
 </html>

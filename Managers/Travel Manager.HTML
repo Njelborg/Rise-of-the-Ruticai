@@ -618,15 +618,13 @@ function updatePenalties() {
     }
   });
 
-  heatPenaltyInputs.forEach((input, index) => {
-    input.value = heatPenalties[index];
-  });
+ heatPenaltyInputs.forEach((input, index) => {
+  input.value = Math.max(heatPenalties[index], 0);
+});
 
-  coldPenaltyInputs.forEach((input, index) => {
-   const difference = Math.max(coldPenalties[index], 0);
-   input.value = difference;
-   heatPenalties[index] -= coldPenalties[index] - difference;
-  });
+coldPenaltyInputs.forEach((input, index) => {
+  input.value = Math.max(coldPenalties[index], 0);
+});
 }
 
 temperatureSelect.addEventListener('change', updatePenalties);

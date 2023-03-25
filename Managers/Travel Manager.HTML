@@ -622,9 +622,12 @@ function updatePenalties() {
   input.value = Math.max(heatPenalties[index], 0);
 });
 
-  coldPenaltyInputs.forEach((input, index) => {
-  input.value = Math.max(coldPenalties[index], 0);
-});
+ coldPenaltyInputs.forEach((input, index) => {
+   const difference = Math.max(coldPenalties[index], 0);
+   input.value = difference;
+   heatPenalties[index] -= coldPenalties[index] - difference;
+  });
+}
 
 temperatureSelect.addEventListener('change', updatePenalties);
 
@@ -654,17 +657,7 @@ hatCheckboxes.forEach(checkbox => {
   checkbox.addEventListener('change', updatePenalties);
 });
 }
- </script>     
-           
-    <script>
-    function roll3d6() {
-    var total = 0;
-    for (var i = 0; i < 3; i++) {
-        total += Math.floor(Math.random() * 6) + 1;
-    }
-    return total;
-}
-           </script>
+</script>
            <script>
 document.getElementById('take-trip-button').addEventListener('click', function() {
     var dataLog = document.getElementById('dataLog');

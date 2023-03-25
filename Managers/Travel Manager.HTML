@@ -687,6 +687,7 @@ hatCheckboxes.forEach(checkbox => {
 document.getElementById('take-trip-button').addEventListener('click', function() {
   var dataLog = document.querySelector('#dataLog');
   var tripNumberSelect = document.querySelector('#tripNumberSelect');
+  const tripNumber = parseInt(tripNumberSelect.value);
   var passCount = 0;
   var nonBlankNameInputsPassCount = 0;
   for (var i = 0; i < 6; i++) {
@@ -707,7 +708,6 @@ document.getElementById('take-trip-button').addEventListener('click', function()
     result += parseInt(coldPenaltyInput.value) || 0;
 
     // Calculate the target number based on the trip number
-    const tripNumber = parseInt(tripNumberSelect.value);
     const targetNumber = 15 + (tripNumber - 1) * 2;
 
     if (result > targetNumber) {

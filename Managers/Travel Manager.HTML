@@ -638,7 +638,6 @@ function updatePenalties() {
   OverheatInputs.forEach((input, index) => {
   input.value = Math.max(coldPenalties[index], 0);
 });
-}
 
 temperatureSelect.addEventListener('change', updatePenalties);
 

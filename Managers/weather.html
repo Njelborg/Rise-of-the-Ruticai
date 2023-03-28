@@ -54,8 +54,8 @@ var textbox = document.getElementById("textbox");
 
 var specialWeather = ["Fog", "Drizzle", "Rain", "Thunderstorm"];
         
-    function predict_wind(month) {
-        if (month in ["May", "June", "July", "August", "September", "October"]) {
+    function predict_suebia_wind(month) {
+        if (["May", "June", "July", "August", "September", "October"].includes(month)) {
             wind_probabilities = {
                 "Calm": 5,
                 "Light Air": 25,
@@ -152,7 +152,6 @@ if (randomNum < 20) {
       special = "None";
     }
 
-    var wind = predict_wind(monthValue);
     var weatherString =
       "Month: " +
       monthValue +

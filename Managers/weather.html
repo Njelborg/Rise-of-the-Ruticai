@@ -179,7 +179,7 @@ if (randomNum < 20) {
 predictButton.addEventListener("click", predictWeather);
             document.getElementById("predict-button").addEventListener("click", function() {
         var month = document.getElementById("month").value;
-        var wind = predict_wind(month);
+        var wind = predict_wind(monthValue);
         document.getElementById("textbox").value = wind;
                    });
 

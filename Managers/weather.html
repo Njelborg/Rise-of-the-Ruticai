@@ -143,5 +143,50 @@ function resetDatalog() {
   textbox.value = "";
 }
      </Script>
+     <script>
+    function predict_wind(month) {
+        if (month in ["May", "June", "July", "August", "September", "October"]) {
+            wind_probabilities = {
+                "Calm": 5,
+                "Light Air": 25,
+                "Light Breeze": 40,
+                "Gentle Breeze": 20,
+                "Moderate Breeze": 5,
+                "Fresh Breeze": 3,
+                "Strong Breeze": 1,
+                "Near Gale": 0.5,
+                "Gale": 0.3,
+                "Strong Gale": 0.1,
+                "Storm": 0.05,
+                "Violent Storm": 0.05,
+                "Hurricane Force": 0
+            }
+        } else {
+            wind_probabilities = {
+                "Calm": 0,
+                "Light Air": 5,
+                "Light Breeze": 25,
+                "Gentle Breeze": 40,
+                "Moderate Breeze": 20,
+                "Fresh Breeze": 5,
+                "Strong Breeze": 3,
+                "Near Gale": 1,
+                "Gale": 0.5,
+                "Strong Gale": 0.3,
+                "Storm": 0.1,
+                "Violent Storm": 0.05,
+                "Hurricane Force": 0.05
+            }
+        }
+        wind = random.choices(Object.keys(wind_probabilities), Object.values(wind_probabilities), k=1)[0];
+        return wind;
+    }
+
+    document.getElementById("predict-button").addEventListener("click", function() {
+        var month = document.getElementById("month").value;
+        var wind = predict_wind(month);
+        document.getElementById("textbox").value = wind;
+    });
+</script>
       </body> 
     </html>

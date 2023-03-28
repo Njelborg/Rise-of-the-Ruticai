@@ -43,5 +43,94 @@
   <p id="output"></p>
         <textarea id="textbox" rows="10" cols="50"></textarea>
 </div>
+     <Script>
+var month = document.getElementById("month");
+var day = document.getElementById("day");
+var realm = document.getElementById("realm");
+var predictButton = document.getElementById("predict-button");
+var output = document.getElementById("output");
+var textbox = document.getElementById("textbox");
+
+var specialWeather = ["Fog", "Drizzle", "Rain", "Thunderstorm"];
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function getRandomElement(array) {
+  return array[getRandomInt(array.length)];
+}
+
+function predictWeather() {
+  var monthValue = month.value;
+  var dayValue = day.value;
+  var realmValue = realm.value;
+
+  if (realmValue === "Suebia" && monthValue === "November") {
+    var daytimeTemp;
+    var nighttimeTemp;
+    var special;
+
+    var randomNum = getRandomInt(100);
+
+    if (randomNum < 20) {
+      daytimeTemp = "Fair";
+    } else {
+      daytimeTemp = "Chilly";
+    }
+
+    randomNum = getRandomInt(100);
+
+    if (randomNum < 20) {
+      nighttimeTemp = "Frigid";
+    } else {
+      nighttimeTemp = "Cold";
+    }
+
+    randomNum = getRandomInt(100);
+
+    if (randomNum < 30) {
+      special = getRandomElement(specialWeather);
+
+      if (
+        (special === "Drizzle" || special === "Rain") &&
+        (nighttimeTemp === "Cold" || nighttimeTemp === "Frigid")
+      ) {
+        special = "Snow";
+      }
+
+      if (
+        special === "Thunderstorm" &&
+        (nighttimeTemp === "Cold" || nighttimeTemp === "Frigid")
+      ) {
+        special = "Blizzard";
+      }
+    } else {
+      special = "None";
+    }
+
+    var weatherString =
+      "Month: " +
+      monthValue +
+      "\nDay: " +
+      dayValue +
+      "\nDaytime Temperature: " +
+      daytimeTemp +
+      "\nNighttime Temperature: " +
+      nighttimeTemp +
+      "\nSpecial Weather: " +
+      special;
+
+    output.textContent = weatherString;
+    textbox.value = weatherString;
+  } else {
+    output.textContent =
+      "Sorry, I can only predict the weather for Suebia in November.";
+    textbox.value = "";
+  }
+}
+
+predictButton.addEventListener("click", predictWeather);
+        </script>
       </body> 
     </html>

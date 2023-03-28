@@ -42,6 +42,7 @@
   <h2>Datalog</h2>
   <p id="output"></p>
         <textarea id="textbox" rows="10" cols="50"></textarea>
+        <button type="button" id="reset-button">Reset Datalog</button>
 </div>
      <Script>
 var month = document.getElementById("month");
@@ -132,5 +133,12 @@ function predictWeather() {
 
 predictButton.addEventListener("click", predictWeather);
         </script>
+     <Script>
+        var resetButton = document.getElementById("reset-button");
+function resetDatalog() {
+  output.textContent = "";
+  textbox.value = "";
+}
+     </Script>
       </body> 
     </html>

@@ -72,21 +72,24 @@ function predictWeather() {
     var nighttimeTemp;
     var special;
 
-    var randomNum = getRandomInt(100);
+var randomNum = getRandomInt(100);
 
-    if (randomNum < 20) {
-      daytimeTemp = "Fair";
-    } else {
-      daytimeTemp = "Chilly";
-    }
+if (randomNum < 20) {
+    daytimeTemp = "Fair";
+} else if (randomNum < 80) {
+    daytimeTemp = "Chilly";
+} else {
+    daytimeTemp = "Cold";
+}
 
-    randomNum = getRandomInt(100);
-
-    if (randomNum < 20) {
+     randomNum = getRandomInt(100);
+     if (randomNum < 20) {
       nighttimeTemp = "Frigid";
-    } else {
+      } else if (randomNum < 40) {
       nighttimeTemp = "Cold";
-    }
+      } else {
+      nighttimeTemp = "Chilly";
+      }
 
     randomNum = getRandomInt(100);
 

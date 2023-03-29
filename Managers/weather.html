@@ -4,7 +4,7 @@
   </head> 
   <body> 
     <h1>Weather Generator</h1> 
-    <form id="weather-form"> 
+    <div id="weather-form"> 
        <label for="realm">Realm:</label>
 <select id="realm" name="realm">
   <option value="Shim">Shim</option>
@@ -17,7 +17,7 @@
   <option value="Sarmatae">Sarmatae</option>
   <option value="Cellus">Cellus</option>
 </select>
-      <label for="month">Month:</label> 
+      <label  onclick="predictWeather()" for="month">Month:</label> 
       <select id="month" name="month"> 
         <option value="January">January</option> 
         <option value="February">February</option> 
@@ -36,160 +36,15 @@
       </select> <label for="day">Day:</label> 
      <label for="day">Day:</label>
       <input type="number" id="day" name="day" min="1" max="28">
-   <button type="Button" id="predict-button">Predict Weather</button>
-     </form>  
+   <button onclick="predictWeather()">Predict Weather</button>
+     </div>  
      <div id="datalog">
   <h2>Datalog</h2>
   <p id="output"></p>
         <textarea id="textbox" rows="10" cols="50"></textarea>
-        <button type="button" id="reset-button">Reset Datalog</button>
+        <button onclick = "textbox.value=''" type="button" id="reset-button">Reset Datalog</button>
 </div>
-     <Script>
-var month = document.getElementById("month");
-var day = document.getElementById("day");
-var realm = document.getElementById("realm");
-var predictButton = document.getElementById("predict-button");
-var output = document.getElementById("output");
-var textbox = document.getElementById("textbox");
-
-var specialWeather = ["Fog", "Drizzle", "Rain", "Thunderstorm"];
-        
-    function predict_suebia_wind(month) {
-        if (["May", "June", "July", "August", "September", "October"].includes(month)) {
-            wind_probabilities = {
-                "Calm": 5,
-                "Light Air": 25,
-                "Light Breeze": 40,
-                "Gentle Breeze": 20,
-                "Moderate Breeze": 5,
-                "Fresh Breeze": 3,
-                "Strong Breeze": 1,
-                "Near Gale": 0.5,
-                "Gale": 0.3,
-                "Strong Gale": 0.1,
-                "Storm": 0.05,
-                "Violent Storm": 0.05,
-                "Hurricane Force": 0
-            }
-        } else {
-            wind_probabilities = {
-                "Calm": 0,
-                "Light Air": 5,
-                "Light Breeze": 25,
-                "Gentle Breeze": 40,
-                "Moderate Breeze": 20,
-                "Fresh Breeze": 5,
-                "Strong Breeze": 3,
-                "Near Gale": 1,
-                "Gale": 0.5,
-                "Strong Gale": 0.3,
-                "Storm": 0.1,
-                "Violent Storm": 0.05,
-                "Hurricane Force": 0.05
-            }
-        }
-    var wind = getRandomElement(Object.keys(wind_probabilities), 
-                                Object.values(wind_probabilities));
-    return wind;
-    }
-       
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-
-function getRandomElement(array) {
-  return array[getRandomInt(array.length)];
-}
-
-function predictWeather() {
-  var monthValue = month.value;
-  var dayValue = day.value;
-  var realmValue = realm.value;
-
-  if (realmValue === "Suebia" && monthValue === "November") {
-    var daytimeTemp;
-    var nighttimeTemp;
-    var special;
-
-var randomNum = getRandomInt(100);
-
-if (randomNum < 20) {
-    daytimeTemp = "Fair";
-} else if (randomNum < 80) {
-    daytimeTemp = "Chilly";
-} else {
-    daytimeTemp = "Cold";
-}
-
-     randomNum = getRandomInt(100);
-     if (randomNum < 20) {
-      nighttimeTemp = "Frigid";
-      } else if (randomNum < 40) {
-      nighttimeTemp = "Cold";
-      } else {
-      nighttimeTemp = "Chilly";
-      }
-
-    randomNum = getRandomInt(100);
-
-    if (randomNum < 30) {
-      special = getRandomElement(specialWeather);
-
-      if (
-        (special === "Drizzle" || special === "Rain") &&
-        (nighttimeTemp === "Cold" || nighttimeTemp === "Frigid")
-      ) {
-        special = "Snow";
-      }
-
-      if (
-        special === "Thunderstorm" &&
-        (nighttimeTemp === "Cold" || nighttimeTemp === "Frigid")
-      ) {
-        special = "Blizzard";
-      }
-    } else {
-      special = "None";
-    }
-
-    var weatherString =
-      "Month: " +
-      monthValue +
-      "\nDay: " +
-      dayValue +
-      "\nDaytime Temperature: " +
-      daytimeTemp +
-      "\nNighttime Temperature: " +
-      nighttimeTemp +
-      "\nSpecial Weather: " +
-      special +
-      "\nWind: " +
-      wind;
-
-    output.textContent = weatherString;
-    textbox.value = weatherString;
-  } else {
-    output.textContent =
-      "Sorry, I can only predict the weather for Suebia in November.";
-    textbox.value = "";
-  }
-}
-
-predictButton.addEventListener("click", predictWeather);
-            document.getElementById("predict-button").addEventListener("click", function() {
-        var month = document.getElementById("month").value;
-        var wind = predict_wind(monthValue);
-        document.getElementById("textbox").value = wind;
-                   });
-
-        </script>
-     <Script>
-        var resetButton = document.getElementById("reset-button");
-function resetDatalog() {
-  output.textContent = "";
-  textbox.value = "";
-}
-     </Script>
+<script src="Calculations.js" type="text/javascript"></script>
     
       </body> 
     </html>

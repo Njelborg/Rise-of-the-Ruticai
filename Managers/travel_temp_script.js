@@ -153,6 +153,7 @@ var coldBonuses = [0,0,0,0,0,0];
     }
   });
   
+//heat inputs
 
 heatPenaltyInputs.forEach((input, index) => {
     let value = heatPenaltyCalc[index] + heatBonuses[index];

@@ -2,41 +2,6 @@
 <html>
   <head>
     <title>Travel Manager</title>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    function getCookie(name) {
-        var value = "; " + document.cookie;
-        var parts = value.split("; " + name + "=");
-        if (parts.length == 2) return parts.pop().split(";").shift();
-    }
-
-    function setFormValuesFromCookies() {
-        var formElements = document.querySelectorAll('input, select, textarea');
-
-        for (var i = 0; i < formElements.length; i++) {
-            var element = formElements[i];
-            var elementType = element.type;
-            var savedValue;
-
-            if (elementType === 'checkbox' || elementType === 'radio') {
-                savedValue = getCookie(`${element.name}-${element.value}`);
-                if (savedValue !== undefined) {
-                    element.checked = true;
-                } else {
-                    element.checked = false;
-                }
-            } else {
-                savedValue = getCookie(element.id);
-                if (savedValue !== undefined) {
-                    element.value = savedValue;
-                }
-            }
-        }
-    }
-
-    window.addEventListener('load', setFormValuesFromCookies);
-});
-</script>
         <style>
       table {
         border-collapse: separate;
@@ -58,50 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
   </head>
   <body>
         <button id="save-button">Save</button>
-        <button id="reset-button" style="background-color: red;">Reset</button>
-   <script>
-document.getElementById('save-button').addEventListener('click', function() {
-    var cookies = document.cookie.split(';');
-    for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i];
-        var eqPos = cookie.indexOf('=');
-        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
-    }
-
-    var formElements = document.querySelectorAll('input, select, textarea');
-
-    for (var i = 0; i < formElements.length; i++) {
-        var element = formElements[i];
-        var elementType = element.type;
-        var elementId = element.id;
-        var elementName = element.name;
-        var elementValue;
-
-        if (elementType === 'checkbox' || elementType === 'radio') {
-            if (element.checked) {
-                elementValue = element.value;
-                document.cookie = `${elementName}-${elementValue}=${elementValue}`;
-            }
-        } else {
-            elementValue = element.value;
-            document.cookie = `${elementId}=${elementValue}`;
-        }
-    }
-});
-</script>
-<Script>
-  document.getElementById('reset-button').addEventListener('click', function() {
-    var cookies = document.cookie.split(';');
-    for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i];
-        var eqPos = cookie.indexOf('=');
-        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
-    }
-    location.reload();
-});
-  </script>
+        <button id="reset-button" style="background-color: red;">Reset</button>  
       <table>
     <tr>
       <th>Character Name</th>
@@ -110,31 +32,32 @@ document.getElementById('save-button').addEventListener('click', function() {
     </tr>
     <tr>
      <td><label for="nameInput1a">Name</label><br>
-     <input type="text" id="nameInput1a" maxlength="20" value="Character 1">
-     <label for="nameInput1b">Stamina</label><br>
-     <input type="text" id="nameInput1b" maxlength="3" value="">
-     <label for="nameInput1c">MS Penalty</label><br>
-     <input type="text" id="nameInput1c" maxlength="3" value="">
-     <label for="nameInput1d">Heat Penalty</label><br>
-     <input type="text" id="nameInput1d" maxlength="3" value="" readonly>
-     <label for="nameInput1e">Cold Penalty</label><br>
-     <input type="text" id="nameInput1e" maxlength="3" value="" readonly>
-
+		<input type="text" id="nameInput1a" maxlength="20" value="Character 1">
+		<label for="nameInput1b">Stamina</label><br>
+		<input type="text" id="nameInput1b" maxlength="3" value="">
+		<label for="nameInput1c">MS Penalty</label><br>
+		<input type="text" id="nameInput1c" maxlength="3" value="">
+		<label for="nameInput1d">Heat Penalty</label><br>
+		<input type="text" id="nameInput1d" maxlength="3" value="0" readonly>
+		<label for="nameInput1e">Cold Penalty</label><br>
+		<input type="text" id="nameInput1e" maxlength="3" value="0" readonly>
+		<label for="nameInput1f">Difficulty Penalty</label><br>
+		<input type="text" id="nameInput1f" maxlength="3" value="0" readonly>
       <td style="padding-left:10px;">
        <div style="display:flex;">
        <div style="margin-right:10px;">
-          <label><input type="radio" name="Clothes1" value="Nude">Nude</label><br>
+          <label><input type="radio" name="Clothes1" value="Nude" checked>Nude</label><br>
           <label><input type="radio" name="Clothes1" value="Silk">Silk</label><br>
           <label><input type="radio" name="Clothes1" value="Linen">Linen</label><br>
           <label><input type="radio" name="Clothes1" value="Wool">Wool</label><br>         
-          <label><input type="radio" name="Footgear1" value="Bearfoot">Bearfoot</label><br>
+          <label><input type="radio" name="Footgear1" value="Bearfoot" checked>Bearfoot</label><br>
           <label><input type="radio" name="Footgear1" value="Shoes">Shoes</label><br>
           <label><input type="radio" name="Footgear1" value="Boots">Boots</label><br>
        </div>
        <div style="margin-right:15px;">
          <label><input type="radio" name="Armor1" value="Leather Armor">Leather Armor</label><br>
          <label><input type="radio" name="Armor1" value="Fur Armor">Fur Armor</label><br>
-         <label><input type="radio" name="Armor1" value="No Warm Armor">No Warm Armor</label><br>
+         <label><input type="radio" name="Armor1" value="No Warm Armor" checked>No Warm Armor</label><br>
          <label><input type="Checkbox" name="fur cloak1" value="Fur cloak">Fur cloak</label><br>
          <Label><input type="Checkbox" name="Hat1" value="Sunhat">Sun Hat</label><br>
        </div>  
@@ -149,9 +72,9 @@ document.getElementById('save-button').addEventListener('click', function() {
              <option value="officer">Officer</option>
              <option value="crew">Crew</option>
          </select><br>         
-         <Label><input type="Checkbox" name="Traveler1" value="Traveler Skill">Traveler Skill</label><br>
-         <label><id="Fatigue Level1" name="Fatigue Level1" value="Fatigue">Fatigue</label><br>
-         <select id="Fatigue Level1" disabled>
+         <Label><input type="Checkbox" id="traveler1" value="Traveler Skill">Traveler Skill</label><br>
+         <label><id="fatigue_level1" name="Fatigue Level1" value="Fatigue">Fatigue</label><br>
+         <select id="fatigue_level1" disabled>
              <option value="0">None</option>
              <option value="1">Tired</option>
              <option value="2">Weary</option>
@@ -199,48 +122,50 @@ document.getElementById('save-button').addEventListener('click', function() {
 
   <label for="temperature">Temperature:</label>
   <select id="temperature">
-    <option value="fair">Fair</option>
-    <option value="warm">Warm</option>
-    <option value="hot">Hot</option>
-    <option value="brutal">Brutal</option>
-    <option value="chilly">Chilly</option>
-    <option value="cold">Cold</option>
-    <option value="frigid">Frigid</option>
+    <option value="Fair">Fair</option>
+    <option value="Warm">Warm</option>
+    <option value="Hot">Hot</option>
+    <option value="Brutal">Brutal</option>
+    <option value="Chilly">Chilly</option>
+    <option value="Cold">Cold</option>
+    <option value="Frigid">Frigid</option>
     <option value="Deathly">Deathly</option>
 
            </select><br>               
-    <Label><input type="Checkbox" name="Rough Terrain" value="Rough Terrain">Rough Terrain</label><br>
-    <Label><input type="Checkbox" name="Jog" value="Jog">Jog</label><br>
+    <Label><input type="Checkbox" id="Rough_Terrain" name="Rough Terrain" value="Rough Terrain">Rough Terrain</label><br>
+    <Label><input type="Checkbox" id="jog" name="Jog" value="Jog">Jog</label><br>
     
     
     </tr>
     <tr>
-     <td><label for="nameInput2a">Name</label><br>
-     <input type="text" id="nameInput2a" maxlength="20" value="Character 2">
-     <label for="nameInput2b">Stamina</label><br>
-     <input type="text" id="nameInput2b" maxlength="3" value="">
-     <label for="nameInput2c">MS Penalty</label><br>
-     <input type="text" id="nameInput2c" maxlength="3" value="">
-     <label for="nameInput2d">Heat Penalty</label><br>
-     <input type="text" id="nameInput2d" maxlength="3" value="">
-     <label for="nameInput2e">Cold Penalty</label><br>
-     <input type="text" id="nameInput2e" maxlength="3" value="">
+    <td><label for="nameInput2a">Name</label><br>
+    <input type="text" id="nameInput2a" maxlength="20" value="Character 2">
+    <label for="nameInput2b">Stamina</label><br>
+    <input type="text" id="nameInput2b" maxlength="3" value="">
+    <label for="nameInput2c">MS Penalty</label><br>
+    <input type="text" id="nameInput2c" maxlength="3" value="">
+    <label for="nameInput2d">Heat Penalty</label><br>
+    <input type="text" id="nameInput2d" maxlength="3" value="0">
+    <label for="nameInput2e">Cold Penalty</label><br>
+    <input type="text" id="nameInput2e" maxlength="3" value="0">
+	<label for="nameInput2f">Difficulty Penalty</label><br>
+	<input type="text" id="nameInput1f" maxlength="3" value="0" readonly>
        
       <td style="padding-left:10px;">
        <div style="display:flex;">
       <div style="margin-right:10px;">
-    <label><input type="radio" name="Clothes2" value="Nude">Nude</label><br>
+    <label><input type="radio" name="Clothes2" value="Nude" checked>Nude</label><br>
     <label><input type="radio" name="Clothes2" value="Silk">Silk</label><br>
     <label><input type="radio" name="Clothes2" value="Linen">Linen</label><br>
     <label><input type="radio" name="Clothes2" value="Wool">Wool</label><br>         
-    <label><input type="radio" name="Footgear2" value="Bearfoot">Bearfoot</label><br>
+    <label><input type="radio" name="Footgear2" value="Bearfoot" checked>Bearfoot</label><br>
     <label><input type="radio" name="Footgear2" value="Shoes">Shoes</label><br>
     <label><input type="radio" name="Footgear2" value="Boots">Boots</label><br>
 </div>
 <div style="margin-right:15px;">
     <label><input type="radio" name="Armor2" value="Leather Armor">Leather Armor</label><br>
     <label><input type="radio" name="Armor2" value="Fur Armor">Fur Armor</label><br>
-    <label><input type="radio" name="Armor2" value="No Warm Armor">No Warm Armor</label><br>
+    <label><input type="radio" name="Armor2" value="No Warm Armor" checked>No Warm Armor</label><br>
     <label><input type="Checkbox" name="fur cloak2" value="Fur cloak">Fur cloak</label><br>
     <Label><input type="Checkbox" name="Hat2" value="Sunhat">Sun Hat</label><br>
 </div>  
@@ -255,7 +180,15 @@ document.getElementById('save-button').addEventListener('click', function() {
              <option value="officer">Officer</option>
              <option value="crew">Crew</option>
            </select>
-
+         <Label><input type="Checkbox" id="traveler2" value="Traveler Skill">Traveler Skill</label><br>
+         <label><id="fatigue_level2" name="Fatigue Level2" value="Fatigue">Fatigue</label><br>
+         <select id="fatigue_level2" disabled>
+             <option value="0">None</option>
+             <option value="1">Tired</option>
+             <option value="2">Weary</option>
+             <option value="3">Exhausted</option>
+             <option value="4">Depleted</option>
+         </select><br>         
            <script>
                const mountedCheckbox2 = document.querySelector('#mountedCheckbox2');
                const mountedSelect2 = document.querySelector('#mountedSelect2');
@@ -297,32 +230,34 @@ document.getElementById('save-button').addEventListener('click', function() {
     </tr>
         
     <tr>
-     <td><label for="nameInput3a">Name</label><br>
-     <input type="text" id="nameInput3a" maxlength="20" value="Character 3">
-     <label for="nameInput3b">Stamina</label><br>
-     <input type="text" id="nameInput3b" maxlength="3" value="">
-     <label for="nameInput3c">MS Penalty</label><br>
-     <input type="text" id="nameInput3c" maxlength="3" value="">
-     <label for="nameInput3d">Heat Penalty</label><br>
-     <input type="text" id="nameInput3d" maxlength="3" value="">
-     <label for="nameInput3e">Cold Penalty</label><br>
-     <input type="text" id="nameInput3e" maxlength="3" value=""> 
+    <td><label for="nameInput3a">Name</label><br>
+    <input type="text" id="nameInput3a" maxlength="20" value="Character 3">
+    <label for="nameInput3b">Stamina</label><br>
+    <input type="text" id="nameInput3b" maxlength="3" value="">
+    <label for="nameInput3c">MS Penalty</label><br>
+    <input type="text" id="nameInput3c" maxlength="3" value="">
+    <label for="nameInput3d">Heat Penalty</label><br>
+    <input type="text" id="nameInput3d" maxlength="3" value="0">
+    <label for="nameInput3e">Cold Penalty</label><br>
+    <input type="text" id="nameInput3e" maxlength="3" value="0"> 
+	<label for="nameInput3f">Difficulty Penalty</label><br>
+	<input type="text" id="nameInput3f" maxlength="3" value="0" readonly>
        
       <td style="padding-left:10px;">
         <div style="display:flex;">
        <div style="margin-right:10px;">
-    <label><input type="radio" name="Clothes3" value="Nude">Nude</label><br>
+    <label><input type="radio" name="Clothes3" value="Nude" checked>Nude</label><br>
     <label><input type="radio" name="Clothes3" value="Silk">Silk</label><br>
     <label><input type="radio" name="Clothes3" value="Linen">Linen</label><br>
     <label><input type="radio" name="Clothes3" value="Wool">Wool</label><br>         
-    <label><input type="radio" name="Footgear3" value="Bearfoot">Bearfoot</label><br>
+    <label><input type="radio" name="Footgear3" value="Bearfoot" checked>Bearfoot</label><br>
     <label><input type="radio" name="Footgear3" value="Shoes">Shoes</label><br>
     <label><input type="radio" name="Footgear3" value="Boots">Boots</label><br>
 </div>
 <div style="margin-right:15px;">
     <label><input type="radio" name="Armor3" value="Leather Armor">Leather Armor</label><br>
     <label><input type="radio" name="Armor3" value="Fur Armor">Fur Armor</label><br>
-    <label><input type="radio" name="Armor3" value="No Warm Armor">No Warm Armor</label><br>
+    <label><input type="radio" name="Armor3" value="No Warm Armor" checked>No Warm Armor</label><br>
     <label><input type="Checkbox" name="fur cloak3" value="Fur cloak">Fur cloak</label><br>
     <Label><input type="Checkbox" name="Hat3" value="Sunhat">Sun Hat</label><br>
 </div>  
@@ -337,6 +272,15 @@ document.getElementById('save-button').addEventListener('click', function() {
              <option value="officer">Officer</option>
              <option value="crew">Crew</option>
            </select>
+         <Label><input type="Checkbox" id="traveler3" value="Traveler Skill">Traveler Skill</label><br>
+         <label><id="fatigue_level3" name="Fatigue Level3" value="Fatigue">Fatigue</label><br>
+         <select id="fatigue_level3" disabled>
+             <option value="0">None</option>
+             <option value="1">Tired</option>
+             <option value="2">Weary</option>
+             <option value="3">Exhausted</option>
+             <option value="4">Depleted</option>
+         </select><br>         
            <script>
                const mountedCheckbox3 = document.querySelector('#mountedCheckbox3');
                const mountedSelect3 = document.querySelector('#mountedSelect3');
@@ -362,25 +306,27 @@ document.getElementById('save-button').addEventListener('click', function() {
      <label for="nameInput4c">MS Penalty</label><br>
      <input type="text" id="nameInput4c" maxlength="3" value="">
      <label for="nameInput4d">Heat Penalty</label><br>
-     <input type="text" id="nameInput4d" maxlength="3" value="">
+     <input type="text" id="nameInput4d" maxlength="3" value="0">
      <label for="nameInput4e">Cold Penalty</label><br>
-     <input type="text" id="nameInput4e" maxlength="3" value="">
+     <input type="text" id="nameInput4e" maxlength="3" value="0">
+	 <label for="nameInput4f">Difficulty Penalty</label><br>
+	 <input type="text" id="nameInput4f" maxlength="3" value="0" readonly>
        
       <td style="padding-left:10px;">
         <div style="display:flex;">
 <div style="margin-right:10px;">
-    <label><input type="radio" name="Clothes4" value="Nude">Nude</label><br>
+    <label><input type="radio" name="Clothes4" value="Nude" checked>Nude</label><br>
     <label><input type="radio" name="Clothes4" value="Silk">Silk</label><br>
     <label><input type="radio" name="Clothes4" value="Linen">Linen</label><br>
     <label><input type="radio" name="Clothes4" value="Wool">Wool</label><br>         
-    <label><input type="radio" name="Footgear4" value="Bearfoot">Bearfoot</label><br>
+    <label><input type="radio" name="Footgear4" value="Bearfoot" checked>Bearfoot</label><br>
     <label><input type="radio" name="Footgear4" value="Shoes">Shoes</label><br>
     <label><input type="radio" name="Footgear4" value="Boots">Boots</label><br>
 </div>
 <div style="margin-right:15px;">
     <label><input type="radio" name="Armor4" value="Leather Armor">Leather Armor</label><br>
     <label><input type="radio" name="Armor4" value="Fur Armor">Fur Armor</label><br>
-    <label><input type="radio" name="Armor4" value="No Warm Armor">No Warm Armor</label><br>
+    <label><input type="radio" name="Armor4" value="No Warm Armor" checked>No Warm Armor</label><br>
     <label><input type="Checkbox" name="fur cloak4" value="Fur cloak">Fur cloak</label><br>  
     <Label><input type="Checkbox" name="Hat4" value="Sunhat">Sun Hat</label><br>
 </div>  
@@ -395,7 +341,15 @@ document.getElementById('save-button').addEventListener('click', function() {
              <option value="officer">Officer</option>
              <option value="crew">Crew</option>
            </select>
-           <script>
+         <Label><input type="Checkbox" id="traveler4" value="Traveler Skill">Traveler Skill</label><br>
+         <label><id="fatigue_level4" name="Fatigue Level4" value="Fatigue">Fatigue</label><br>
+         <select id="fatigue_level4" disabled>
+             <option value="0">None</option>
+             <option value="1">Tired</option>
+             <option value="2">Weary</option>
+             <option value="3">Exhausted</option>
+             <option value="4">Depleted</option>
+         </select><br>                    <script>		   
                const mountedCheckbox4 = document.querySelector('#mountedCheckbox4');
                const mountedSelect4 = document.querySelector('#mountedSelect4');
              
@@ -419,25 +373,27 @@ document.getElementById('save-button').addEventListener('click', function() {
      <label for="nameInput5c">MS Penalty</label><br>
      <input type="text" id="nameInput5c" maxlength="3" value="">
      <label for="nameInput5d">Heat Penalty</label><br>
-     <input type="text" id="nameInput5d" maxlength="3" value="">
+     <input type="text" id="nameInput5d" maxlength="3" value="0">
      <label for="nameInput5e">Cold Penalty</label><br>
-     <input type="text" id="nameInput5e" maxlength="3" value="">
+     <input type="text" id="nameInput5e" maxlength="3" value="0">
+	 <label for="nameInput5f">Difficulty Penalty</label><br>
+	 <input type="text" id="nameInput5f" maxlength="3" value="0" readonly>
             
       <td style="padding-left:10px;">
         <div style="display:flex;">
        <div style="margin-right:10px;">
-    <label><input type="radio" name="Clothes5" value="Nude">Nude</label><br>
+    <label><input type="radio" name="Clothes5" value="Nude" checked>Nude</label><br>
     <label><input type="radio" name="Clothes5" value="Silk">Silk</label><br>
     <label><input type="radio" name="Clothes5" value="Linen">Linen</label><br>
     <label><input type="radio" name="Clothes5" value="Wool">Wool</label><br>         
-    <label><input type="radio" name="Footgear5" value="Bearfoot">Bearfoot</label><br>
+    <label><input type="radio" name="Footgear5" value="Bearfoot" checked>Bearfoot</label><br>
     <label><input type="radio" name="Footgear5" value="Shoes">Shoes</label><br>
     <label><input type="radio" name="Footgear5" value="Boots">Boots</label><br>
 </div>
 <div style="margin-right:15px;">
     <label><input type="radio" name="Armor5" value="Leather Armor">Leather Armor</label><br>
     <label><input type="radio" name="Armor5" value="Fur Armor">Fur Armor</label><br>
-    <label><input type="radio" name="Armor5" value="No Warm Armor">No Warm Armor</label><br>
+    <label><input type="radio" name="Armor5" value="No Warm Armor" checked>No Warm Armor</label><br>
     <label><input type="Checkbox" name="fur cloak5" value="Fur cloak">Fur cloak</label><br>
     <Label><input type="Checkbox" name="Hat5" value="Sunhat">Sun Hat</label><br>
 </div>  
@@ -452,7 +408,15 @@ document.getElementById('save-button').addEventListener('click', function() {
              <option value="officer">Officer</option>
              <option value="crew">Crew</option>
            </select>
-           <script>
+         <Label><input type="Checkbox" id="traveler5" value="Traveler Skill">Traveler Skill</label><br>
+         <label><id="fatigue_level5" name="Fatigue Level5" value="Fatigue">Fatigue</label><br>
+         <select id="fatigue_level5" disabled>
+             <option value="0">None</option>
+             <option value="1">Tired</option>
+             <option value="2">Weary</option>
+             <option value="3">Exhausted</option>
+             <option value="4">Depleted</option>
+         </select><br>                    <script>
                const mountedCheckbox5 = document.querySelector('#mountedCheckbox5');
                const mountedSelect5 = document.querySelector('#mountedSelect5');
              
@@ -476,25 +440,27 @@ document.getElementById('save-button').addEventListener('click', function() {
      <label for="nameInput6c">MS Penalty</label><br>
      <input type="text" id="nameInput6c" maxlength="3" value="">
      <label for="nameInput6d">Heat Penalty</label><br>
-     <input type="text" id="nameInput6d" maxlength="3" value="">
+     <input type="text" id="nameInput6d" maxlength="3" value="0">
      <label for="nameInput6e">Cold Penalty</label><br>
-     <input type="text" id="nameInput6e" maxlength="3" value="">
+     <input type="text" id="nameInput6e" maxlength="3" value="0">
+	 <label for="nameInput6f">Difficulty Penalty</label><br>
+	<input type="text" id="nameInput6f" maxlength="3" value="0" readonly>
        
       <td style="padding-left:10px;">
         <div style="display:flex;">
       <div style="margin-right:10px;">
-    <label><input type="radio" name="Clothes6" value="Nude">Nude</label><br>
+    <label><input type="radio" name="Clothes6" value="Nude" checked>Nude</label><br>
     <label><input type="radio" name="Clothes6" value="Silk">Silk</label><br>
     <label><input type="radio" name="Clothes6" value="Linen">Linen</label><br>
     <label><input type="radio" name="Clothes6" value="Wool">Wool</label><br>         
-    <label><input type="radio" name="Footgear6" value="Bearfoot">Bearfoot</label><br>
+    <label><input type="radio" name="Footgear6" value="Bearfoot" checked>Bearfoot</label><br>
     <label><input type="radio" name="Footgear6" value="Shoes">Shoes</label><br>
     <label><input type="radio" name="Footgear6" value="Boots">Boots</label><br>
 </div>
 <div style="margin-right:15px;">
     <label><input type="radio" name="Armor6" value="Leather Armor">Leather Armor</label><br>
     <label><input type="radio" name="Armor6" value="Fur Armor">Fur Armor</label><br>
-    <label><input type="radio" name="Armor6" value="No Warm Armor">No Warm Armor</label><br>  
+    <label><input type="radio" name="Armor6" value="No Warm Armor" checked>No Warm Armor</label><br>  
     <label><input type="Checkbox" name="fur cloak6" value="Fur cloak">Fur cloak</label><br>
     <Label><input type="Checkbox" name="Hat6" value="Sunhat">Sun Hat</label><br>
 </div>  
@@ -509,7 +475,15 @@ document.getElementById('save-button').addEventListener('click', function() {
              <option value="officer">Officer</option>
              <option value="crew">Crew</option>
            </select>
-           <script>
+         <Label><input type="Checkbox" id="traveler6" value="Traveler Skill">Traveler Skill</label><br>
+         <label><id="fatigue_level6" name="Fatigue Level6" value="Fatigue">Fatigue</label><br>
+         <select id="fatigue_level6" disabled>
+             <option value="0">None</option>
+             <option value="1">Tired</option>
+             <option value="2">Weary</option>
+             <option value="3">Exhausted</option>
+             <option value="4">Depleted</option>
+         </select><br>                    <script>
                const mountedCheckbox6 = document.querySelector('#mountedCheckbox6');
                const mountedSelect6 = document.querySelector('#mountedSelect6');
              
@@ -529,25 +503,18 @@ document.getElementById('save-button').addEventListener('click', function() {
     </tr>
 
 </table>
-<script src="travel_temp_script.js" type="text/javascript"></script>
+    <script src="travel_temp_script.js" type="text/javascript"> </script>
+    <script src="difficulty_penalty_script.js" type="text/javascript"> </script>
 
-           <script>
-document.getElementById('take-trip-button').addEventListener('click', function() {
-  var dataLog = document.querySelector('#dataLog');
-  var tripNumberSelect = document.querySelector('#tripNumberSelect');
-  const tripNumber = parseInt(tripNumberSelect.value);
-  var passCount = 0;
-  var nonBlankNameInputsPassCount = 0;
-  for (var i = 0; i < 6; i++) {
-    var nameInput = document.querySelector(`#nameInput${i + 1}a`);
-    var staminaInput = document.querySelector(`#nameInput${i + 1}b`);
-    var msPenaltyInput = document.querySelector(`#nameInput${i + 1}c`);
-    var heatPenaltyInput = document.querySelector(`#nameInput${i + 1}d`);
-    var coldPenaltyInput = document.querySelector(`#nameInput${i + 1}e`);
-
-    if (!nameInput.value.trim()) {
-      continue;
+           <!-- <script>
+             function roll3d6() {
+    var total = 0;
+    for (var i = 0; i < 3; i++) {
+        total += Math.floor(Math.random() * 6) + 1;
     }
+    return total;
+}
+
 
     var result = roll3d6();
     result += parseInt(staminaInput.value) || 0;
@@ -556,7 +523,7 @@ document.getElementById('take-trip-button').addEventListener('click', function()
     result += parseInt(coldPenaltyInput.value) || 0;
 
     // Calculate the target number based on the trip number
-    const targetNumber = 15 + (tripNumber - 1) * 2;
+    const targetNumber = 15;
 
     if (result > targetNumber) {
       passCount++;
@@ -570,8 +537,6 @@ document.getElementById('take-trip-button').addEventListener('click', function()
     dataLog.value += `Travelled well on trip ${tripNumber}\n`;
   }
 });
-   </script>
-    <Script>
 const takeTripButton = document.querySelector('#take-trip-button');
 const resetTripButton = document.querySelector('#resetTripButton');
 const tripNumberSelect = document.querySelector('#tripNumberSelect');
@@ -586,7 +551,7 @@ takeTripButton.addEventListener('click', () => {
 resetTripButton.addEventListener('click', () => {
   tripNumberSelect.value = '1';
 });
-           </script>
+           </script> -->
                        
   </body>
 </html>

@@ -98,19 +98,19 @@ mountedSelect.forEach((nodeList, index) => {
 	selectNodeList.forEach(select => {
 
         switch (select.value) {
-          case 'none':
+          case '0':
             difficulty[index] += 0;
             break;
-          case 'tired':
+          case '1':
             difficulty[index] -= 1;
             break;
-		  case 'weary':
+		  case '2':
             difficulty[index] -= 2;
             break;
-		  case 'exhausted':
+		  case '3':
             difficulty[index] -= 3;
             break;
-		  case 'depleted':
+		  case '4':
             difficulty[index] -= 4;
             break;
           default:

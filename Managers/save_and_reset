@@ -1,0 +1,45 @@
+function saveValues() {
+    let formElements = document.querySelectorAll("input, select");
+    for (let i = 0; i < formElements.length; i++) {
+        let formElement = formElements[i];
+        let elementValue;
+        if (formElement.type === "checkbox" || formElement.type === "radio") {
+            elementValue = formElement.checked;
+        } else {
+            elementValue = formElement.value;
+        }
+        document.cookie = formElement.id + "=" + elementValue;
+    }
+}
+
+
+
+function resetCookie() {
+    let cookies = document.cookie.split("; ");
+    for (let i = 0; i < cookies.length; i++) {
+        let cookieName = cookies[i].split("=")[0];
+        document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
+
+function loadValues() {
+    let cookies = document.cookie.split("; ");
+    for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].split("=");
+        let name = cookie[0];
+        let value = cookie[1];
+        let formElement = document.querySelector("[name='" + name + "']");
+        if (formElement) {
+            if (formElement.type === "checkbox" || formElement.type === "radio") {
+                formElement.checked = (value === "true");
+            } else {
+                formElement.value = value;
+            }
+        }
+    }
+}
+
+function resetTripNumber() {
+    let tripNumberSelect = document.getElementById("tripNumberSelect");
+    tripNumberSelect.value = 1;
+}

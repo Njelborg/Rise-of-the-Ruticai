@@ -22,8 +22,9 @@
     </style>
   </head>
   <body>
-        <button id="save-button">Save</button>
-        <button id="reset-button" style="background-color: red;">Reset</button>  
+<button id="save-button" onclick="saveValues()">Save</button>
+<button id="load-button" onclick="loadValues()">Load</button>  
+<button id="reset-button" onclick="resetCookie()" style="background-color: red;">Reset</button>  
       <table>
     <tr>
       <th>Character Name</th>
@@ -32,7 +33,7 @@
     </tr>
     <tr>
      <td><label for="nameInput1a">Name</label><br>
-		<input type="text" id="nameInput1a" maxlength="20" value="Character 1">
+		<input type="text" id="nameInput1a" maxlength="20" value="">
 		<label for="nameInput1b">Stamina</label><br>
 		<input type="text" id="nameInput1b" maxlength="3" value="">
 		<label for="nameInput1c">MS Penalty</label><br>
@@ -100,7 +101,7 @@
        <div style="display:Flex;">
        <div style="margin-right:10px;">
     <h2>Data Log</h2>
-      <textarea id="dataLog" rows="10" style="width: 100%; resize: none;" readonly></textarea>
+      <textarea id="dataLog" value="Hello" rows="10" style="width: 100%; resize: none;" readonly></textarea>
       <button id="reset-datalog-button">Reset Datalog</button>
          <Script>
            document.getElementById('reset-datalog-button').addEventListener('click', function() {
@@ -139,7 +140,7 @@
     </tr>
     <tr>
     <td><label for="nameInput2a">Name</label><br>
-    <input type="text" id="nameInput2a" maxlength="20" value="Character 2">
+    <input type="text" id="nameInput2a" maxlength="20" value="">
     <label for="nameInput2b">Stamina</label><br>
     <input type="text" id="nameInput2b" maxlength="3" value="">
     <label for="nameInput2c">MS Penalty</label><br>
@@ -208,7 +209,7 @@
       <td style="padding-left:4px;">
        <div style="display:flex;">
        <div style="margin-right:10px;">
-         <button id="take-trip-button">Take Trip</button><br>
+         <button onclick="takeTrip()" id="take-trip-button">Take Trip</button><br>
          <button id="resetTripButton">Reset Trip</button><br>
          </div>
         </td>
@@ -224,6 +225,12 @@
     <option value="4">4</option>
     <option value="5">5</option>
     <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    <option value="11">11</option>
+    <option value="12">12</option>
   </select>
   
 </td>
@@ -231,7 +238,7 @@
         
     <tr>
     <td><label for="nameInput3a">Name</label><br>
-    <input type="text" id="nameInput3a" maxlength="20" value="Character 3">
+    <input type="text" id="nameInput3a" maxlength="20" value="">
     <label for="nameInput3b">Stamina</label><br>
     <input type="text" id="nameInput3b" maxlength="3" value="">
     <label for="nameInput3c">MS Penalty</label><br>
@@ -300,7 +307,7 @@
         
     <tr>
      <td><label for="nameInput4a">Name</label><br>
-     <input type="text" id="nameInput4a" maxlength="20" value="Character 4">
+     <input type="text" id="nameInput4a" maxlength="20" value="">
      <label for="nameInput4b">Stamina</label><br>
      <input type="text" id="nameInput4b" maxlength="3" value="">
      <label for="nameInput4c">MS Penalty</label><br>
@@ -367,7 +374,7 @@
         
     <tr>
      <td><label for="nameInput5a">Name</label><br>
-     <input type="text" id="nameInput5a" maxlength="20" value="Character 5">
+     <input type="text" id="nameInput5a" maxlength="20" value="">
      <label for="nameInput5b">Stamina</label><br>
      <input type="text" id="nameInput5b" maxlength="3" value="">
      <label for="nameInput5c">MS Penalty</label><br>
@@ -434,7 +441,7 @@
         
     <tr>
      <td><label for="nameInput6a">Name</label><br>
-     <input type="text" id="nameInput6a" maxlength="20" value="Character 6">
+     <input type="text" id="nameInput6a" maxlength="20" value="">
      <label for="nameInput6b">Stamina</label><br>
      <input type="text" id="nameInput6b" maxlength="3" value="">
      <label for="nameInput6c">MS Penalty</label><br>
@@ -503,55 +510,12 @@
     </tr>
 
 </table>
+
+
     <script src="travel_temp_script.js" type="text/javascript"> </script>
     <script src="difficulty_penalty_script.js" type="text/javascript"> </script>
-
-           <!-- <script>
-             function roll3d6() {
-    var total = 0;
-    for (var i = 0; i < 3; i++) {
-        total += Math.floor(Math.random() * 6) + 1;
-    }
-    return total;
-}
-
-
-    var result = roll3d6();
-    result += parseInt(staminaInput.value) || 0;
-    result += parseInt(msPenaltyInput.value) || 0;
-    result += parseInt(heatPenaltyInput.value) || 0;
-    result += parseInt(coldPenaltyInput.value) || 0;
-
-    // Calculate the target number based on the trip number
-    const targetNumber = 15;
-
-    if (result > targetNumber) {
-      passCount++;
-    } else {
-      dataLog.value += `${nameInput.value} failed trip ${tripNumber}\n`;
-    }
-    nonBlankNameInputsPassCount++;
-  }
-
-  if (nonBlankNameInputsPassCount === passCount && nonBlankNameInputsPassCount > 0) {
-    dataLog.value += `Travelled well on trip ${tripNumber}\n`;
-  }
-});
-const takeTripButton = document.querySelector('#take-trip-button');
-const resetTripButton = document.querySelector('#resetTripButton');
-const tripNumberSelect = document.querySelector('#tripNumberSelect');
-
-takeTripButton.addEventListener('click', () => {
-  const currentTripNumber = parseInt(tripNumberSelect.value);
-  if (currentTripNumber < 6) {
-    tripNumberSelect.value = currentTripNumber + 1;
-  }
-});
-
-resetTripButton.addEventListener('click', () => {
-  tripNumberSelect.value = '1';
-});
-           </script> -->
-                       
+    <script src="take_trip.js" type="text/javascript"> </script>
+    <script src="save_and_reset.js" type="text/javascript"> </script>                       
+	
   </body>
 </html>

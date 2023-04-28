@@ -1,5 +1,6 @@
 // Define a data object to store the options for the second select element
 var data = {
+  "--Select--": ["--Select--"],
   "cellus": ["--Select--", "Stealth", "Riding"],
   "croesios": ["--Select--", "Acting", "Social Skills"],
   "illatium": ["--Select--", "Crafts", "Stamina"],
@@ -68,6 +69,7 @@ realmSelect.addEventListener("change", function() {
     var selectedValue = this.value;
     // Get the corresponding options from the data object
     var options = data[selectedValue];
+
     // Add options to the realm skill 2 select element
     for (var i = 0; i < options.length; i++) {
       var option = document.createElement("option");
@@ -76,8 +78,22 @@ realmSelect.addEventListener("change", function() {
       realmSkill2Select.appendChild(option);
     }
     // Set the value of the realm skill 1 select element based on the realm
-    var realmSkill1Value = (selectedValue == "cellus" || selectedValue == "croesios" || selectedValue == "illatium" || selectedValue == "ionia" || selectedValue == "suebia") ? "Melee" : "Missile";
-    realmSkill1Select.value = realmSkill1Value;
+// Set the value and options of the realm skill 1 select element based on the realm
+if (selectedValue == "cellus" || selectedValue == "croesios" || selectedValue == "illatium" || selectedValue == "ionia" || selectedValue == "suebia") {
+  realmSkill1Select.innerHTML = "";
+  var option1 = document.createElement("option");
+  option1.value = "Melee";
+  option1.text = "Melee";
+  option1.selected = true;
+  realmSkill1Select.appendChild(option1);
+} else {
+  realmSkill1Select.innerHTML = "";
+  var option1 = document.createElement("option");
+  option1.value = "Missile";
+  option1.text = "Missile";
+  option1.selected = true;
+  realmSkill1Select.appendChild(option1);
+}
 
   }
 });

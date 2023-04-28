@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Manager</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Styles for tabs */
+#tabs {
+    display: flex;
+}
+
+button {
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.tab-content {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+/* Styles for info content */
+#info-content {
+    display: flex;
+}
+
+#starting-stats, #starting-selections {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styles for starting stats inputs */
+#starting-stats input[type="number"] {
+    width: 40px;
+    text-align: center;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+}
+
+/* Styles for starting selections inputs */
+#starting-selections input[type="text"], #starting-selections select {
+    width: 150px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    background-color: #e0e0e0;
+}
+
+/* Styles for table */
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    vertical-align: top; 
+}
+
+/* Styles for stat and selection rows */
+.stat-row, .selection-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.stat-row label, .selection-row label {
+    width: 150px; /* Set a fixed width for the labels */
+}
+    </style>
+    <script>
+        function showTabContent(tabId) {
+            const tabContent = document.querySelectorAll('.tab-content');
+            for (let i = 0; i < tabContent.length; i++) {
+                tabContent[i].style.display = 'none';
+            }
+
+            document.getElementById(tabId).style.display = 'block';
+        }
+
+        function initTabs() {
+            const tabs = document.querySelectorAll('#tabs button');
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].addEventListener('click', function () {
+                    showTabContent(tabs[i].dataset.target);
+                });
+            }
+
+            showTabContent('info');
+        }
+
+        document.addEventListener('DOMContentLoaded', initTabs);
+    </script>
+</head>
+<body>
+
+
+    <div id="content">
+        <div id="info" class="tab-content">
+            <table>
+                <tr>
+                    <th>
+                        <div id="starting-stats">
+                            <h2>Starting Stats</h2>
+                            <form>
+                <div class="stat-row">
+                    <label for="str">STR:</label>
+                    <input type="number" id="str" name="str" required min="1" max="21" inputmode="numeric" pattern="[0-9]*" maxlength="2">
+                </div>
+                <div class="stat-row">
+                    <label for="dex">DEX:</label>
+                    <input type="number" id="dex" name="dex" required min="1" max="21" inputmode="numeric" pattern="[0-9]*" maxlength="2">
+                </div>
+                <div class="stat-row">
+                    <label for="con">CON:</label>
+                    <input type="number" id="con" name="con" required min="1" max="21" inputmode="numeric" pattern="[0-9]*" maxlength="2">
+                </div>
+                <div class="stat-row">
+                    <label for="wil">WIL:</label>
+                    <input type="number" id="wil" name="wil" required min="1" max="21" inputmode="numeric" pattern="[0-9]*" maxlength="2">
+                </div>
+                <div class="stat-row">
+                    <label for="int">INT:</label>
+                    <input type="number" id="int" name="int" required min="1" max="21" inputmode="numeric" pattern="[0-9]*" maxlength="2">
+                </div>
+                <div class="stat-row">
+                    <label for="cha">CHA:</label>
+                    <input type="number" id="cha" name="cha" required min="1" max="21" inputmode="numeric" pattern="[0-9]*" maxlength="2">
+                </div>
+                <button type="submit" id="myBtn">Create New Character</button>
+				<!-- The Modal -->
+<dialog id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Enter Character Name</h2>
+    </div>
+    <div class="modal-body">
+      <form id="myForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit" id="saveBtn">Save</button>
+        <button type="button" id="cancelBtn">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+</dialog>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// Get the form element
+var form = document.getElementById("myForm");
+
+// Get the save and cancel buttons
+var saveBtn = document.getElementById("saveBtn");
+var cancelBtn = document.getElementById("cancelBtn");
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.showModal();
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.close();
+}
+
+// When the user clicks on save button, submit the form and close the modal
+saveBtn.onclick = function() {
+  form.submit();
+  modal.close();
+}
+
+// When the user clicks on cancel button, close the modal
+cancelBtn.onclick = function() {
+  modal.close();
+}
+</script>
+				
+                <button type="submit">Save Character</button>
+                <button type="submit">Load Character</button>
+
+							</form>
+                        </div>
+                    </th>
+                    <th>
+                        <div id="starting-selections">
+                            <h2>Starting Selections</h2>
+                            <form>
+                    <div class="selection-row">
+                        <label for="character-name">Character Name:</label>
+                        <input type="text" id="character-name" name="character-name" pattern="[A-Za-z]+" maxlength="20">
+                    </div>
+                    <div class="selection-row">
+                        <label for="player-name">Player Name:</label>
+                        <input type="text" id="player-name" name="player-name" pattern="[A-Za-z]+" maxlength="20">
+                    </div>					
+                    <div class="selection-row">
+                        <label for="gender">Gender:</label>
+                        <select id="gender" name="gender" onchange="genderChange()">
+                          <option value="">Select gender</option>
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="selection-row">
+                        <label for="outlook">Outlook:</label>
+                        <select id="outlook" name="outlook">
+							<option value="Traditional">Traditional</option>
+							<option value="Religious">Religious</option>
+						</select>
+                    </div>
+                    <div class="selection-row">
+                        <label for="realm">Realm:</label>
+                        <select id="realm" name="realm">
+							<option value="">--Select-Realm--</option>
+							<option value="cellus">Cellus</option>
+							<option value="croesios">Croesios</option>
+							<option value="illatium">Illatium</option>
+							<option value="ionia">Ionia</option>
+							<option value="libue">Libue</option>
+							<option value="sarmatae">Sarmatae</option>
+							<option value="shim">Shim</option>
+							<option value="suebia">Suebia</option>
+							<option value="thracar">Thracar</option>
+						</select>
+                    </div>
+                    <div class="selection-row">
+                        <label for="tribe">Tribe:</label>
+                        <select id="tribe" name="tribe"></select>
+		<script>
+		// Define a data object to store the options for the third select element
+var tribeData = {
+  "suebia": ["Ruticai", "Rugii", "Sabines", "Lugii", "Erevir", "Havessetts", "Cinucci", "Rus", "Francues", "Angavi", "Bwyngavi", "Bocci", "Averni", "Eruni"],
+  "thracar": ["Obuli", "Ghaeti", "Empire", "Tylani", "Breuki", "Sotioi", "Dracoi", "Bacancci", "Bitiq Nishid"],
+  "ionia": ["Lakonae", "Atiikae", "Boeoti", "Argoli", "Phoki", "Tesselae", "Makkadae", "Euboeoi", "Itikae", "Deloki", "Naxonae", "Ketani", "Gyolidae", "Lokriti"],
+  "cellus": ["Boii", "Sequebri", "Volcae", "Nervaci", "Aedubri", "Helvetani", "Cait", "Fortriu", "Korvanti", "Brigandes", "Demitorix", "Iccitani", "Turdetorix", "Aquitani", "Cantuii", "Lusitani", "Arevaci", "Vangiones","Melliselia"],
+  "sarmatae": ["Palmagate","Durhae","Samuli","Roxotani","Ugyeki","Cimmerian","Vandal","Prusi","Lithuthi","Latvi","Galindian","Dniepr","Polushi","Sicae","Croati","Pomeri","Morov","Czechae","Obo Trites","Imperial Vevuti","Slovaki","Vistuli","Bohemae"],
+  "illatium": ["Novus","Tarchuna","Lyrunus","Felathri","Samnus","Ventecci","Aucai","Brutii","Frentani","Lucani","Marrucini","Umbri","Altucci","Senolni","Churbes","Syracus","Tara","Igioli","Bulari","Corci"]
+  // Add the rest of the options here
+};
+
+// Get references to the select elements
+var firstSelect = document.getElementById("realm");
+var thirdSelect = document.getElementById("tribe");
+
+// Add a change event listener to the first select element
+firstSelect.addEventListener("change", function() {
+  // Clear the options of the third select element
+  thirdSelect.innerHTML = "";
+  // Get the selected value of the first select element
+  var selectedValue = this.value;
+  // Get the corresponding options from the tribeData object
+  var options = tribeData[selectedValue];
+  // Add options to the third select element
+  for (var i = 0; i < options.length; i++) {
+    var option = document.createElement("option");
+    option.value = options[i];
+    option.text = options[i];
+    thirdSelect.appendChild(option);
+  }
+});
+</script>
+                    </div>
+                    <div class="selection-row">
+                        <label for="social-class">Social Class:</label>
+                        <select id="social-class" name="social-class">
+  <option value="Thrall">Thrall</option>
+  <option value="Freeman">Freeman</option>
+  <option value="Noble">Noble</option>
+  </select>
+                    </div>
+                    <div class="selection-row">
+                        <label for="skill-class">Skill Class:</label>
+                        <select id="skill-class" name="skill-class">
+						</select>
+						<script>
+// Get the select elements by id
+var gender = document.getElementById("gender");
+var realm = document.getElementById("realm");
+var tribe = document.getElementById("tribe");
+var outlook = document.getElementById("outlook");
+var skillClass = document.getElementById("skill-class");
+
+// Define an array of all possible skill classes
+var allSkillClasses = ["Bard", "Berserk", "Ranger", "sorcerer-geistmagen", "sorcerer-keeper", "sorcerer-lector", "sorcerer-spruzarii", "sorcerer-trollock", "sorcerer-volva", "stalker", "trickster", "valkyrie", "warrior", "Maenad", "Light Infantry", "Heavy Infantry", "Light Cavalry", "Heavy Cavalry", "Marine", "Medic", "Officer", "Pirate", "Explorer", "Merchant", "Chosen", "Oracle"];
+// Define a function that adds all the skill classes as options to the skill-class select element
+function addAllSkillClassOptions() {
+  // Clear the skill-class options
+  skillClass.innerHTML = "";
+  // Add each skill class as an option
+  for (var i = 0; i < allSkillClasses.length; i++) {
+    var option = document.createElement("option");
+    option.value = allSkillClasses[i];
+    option.text = allSkillClasses[i];
+    skillClass.appendChild(option);
+  }
+}
+
+// Define a function that filters the skill class options based on the other select values
+function filterSkillClassOptions() {
+  // Get the current values of the other select elements
+  var genderValue = gender.value;
+  var realmValue = realm.value;
+  var tribeValue = tribe.value;
+  var outlookValue = outlook.value;
+  // Loop through each skill class option and check if it meets the conditions
+  for (var i = 0; i < skillClass.options.length; i++) {
+    var option = skillClass.options[i];
+    var value = option.value;
+    var show = true; // A flag to indicate if the option should be shown or hidden
+    // Check the conditions for each skill class and set the flag accordingly
+    switch (value) {
+      case "Bard":
+        show = outlookValue == "Religious" && (realmValue == "suebia" || realmValue == "sarmatae" || realmValue == "cellus");
+        break;
+      case "Berserk":
+        show = outlookValue == "Religious" && (realmValue == "suebia" || realmValue == "sarmatae" || realmValue == "cellus") && genderValue == "male";
+        break;
+      case "Ranger":
+        show = outlookValue == "Religious" && (realmValue == "suebia" || realmValue == "sarmatae" || realmValue == "cellus");
+        break;
+      case "sorcerer-geistmagen":
+        show = outlookValue == "Traditional" && tribeValue == "Bocci";
+        break;
+      case "sorcerer-keeper":
+        show = outlookValue == "Traditional" && tribeValue == "Ruticai";
+        break;
+      case "sorcerer-lector":
+        show = outlookValue == "Traditional" && tribeValue == "Angavi";
+        break;
+      case "sorcerer-spruzarii":
+        show = outlookValue == "Traditional" && tribeValue == "Sabines";
+        break;
+      case "sorcerer-trollock":
+        show = outlookValue == "Traditional" && tribeValue == "Lugii";
+        break;
+      case 'sorcerer-volva':
+        show = outlookValue =='Traditional' && tribeValue =='Lugii' && genderValue =='female';
+        break;
+      case 'stalker':
+        show = realmValue =='suebia' || realmValue =='sarmatae' || realmValue =='cellus';
+        break;
+      case 'trickster':
+        show = realmValue =='suebia' || realmValue =='sarmatae' || realmValue =='cellus';
+        break;
+      case 'valkyrie':
+        show = outlookValue =='Religious' && (realmValue =='suebia' || realmValue =='sarmatae' || realmValue =='cellus') && genderValue =='female';
+        break;
+      case 'warrior':
+        show = realmValue =='suebia' || realmValue =='sarmatae' || realmValue =='cellus';
+        break;
+		case 'Maenad':
+        show = (realmValue.toLowerCase() == 'ionia' || realmValue.toLowerCase() == 'thracar' || realmValue.toLowerCase() == 'illatium') && genderValue.toLowerCase() == 'female' && outlookValue.toLowerCase() == 'religious';
+        break;
+      case 'Light Infantry':
+        show = (realmValue.toLowerCase() == 'ionia' || realmValue.toLowerCase() == 'thracar' || realmValue.toLowerCase() == 'illatium') && genderValue.toLowerCase() == 'male';
+        break;
+      case 'Heavy Infantry':
+        show = (realmValue.toLowerCase() == 'ionia' || realmValue.toLowerCase() == 'thracar' || realmValue.toLowerCase() == 'illatium') && genderValue.toLowerCase() == 'male';
+        break;
+      case 'Light Cavalry':
+        show = (realmValue.toLowerCase() == 'ionia' || realmValue.toLowerCase() == 'thracar' || realmValue.toLowerCase() == 'illatium') && genderValue.toLowerCase() == 'male';
+        break;
+      case 'Heavy Cavalry':
+        show = (realmValue.toLowerCase() == 'ionia' || realmValue.toLowerCase() == 'thracar' || realmValue.toLowerCase() == 'illatium') && genderValue.toLowerCase() == 'male';
+        break;
+      case 'Marine':
+        show = (realmValue.toLowerCase() == 'ionia' || realmValue.toLowerCase() == 'thracar' || realmValue.toLowerCase() == 'illatium') && genderValue.toLowerCase() == 'male';
+        break;
+      case 'Medic':
+        show = (realmValue.toLowerCase() == 'ionia' || realmValue.toLowerCase() == 'thracar' || realmValue.toLowerCase() == 'illatium') && genderValue.toLowerCase() == 'male';
+        break;
+      case 'Officer':
+        show = (realmValue.toLowerCase() == 'ionia' || realmValue.toLowerCase() == 'thracar' || realmValue.toLowerCase() == 'illatium') && genderValue.toLowerCase() == 'male';
+        break;
+      case 'Pirate':
+        show = realmValue.toLowerCase() == 'ionia' || realmValue.toLowerCase() == 'thracar' || realmValue.toLowerCase() == 'illatium';
+        break;
+      case "Explorer":
+        show = realmValue.toLowerCase () =="ionia"|| realmValue.toLowerCase () =="thracar"|| realmValue.toLowerCase () =="illatium";
+        break;
+      case "Merchant":
+        show = realmValue.toLowerCase () =="ionia"|| realmValue.toLowerCase () =="thracar"|| realmValue.toLowerCase () =="illatium";
+        break;
+      case "Chosen":
+        show = (realmValue.toLowerCase () =="ionia"|| realmValue.toLowerCase () =="thracar"|| realmValue.toLowerCase () =="illatium")&&genderValue.toLowerCase () =="male"&&outlookValue.toLowerCase () =="religious";
+        break;
+      case "Oracle":
+        show = (realmValue.toLowerCase () =="ionia"|| realmValue.toLowerCase () =="thracar"|| realmValue.toLowerCase () =="illatium")&&genderValue.toLowerCase () =="female"&&outlookValue.toLowerCase () =="religious";
+    }
+    // Show or hide the option based on the flag
+    option.hidden = !show;
+  }
+}
+
+// Add event listeners to the other select elements to call the filter function when their values change
+gender.addEventListener("change", filterSkillClassOptions);
+realm.addEventListener("change", filterSkillClassOptions);
+tribe.addEventListener("change", filterSkillClassOptions);
+outlook.addEventListener("change", filterSkillClassOptions);
+
+// Call the functions initially to set up the initial state of the select elements
+addAllSkillClassOptions();
+filterSkillClassOptions();
+		</script>
+                    </div>
+                    <div class="selection-row">
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" name="age" min="1" max="100">
+                    </div>
+					</form>
+					
+                        </div>
+						
+                    </th>
+					<th>
+<div class="extra-info-options">
+    <h2>Extra Info Options</h2>
+    <table>
+      <tr>
+        <td><label for="realm-skill">Realm Skill:</label></td>
+        <td>
+          <select id="realm-skill" name="realm-skill" class="extra-info-option">
+
+          </select>
+		  <script>
+		  
+// Define a data object to store the options for the second select element
+var data = {
+  "cellus": ["Melee & Stealth", "Melee & Riding", "Stealth & Riding"],
+  "croesios": ["Melee & Acting", "Melee & Social Skills", "Acting & Social Skills"],
+  "illatium": ["Crafts & Melee", "Crafts & Stamina", "Melee & Stamina"],
+  "ionia": ["Melee & Seamanship", "Melee & World Lore", "Seamanship & World Lore"],
+  "libue": ["Acting & Climbing", "Acting & Stamina", "Climbing & Stamina"],
+  "sarmatae": ["Missile & Riding", "Missile & Trickery", "Riding & Trickery"],
+  "shim": ["Missile & Extra Language", "Missile & Social Skills", "Extra Language & Social Skills"],
+  "suebia": ["Melee & Tracking", "Melee & Navigation", "Tracking & Navigation"],
+  "thracar": ["Missile & Stamina", "Missile & Stealth", "Stamina & Stealth"]
+};
+
+// Get references to the select elements
+var genderSelect = document.getElementById("gender");
+var firstSelect = document.getElementById("realm");
+var secondSelect = document.getElementById("realm-skill");
+
+// Add a change event listener to the gender select element
+genderSelect.addEventListener("change", function() {
+  // Get the selected value of the gender select element
+  var selectedGender = this.value;
+  // If the selected value is male, enable the second select element and its options
+  if (selectedGender == "male") {
+    secondSelect.disabled = false;
+    var options = secondSelect.options;
+    for (var i = 0; i < options.length; i++) {
+      options[i].disabled = false;
+    }
+    // Trigger the change event of the first select element to update the second select element
+    firstSelect.dispatchEvent(new Event("change"));
+  }
+  // Otherwise, disable the second select element and its options, and set it to N/A
+  else {
+    secondSelect.disabled = true;
+    secondSelect.innerHTML = "";
+    var option = document.createElement("option");
+    option.value = "N/A";
+    option.text = "N/A";
+    option.selected = true;
+    secondSelect.appendChild(option);
+  }
+});
+
+// Add a change event listener to the first select element
+firstSelect.addEventListener("change", function() {
+  // Get the selected value of the gender select element
+  var selectedGender = genderSelect.value;
+  // If the selected value is male, update the second select element based on the first select element
+  if (selectedGender == "male") {
+    // Clear the options of the second select element
+    secondSelect.innerHTML = "";
+    // Get the selected value of the first select element
+    var selectedValue = this.value;
+    // Get the corresponding options from the data object
+    var options = data[selectedValue];
+    // Add options to the second select element
+    for (var i = 0; i < options.length; i++) {
+      var option = document.createElement("option");
+      option.value = options[i];
+      option.text = options[i];
+      secondSelect.appendChild(option);
+    }
+  }
+});
+</script>
+		  </td>
+      </tr>
+      <tr>
+        <td><label for="female-skill">Female Skill:</label></td>
+
+        <td>
+		<select id="female-skill-1" disabled>
+		  <option value="">Select skill 1</option>
+		  <option value="acting">Acting</option>
+		  <option value="music">Music</option>
+		  <option value="rune-lore">Rune Lore</option>
+		  <option value="social-skills">Social Skills</option>
+		  <option value="healing">Healing</option>
+		  <option value="religion">Religion</option>
+		  <option value="world-lore">World Lore</option>
+		</select>
+
+		<select id="female-skill-2" disabled>
+		  <option value="">Select skill 2</option>
+		  <option value="acting">Acting</option>
+		  <option value="music">Music</option>
+		  <option value="rune-lore">Rune Lore</option>
+		<option value="social-skills">Social Skills</option>
+		<option value="healing">Healing</option>
+		<option value="religion">Religion</option>
+			<option value="world-lore">World Lore</option>
+		</select>
+
+		<select id="female-skill-3" disabled>
+  		<option value="">Select skill 3</option>
+  		<option value="acting">Acting</option>
+  		<option value="music">Music</option>
+  		<option value="rune-lore">Rune Lore</option>
+  		<option value="social-skills">Social Skills</option>
+  		<option value="healing">Healing</option>
+  		<option value="religion">Religion</option>
+  		<option value="world-lore">World Lore</option>
+		</select>
+		  <script>
+function genderChange() {
+  var gender = document.getElementById("gender").value;
+  
+  if (gender == "female") {
+    // enable the female skills selects
+    document.getElementById("female-skill-1").disabled = false;
+    document.getElementById("female-skill-2").disabled = false;
+    document.getElementById("female-skill-3").disabled = false;
+    
+    // set the default values for the female skills selects
+    document.getElementById("female-skill-1").value = "";
+    document.getElementById("female-skill-2").value = "";
+    document.getElementById("female-skill-3").value = "";
+    
+  } else {
+    // disable the female skills selects
+    document.getElementById("female-skill-1").disabled = true;
+    document.getElementById("female-skill-2").disabled = true;
+    document.getElementById("female-skill-3").disabled = true;
+    
+    // clear the values for the female skills selects
+    document.getElementById("female-skill-1").value = "";
+    document.getElementById("female-skill-2").value = "";
+    document.getElementById("female-skill-3").value = "";
+    
+  }
+}
+</script>
+		  </td>
+      </tr>
+      <tr>
+        <td><label for="height">Height:</label></td>
+        <td><input type="text" id="height" name="height" class="extra-info-option"></td>
+      </tr>
+      <tr>
+        <td><label for="weight">Weight:</label></td>
+        <td><input type="text" id="weight" name="weight" class="extra-info-option"></td>
+      </tr>
+      <tr>
+        <td><label for="race">Race:</label></td>
+        <td>
+          <select id="race" name="race" class="extra-info-option">
+            <option value="">--Select Race--</option>
+            <option value="Human">Human</option>
+            <option value="Fairling">Fairling</option>
+            <option value="Half-Elf">Half-Elf</option>
+            <option value="Wood-Elf">Wood Elf</option>
+            <option value="God-Born">God-Born</option>
+            <option value="Satyr">Satyr</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="favorite-deity">Favorite Deity:</label></td>
+        <td>
+          <select id="favorite-deity" name="favorite-deity" class="extra-info-option">
+          </select>
+		  <script>
+		  // Get the select elements by id
+var outlook = document.getElementById("outlook");
+var realm = document.getElementById("realm");
+var favoriteDeity = document.getElementById("favorite-deity");
+
+// Define an object that maps each realm to an array of deities
+var deitiesByRealm = {
+  cellus: ["UnaR", "Wotan", "Freya", "Herni", "The Horned Goddess", "BalthuR", "Erthi", "Hadr", "TyranaR"],
+  croesios: ["Tiri & Tishtyra", "Mithra", "Hvar Ksata", "Bumbo", "Shango", "Baal", "Melqart", "Isis", "Nephtys"],
+  illatium: ["Ephasos", "Athullos", "Violios", "Satanas", "Bacchus", "Milas", "Mertinas", "Epocchas", "Aphras"],
+  ionia: ["Ephasos", "Athullos", "Violios", "Satanas", "Bacchus", "Milas", "Mertinas", "Epocchas", "Aphras"],
+  libue: ["Tiri & Tishtyra", "Mithra", "Hvar Ksata", "Bumbo", "Shango", "Baal", "Melqart", "Isis", "Nephtys"],
+  sarmatae: ["UnaR", "Wotan", "Freya", "Herni", "The Horned Goddess", "BalthuR", "Erthi", "Hadr", "TyranaR"],
+  shim: ["Tiri & Tishtyra", "Mithra", "Hvar Ksata", "Bumbo", "Shango", "Baal", "Melqart", "Isis", "Nephtys"],
+  suebia: ["UnaR", "Wotan", "Freya", "Herni", "The Horned Goddess", "BalthuR","Erthi","Hadr","TyranaR"],
+  thracar: ["Ephasos","Athullos","Violios","Satanas","Bacchus","Milas","Mertinas","Epocchas","Aphras"]
+};
+
+// Define a function that updates the favorite deity options based on the realm value
+function updateFavoriteDeityOptions() {
+  // Get the current realm value
+  var realmValue = realm.value;
+  // Clear the favorite deity options
+  favoriteDeity.innerHTML = "";
+  // If the realm value is not empty and the favorite deity select is not disabled, add the corresponding deities as options
+  if (realmValue && !favoriteDeity.disabled) {
+    var deities = deitiesByRealm[realmValue];
+    for (var i = 0; i < deities.length; i++) {
+      var option = document.createElement("option");
+      option.value = deities[i];
+      option.text = deities[i];
+      favoriteDeity.appendChild(option);
+    }
+  }
+}
+
+// Define a function that disables or enables the favorite deity select based on the outlook value
+function disableOrEnableFavoriteDeity() {
+  // Get the current outlook value
+  var outlookValue = outlook.value;
+  // If the outlook value is Traditional, disable the favorite deity select and clear its value
+  if (outlookValue == 'Traditional') {
+    favoriteDeity.disabled = true;
+    favoriteDeity.value = "";
+  }
+  // Otherwise, enable the favorite deity select and update its options
+  else {
+    favoriteDeity.disabled = false;
+    updateFavoriteDeityOptions();
+  }
+}
+
+// Add event listeners to the outlook and realm select elements to call the functions when their values change
+outlook.addEventListener("change" , disableOrEnableFavoriteDeity);
+realm.addEventListener("change" , updateFavoriteDeityOptions);
+
+// Call the functions initially to set up the initial state of the select elements
+disableOrEnableFavoriteDeity();
+updateFavoriteDeityOptions();
+		  </script>
+        </td>
+	  </th>
+	  </tr>
+	  </table>
+	  <th>
+<div class="level-selects">
+  <h2>Leveling</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Level</th>
+        <th>Reward</th>
+      </tr>
+    </thead>
+    <tbody>
+	  <tr>
+    <td>1</td>
+    <td>
+      <select id="level1-reward" name="level1-reward" onchange="rewardChange(1)">
+        <option value="">--Select Reward--</option>
+        <option value="Skill">Skill</option>
+        <option value="Talent">Talent</option>
+      </select>
+      <div id="level1-option"></div>
+    </td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>
+      <select id="level2-reward" name="level2-reward" onchange="rewardChange(2)">
+        <option value="">--Select Reward--</option>
+        <option value="Attribute">Attribute</option>
+        <option value="Skill">Skill</option>
+      </select>
+      <div id="level2-option"></div>
+    </td>
+  </tr>
+      <tr>
+        <td>3</td>
+        <td>
+          <select id="level3-reward" name="level3-reward" onchange="rewardChange(3)">
+            <option value="">--Select Reward--</option>
+            <option value="Skill">Skill</option>
+            <option value="Talent">Talent</option>
+          </select>
+      <div id="level3-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>
+          <select id="level4-reward" name="level4-reward" onchange="rewardChange(4)">
+            <option value="">--Select Reward--</option>
+            <option value="Attribute">Attribute</option>
+            <option value="Skill">Skill</option>
+          </select>
+		        <div id="level4-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>
+          <select id="level5-reward" name="level5-reward" onchange="rewardChange(5)">
+            <option value="">--Select Reward--</option>
+            <option value="Skill">Skill</option>
+            <option value="Talent">Talent</option>
+          </select>
+		  <div id="level5-option"></div>
+        </td>
+      </tr>
+	  	  <tr>
+        <td>6</td>
+        <td>
+          <select id="level6-reward" name="level6-reward" onchange="rewardChange(6)">
+            <option value="">--Select Reward--</option>
+            <option value="Attribute">Attribute</option>
+            <option value="Skill">Skill</option>
+          </select>
+		  <div id="level6-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>
+          <select id="level7-reward" name="level7-reward" onchange="rewardChange(7)">
+            <option value="">--Select Reward--</option>
+            <option value="Skill">Skill</option>
+            <option value="Talent">Talent</option>
+          </select>
+		  <div id="level7-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>
+          <select id="level8-reward" name="level8-reward" onchange="rewardChange(8)">
+            <option value="">--Select Reward--</option>
+            <option value="Attribute">Attribute</option>
+            <option value="Skill">Skill</option>
+          </select>
+		  <div id="level8-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>
+          <select id="level9-reward" name="level9-reward" onchange="rewardChange(9)">
+            <option value="">--Select Reward--</option>
+            <option value="Skill">Skill</option>
+            <option value="Talent">Talent</option>
+          </select>
+		  <div id="level9-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>
+          <select id="level10-reward" name="level10-reward" onchange="rewardChange(10)">
+            <option value="">--Select Reward--</option>
+            <option value="Attribute">Attribute</option>
+            <option value="Skill">Skill</option>
+          </select>
+		  <div id="level10-option"></div>
+        </td>
+      </tr>
+	  	  <tr>
+        <td>11</td>
+        <td>
+          <select id="level11-reward" name="level11-reward" onchange="rewardChange(11)">
+            <option value="">--Select Reward--</option>
+            <option value="Skill">Skill</option>
+            <option value="Talent">Talent</option>
+          </select>
+		  <div id="level11-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>
+          <select id="level12-reward" name="level12-reward" onchange="rewardChange(12)">
+            <option value="">--Select Reward--</option>
+            <option value="Attribute">Attribute</option>
+            <option value="Skill">Skill</option>
+          </select>
+		  <div id="level12-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td>
+          <select id="level13-reward" name="level13-reward" onchange="rewardChange(13)">
+            <option value="">--Select Reward--</option>
+            <option value="Skill">Skill</option>
+            <option value="Talent">Talent</option>
+          </select>
+		  <div id="level13-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td>
+          <select id="level14-reward" name="level14-reward" onchange="rewardChange(14)">
+            <option value="">--Select Reward--</option>
+            <option value="Attribute">Attribute</option>
+            <option value="Skill">Skill</option>
+          </select>
+		  <div id="level14-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>15</td>
+        <td>
+          <select id="level15-reward" name="level15-reward" onchange="rewardChange(15)">
+            <option value="">--Select Reward--</option>
+            <option value="Skill">Skill</option>
+            <option value="Talent">Talent</option>
+          </select>
+		  <div id="level15-option"></div>
+        </td>
+      </tr>
+	  	  <tr>
+        <td>16</td>
+        <td>
+          <select id="level16-reward" name="level16-reward" onchange="rewardChange(16)">
+            <option value="">--Select Reward--</option>
+            <option value="Attribute">Attribute</option>
+            <option value="Skill">Skill</option>
+          </select>
+		  <div id="level16-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>17</td>
+        <td>
+          <select id="level17-reward" name="level17-reward" onchange="rewardChange(17)">
+            <option value="">--Select Reward--</option>
+            <option value="Skill">Skill</option>
+            <option value="Talent">Talent</option>
+          </select>
+		  <div id="level17-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>18</td>
+        <td>
+          <select id="level18-reward" name="level18-reward" onchange="rewardChange(18)">
+            <option value="">--Select Reward--</option>
+            <option value="Attribute">Attribute</option>
+            <option value="Skill">Skill</option>
+          </select>
+		  <div id="level18-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>19</td>
+        <td>
+          <select id="level19-reward" name="level19-reward" onchange="rewardChange(19)">
+            <option value="">--Select Reward--</option>
+            <option value="Skill">Skill</option>
+            <option value="Talent">Talent</option>
+          </select>
+		  <div id="level19-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>20</td>
+        <td>
+          <select id="level20-reward" name="level20-reward" onchange="rewardChange(20)">
+            <option value="">--Select Reward--</option>
+            <option value="Attribute">Attribute</option>
+            <option value="Skill">Skill</option>
+          </select>
+		  <div id="level20-option"></div>
+        </td>
+      </tr>
+	  	  <tr>
+        <td>21</td>
+        <td>
+          <select id="level21-reward" name="level21-reward" onchange="rewardChange(21)">
+            <option value="">--Select Reward--</option>
+            <option value="Skill">Skill</option>
+            <option value="Talent">Talent</option>
+          </select>
+		  <div id="level21-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>22</td>
+        <td>
+          <select id="level22-reward" name="level22-reward" onchange="rewardChange(22)">
+            <option value="">--Select Reward--</option>
+            <option value="Attribute">Attribute</option>
+            <option value="Skill">Skill</option>
+          </select>
+		  <div id="level22-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>23</td>
+        <td>
+          <select id="level23-reward" name="level23-reward" onchange="rewardChange(23)">
+            <option value="">--Select Reward--</option>
+            <option value="Skill">Skill</option>
+            <option value="Talent">Talent</option>
+          </select>
+		  <div id="level23-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>24</td>
+        <td>
+          <select id="level24-reward" name="level24-reward" onchange="rewardChange(24)">
+            <option value="">--Select Reward--</option>
+            <option value="Attribute">Attribute</option>
+            <option value="Skill">Skill</option>
+          </select>
+		  <div id="level24-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>25</td>
+        <td>
+          <select id="level25-reward" name="level25-reward" onchange="rewardChange(25)">
+            <option value="">--Select Reward--</option>
+            <option value="Skill">Skill</option>
+            <option value="Talent">Talent</option>
+          </select>
+		  <div id="level25-option"></div>
+        </td>
+      </tr>
+	  	  <tr>
+        <td>26</td>
+        <td>
+          <select id="level26-reward" name="level26-reward" onchange="rewardChange(26)">
+            <option value="">--Select Reward--</option>
+            <option value="Attribute">Attribute</option>
+            <option value="Skill">Skill</option>
+          </select>
+		  <div id="level26-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>27</td>
+        <td>
+          <select id="level27-reward" name="level27-reward" onchange="rewardChange(27)">
+            <option value="">--Select Reward--</option>
+            <option value="Skill">Skill</option>
+            <option value="Talent">Talent</option>
+          </select>
+		  <div id="level27-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>28</td>
+        <td>
+          <select id="level28-reward" name="level28-reward" onchange="rewardChange(28)">
+            <option value="">--Select Reward--</option>
+            <option value="Attribute">Attribute</option>
+            <option value="Skill">Skill</option>
+          </select>
+		  <div id="level28-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>29</td>
+        <td>
+          <select id="level29-reward" name="level29-reward" onchange="rewardChange(29)">
+            <option value="">--Select Reward--</option>
+            <option value="Skill">Skill</option>
+            <option value="Talent">Talent</option>
+          </select>
+		  <div id="level29-option"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>30</td>
+        <td>
+          <select id="level30-reward" name="level30-reward" onchange="rewardChange(30)">
+            <option value="">--Select Reward--</option>
+            <option value="Attribute">Attribute</option>
+            <option value="Skill">Skill</option>
+          </select>
+		  <div id="leve30-option"></div>
+        </td>
+		<th>
+      </tr>
+    </tbody>
+  </table>
+</div><script>
+
+// a function to create a new select element with the given id, name and options
+function createSelect(id, name, options) {
+  var select = document.createElement("select");
+  select.id = id;
+  select.name = name;
+  
+  // create an empty option
+  var emptyOption = document.createElement("option");
+  emptyOption.value = "";
+  emptyOption.text = "--Select Option--";
+  select.appendChild(emptyOption);
+  
+  // loop through the options and create option elements
+  for (var i = 0; i < options.length; i++) {
+    var option = document.createElement("option");
+    option.value = options[i];
+    option.text = options[i];
+    select.appendChild(option);
+  }
+  
+  return select;
+}
+
+// a function to handle the reward change event
+function rewardChange(level) {
+  // get the reward value for the given level
+  var reward = document.getElementById("level" + level + "-reward").value;
+  
+  // get the option div for the given level
+  var optionDiv = document.getElementById("level" + level + "-option");
+  
+  // clear the option div
+  optionDiv.innerHTML = "";
+  
+  // check if the reward is not empty
+  if (reward != "") {
+    // create a new select element based on the reward type
+    var optionSelect;
+    
+    if (reward == "Skill") {
+      // create a skill select with the following options
+      var skillOptions = ["Acrobatics", "Acting", "Alchemy", "Climbing", "Craft", "Foraging", "Fortitude", "Healing", "Mechanics", "Melee", "Missile", "Music", "Navigation", "Religion", "Riding", "Rune Lore", "Seamanship", "Social Skills", "Stamina", "Stealth", "Swimming", "Tracking", "Tricery", "World Lore"];
+      optionSelect = createSelect("level" + level + "-skill", "level" + level + "-skill", skillOptions);
+      
+    } else if (reward == "Attribute") {
+      // create an attribute select with the following options
+      var attributeOptions = ["STR", "DEX", "CON", "WIL", "INT", "CHA"];
+      optionSelect = createSelect("level" + level + "-attribute", "level" + level + "-attribute", attributeOptions);
+      
+    } else if (reward == "Talent") {
+      // create a talent select with the following options
+      var talentOptions = ["Marked", "Rhythm", "Athlete", "Focused", "Fighter", "Aquatic", "Steady Hands", "Skirmisher", "Empathic"];
+      optionSelect = createSelect("level" + level + "-talent", "level" + level + "-talent", talentOptions);
+      
+      // TODO: add logic to remove selected talents from higher levels
+    }
+    
+    // append the new select element to the option div
+    optionDiv.appendChild(optionSelect);
+    
+  }
+}
+</script>
+
+</body>
+</html>

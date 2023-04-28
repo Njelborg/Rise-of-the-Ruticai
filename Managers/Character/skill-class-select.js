@@ -20,6 +20,14 @@ function addAllSkillClassOptions() {
   }
 }
 
+// Add the initial "--Select--" option to the skill-class select element
+function addInitialOption() {
+  var initialOption = document.createElement("option");
+  initialOption.value = "";
+  initialOption.text = "--Select--";
+  skillClass.appendChild(initialOption);
+}
+
 // Define a function that filters the skill class options based on the other select values
 function filterSkillClassOptions() {
   // Get the current values of the other select elements
@@ -27,7 +35,11 @@ function filterSkillClassOptions() {
   var realmValue = realm.value;
   var tribeValue = tribe.value;
   var outlookValue = outlook.value;
-  // Loop through each skill class option and check if it meets the conditions
+
+  var currentSkillClassValue = skillClass.value;
+  var currentSkillClassOptionIsValid = false;
+  
+// Loop through each skill class option and check if it meets the conditions
   for (var i = 0; i < skillClass.options.length; i++) {
     var option = skillClass.options[i];
     var value = option.value;
@@ -114,9 +126,15 @@ function filterSkillClassOptions() {
     }
     // Show or hide the option based on the flag
     option.hidden = !show;
+	
+	 if (value === currentSkillClassValue && show) {
+      currentSkillClassOptionIsValid = true;
   }
 }
-
+  if (!currentSkillClassOptionIsValid) {
+    skillClass.value = ""; // Set the value to the initial "--Select--" option
+  }
+}
 // Add event listeners to the other select elements to call the filter function when their values change
 gender.addEventListener("change", filterSkillClassOptions);
 realm.addEventListener("change", filterSkillClassOptions);
@@ -124,5 +142,6 @@ tribe.addEventListener("change", filterSkillClassOptions);
 outlook.addEventListener("change", filterSkillClassOptions);
 
 // Call the functions initially to set up the initial state of the select elements
+addInitialOption();
 addAllSkillClassOptions();
 filterSkillClassOptions();

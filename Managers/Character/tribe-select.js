@@ -15,22 +15,23 @@ var tribeData = {
 };
 
 // Get references to the select elements
-var firstSelect = document.getElementById("realm");
-var thirdSelect = document.getElementById("tribe");
+var realmSelect = document.getElementById("realm");
+var tribeSelect = document.getElementById("tribe");
 
 // Add a change event listener to the first select element
-firstSelect.addEventListener("change", function() {
+realmSelect.addEventListener("change", function() {
   // Clear the options of the third select element
-  thirdSelect.innerHTML = "";
+  tribeSelect.innerHTML = "";
   // Get the selected value of the first select element
   var selectedValue = this.value;
   // Get the corresponding options from the tribeData object
   var options = tribeData[selectedValue];
   // Add options to the third select element
-  for (var i = 0; i < options.length; i++) {
+  
+  for (var i = 0; i < options.length; i++) { console.log("options:", options);
     var option = document.createElement("option");
     option.value = options[i];
     option.text = options[i];
-    thirdSelect.appendChild(option);
+    tribeSelect.appendChild(option);
   }
 });

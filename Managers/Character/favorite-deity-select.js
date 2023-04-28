@@ -5,6 +5,7 @@ var favoriteDeity = document.getElementById("favorite-deity");
 
 // Define an object that maps each realm to an array of deities
 var deitiesByRealm = {
+  "--Select--": ["--Select--"],
   cellus: ["--Select--", "UnaR", "Wotan", "Freya", "Herni", "The Horned Goddess", "BalthuR", "Erthi", "Hadr", "TyranaR"],
   croesios: ["--Select--", "Tiri & Tishtyra", "Mithra", "Hvar Ksata", "Bumbo", "Shango", "Baal", "Melqart", "Isis", "Nephtys"],
   illatium: ["--Select--", "Ephasos", "Athullos", "Violios", "Satanas", "Bacchus", "Milas", "Mertinas", "Epocchas", "Aphras"],

@@ -166,44 +166,8 @@ th, td {
 
 </dialog>
 
-<script>
-// Get the modal
-var modal = document.getElementById("myModal");
+<script src="create-new-character.js" type="text/javascript"></script>
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// Get the form element
-var form = document.getElementById("myForm");
-
-// Get the save and cancel buttons
-var saveBtn = document.getElementById("saveBtn");
-var cancelBtn = document.getElementById("cancelBtn");
-
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.showModal();
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.close();
-}
-
-// When the user clicks on save button, submit the form and close the modal
-saveBtn.onclick = function() {
-  form.submit();
-  modal.close();
-}
-
-// When the user clicks on cancel button, close the modal
-cancelBtn.onclick = function() {
-  modal.close();
-}
-</script>
 				
                 <button type="submit">Save Character</button>
                 <button type="submit">Load Character</button>
@@ -257,39 +221,8 @@ cancelBtn.onclick = function() {
                     <div class="selection-row">
                         <label for="tribe">Tribe:</label>
                         <select id="tribe" name="tribe"></select>
-		<script>
-		// Define a data object to store the options for the third select element
-var tribeData = {
-  "suebia": ["Ruticai", "Rugii", "Sabines", "Lugii", "Erevir", "Havessetts", "Cinucci", "Rus", "Francues", "Angavi", "Bwyngavi", "Bocci", "Averni", "Eruni"],
-  "thracar": ["Obuli", "Ghaeti", "Empire", "Tylani", "Breuki", "Sotioi", "Dracoi", "Bacancci", "Bitiq Nishid"],
-  "ionia": ["Lakonae", "Atiikae", "Boeoti", "Argoli", "Phoki", "Tesselae", "Makkadae", "Euboeoi", "Itikae", "Deloki", "Naxonae", "Ketani", "Gyolidae", "Lokriti"],
-  "cellus": ["Boii", "Sequebri", "Volcae", "Nervaci", "Aedubri", "Helvetani", "Cait", "Fortriu", "Korvanti", "Brigandes", "Demitorix", "Iccitani", "Turdetorix", "Aquitani", "Cantuii", "Lusitani", "Arevaci", "Vangiones","Melliselia"],
-  "sarmatae": ["Palmagate","Durhae","Samuli","Roxotani","Ugyeki","Cimmerian","Vandal","Prusi","Lithuthi","Latvi","Galindian","Dniepr","Polushi","Sicae","Croati","Pomeri","Morov","Czechae","Obo Trites","Imperial Vevuti","Slovaki","Vistuli","Bohemae"],
-  "illatium": ["Novus","Tarchuna","Lyrunus","Felathri","Samnus","Ventecci","Aucai","Brutii","Frentani","Lucani","Marrucini","Umbri","Altucci","Senolni","Churbes","Syracus","Tara","Igioli","Bulari","Corci"]
-  // Add the rest of the options here
-};
+<script src="tribe-select.js" type="text/javascript"></script>
 
-// Get references to the select elements
-var firstSelect = document.getElementById("realm");
-var thirdSelect = document.getElementById("tribe");
-
-// Add a change event listener to the first select element
-firstSelect.addEventListener("change", function() {
-  // Clear the options of the third select element
-  thirdSelect.innerHTML = "";
-  // Get the selected value of the first select element
-  var selectedValue = this.value;
-  // Get the corresponding options from the tribeData object
-  var options = tribeData[selectedValue];
-  // Add options to the third select element
-  for (var i = 0; i < options.length; i++) {
-    var option = document.createElement("option");
-    option.value = options[i];
-    option.text = options[i];
-    thirdSelect.appendChild(option);
-  }
-});
-</script>
                     </div>
                     <div class="selection-row">
                         <label for="social-class">Social Class:</label>
@@ -303,136 +236,7 @@ firstSelect.addEventListener("change", function() {
                         <label for="skill-class">Skill Class:</label>
                         <select id="skill-class" name="skill-class">
 						</select>
-						<script>
-// Get the select elements by id
-var gender = document.getElementById("gender");
-var realm = document.getElementById("realm");
-var tribe = document.getElementById("tribe");
-var outlook = document.getElementById("outlook");
-var skillClass = document.getElementById("skill-class");
-
-// Define an array of all possible skill classes
-var allSkillClasses = ["Bard", "Berserk", "Ranger", "sorcerer-geistmagen", "sorcerer-keeper", "sorcerer-lector", "sorcerer-spruzarii", "sorcerer-trollock", "sorcerer-volva", "stalker", "trickster", "valkyrie", "warrior", "Maenad", "Light Infantry", "Heavy Infantry", "Light Cavalry", "Heavy Cavalry", "Marine", "Medic", "Officer", "Pirate", "Explorer", "Merchant", "Chosen", "Oracle"];
-// Define a function that adds all the skill classes as options to the skill-class select element
-function addAllSkillClassOptions() {
-  // Clear the skill-class options
-  skillClass.innerHTML = "";
-  // Add each skill class as an option
-  for (var i = 0; i < allSkillClasses.length; i++) {
-    var option = document.createElement("option");
-    option.value = allSkillClasses[i];
-    option.text = allSkillClasses[i];
-    skillClass.appendChild(option);
-  }
-}
-
-// Define a function that filters the skill class options based on the other select values
-function filterSkillClassOptions() {
-  // Get the current values of the other select elements
-  var genderValue = gender.value;
-  var realmValue = realm.value;
-  var tribeValue = tribe.value;
-  var outlookValue = outlook.value;
-  // Loop through each skill class option and check if it meets the conditions
-  for (var i = 0; i < skillClass.options.length; i++) {
-    var option = skillClass.options[i];
-    var value = option.value;
-    var show = true; // A flag to indicate if the option should be shown or hidden
-    // Check the conditions for each skill class and set the flag accordingly
-    switch (value) {
-      case "Bard":
-        show = outlookValue == "Religious" && (realmValue == "suebia" || realmValue == "sarmatae" || realmValue == "cellus");
-        break;
-      case "Berserk":
-        show = outlookValue == "Religious" && (realmValue == "suebia" || realmValue == "sarmatae" || realmValue == "cellus") && genderValue == "male";
-        break;
-      case "Ranger":
-        show = outlookValue == "Religious" && (realmValue == "suebia" || realmValue == "sarmatae" || realmValue == "cellus");
-        break;
-      case "sorcerer-geistmagen":
-        show = outlookValue == "Traditional" && tribeValue == "Bocci";
-        break;
-      case "sorcerer-keeper":
-        show = outlookValue == "Traditional" && tribeValue == "Ruticai";
-        break;
-      case "sorcerer-lector":
-        show = outlookValue == "Traditional" && tribeValue == "Angavi";
-        break;
-      case "sorcerer-spruzarii":
-        show = outlookValue == "Traditional" && tribeValue == "Sabines";
-        break;
-      case "sorcerer-trollock":
-        show = outlookValue == "Traditional" && tribeValue == "Lugii";
-        break;
-      case 'sorcerer-volva':
-        show = outlookValue =='Traditional' && tribeValue =='Lugii' && genderValue =='female';
-        break;
-      case 'stalker':
-        show = realmValue =='suebia' || realmValue =='sarmatae' || realmValue =='cellus';
-        break;
-      case 'trickster':
-        show = realmValue =='suebia' || realmValue =='sarmatae' || realmValue =='cellus';
-        break;
-      case 'valkyrie':
-        show = outlookValue =='Religious' && (realmValue =='suebia' || realmValue =='sarmatae' || realmValue =='cellus') && genderValue =='female';
-        break;
-      case 'warrior':
-        show = realmValue =='suebia' || realmValue =='sarmatae' || realmValue =='cellus';
-        break;
-		case 'Maenad':
-        show = (realmValue.toLowerCase() == 'ionia' || realmValue.toLowerCase() == 'thracar' || realmValue.toLowerCase() == 'illatium') && genderValue.toLowerCase() == 'female' && outlookValue.toLowerCase() == 'religious';
-        break;
-      case 'Light Infantry':
-        show = (realmValue.toLowerCase() == 'ionia' || realmValue.toLowerCase() == 'thracar' || realmValue.toLowerCase() == 'illatium') && genderValue.toLowerCase() == 'male';
-        break;
-      case 'Heavy Infantry':
-        show = (realmValue.toLowerCase() == 'ionia' || realmValue.toLowerCase() == 'thracar' || realmValue.toLowerCase() == 'illatium') && genderValue.toLowerCase() == 'male';
-        break;
-      case 'Light Cavalry':
-        show = (realmValue.toLowerCase() == 'ionia' || realmValue.toLowerCase() == 'thracar' || realmValue.toLowerCase() == 'illatium') && genderValue.toLowerCase() == 'male';
-        break;
-      case 'Heavy Cavalry':
-        show = (realmValue.toLowerCase() == 'ionia' || realmValue.toLowerCase() == 'thracar' || realmValue.toLowerCase() == 'illatium') && genderValue.toLowerCase() == 'male';
-        break;
-      case 'Marine':
-        show = (realmValue.toLowerCase() == 'ionia' || realmValue.toLowerCase() == 'thracar' || realmValue.toLowerCase() == 'illatium') && genderValue.toLowerCase() == 'male';
-        break;
-      case 'Medic':
-        show = (realmValue.toLowerCase() == 'ionia' || realmValue.toLowerCase() == 'thracar' || realmValue.toLowerCase() == 'illatium') && genderValue.toLowerCase() == 'male';
-        break;
-      case 'Officer':
-        show = (realmValue.toLowerCase() == 'ionia' || realmValue.toLowerCase() == 'thracar' || realmValue.toLowerCase() == 'illatium') && genderValue.toLowerCase() == 'male';
-        break;
-      case 'Pirate':
-        show = realmValue.toLowerCase() == 'ionia' || realmValue.toLowerCase() == 'thracar' || realmValue.toLowerCase() == 'illatium';
-        break;
-      case "Explorer":
-        show = realmValue.toLowerCase () =="ionia"|| realmValue.toLowerCase () =="thracar"|| realmValue.toLowerCase () =="illatium";
-        break;
-      case "Merchant":
-        show = realmValue.toLowerCase () =="ionia"|| realmValue.toLowerCase () =="thracar"|| realmValue.toLowerCase () =="illatium";
-        break;
-      case "Chosen":
-        show = (realmValue.toLowerCase () =="ionia"|| realmValue.toLowerCase () =="thracar"|| realmValue.toLowerCase () =="illatium")&&genderValue.toLowerCase () =="male"&&outlookValue.toLowerCase () =="religious";
-        break;
-      case "Oracle":
-        show = (realmValue.toLowerCase () =="ionia"|| realmValue.toLowerCase () =="thracar"|| realmValue.toLowerCase () =="illatium")&&genderValue.toLowerCase () =="female"&&outlookValue.toLowerCase () =="religious";
-    }
-    // Show or hide the option based on the flag
-    option.hidden = !show;
-  }
-}
-
-// Add event listeners to the other select elements to call the filter function when their values change
-gender.addEventListener("change", filterSkillClassOptions);
-realm.addEventListener("change", filterSkillClassOptions);
-tribe.addEventListener("change", filterSkillClassOptions);
-outlook.addEventListener("change", filterSkillClassOptions);
-
-// Call the functions initially to set up the initial state of the select elements
-addAllSkillClassOptions();
-filterSkillClassOptions();
-		</script>
+<script src="skill-class-select.js" type="text/javascript"></script>
                     </div>
                     <div class="selection-row">
                         <label for="age">Age:</label>
@@ -453,74 +257,7 @@ filterSkillClassOptions();
           <select id="realm-skill" name="realm-skill" class="extra-info-option">
 
           </select>
-		  <script>
-		  
-// Define a data object to store the options for the second select element
-var data = {
-  "cellus": ["Melee & Stealth", "Melee & Riding", "Stealth & Riding"],
-  "croesios": ["Melee & Acting", "Melee & Social Skills", "Acting & Social Skills"],
-  "illatium": ["Crafts & Melee", "Crafts & Stamina", "Melee & Stamina"],
-  "ionia": ["Melee & Seamanship", "Melee & World Lore", "Seamanship & World Lore"],
-  "libue": ["Acting & Climbing", "Acting & Stamina", "Climbing & Stamina"],
-  "sarmatae": ["Missile & Riding", "Missile & Trickery", "Riding & Trickery"],
-  "shim": ["Missile & Extra Language", "Missile & Social Skills", "Extra Language & Social Skills"],
-  "suebia": ["Melee & Tracking", "Melee & Navigation", "Tracking & Navigation"],
-  "thracar": ["Missile & Stamina", "Missile & Stealth", "Stamina & Stealth"]
-};
-
-// Get references to the select elements
-var genderSelect = document.getElementById("gender");
-var firstSelect = document.getElementById("realm");
-var secondSelect = document.getElementById("realm-skill");
-
-// Add a change event listener to the gender select element
-genderSelect.addEventListener("change", function() {
-  // Get the selected value of the gender select element
-  var selectedGender = this.value;
-  // If the selected value is male, enable the second select element and its options
-  if (selectedGender == "male") {
-    secondSelect.disabled = false;
-    var options = secondSelect.options;
-    for (var i = 0; i < options.length; i++) {
-      options[i].disabled = false;
-    }
-    // Trigger the change event of the first select element to update the second select element
-    firstSelect.dispatchEvent(new Event("change"));
-  }
-  // Otherwise, disable the second select element and its options, and set it to N/A
-  else {
-    secondSelect.disabled = true;
-    secondSelect.innerHTML = "";
-    var option = document.createElement("option");
-    option.value = "N/A";
-    option.text = "N/A";
-    option.selected = true;
-    secondSelect.appendChild(option);
-  }
-});
-
-// Add a change event listener to the first select element
-firstSelect.addEventListener("change", function() {
-  // Get the selected value of the gender select element
-  var selectedGender = genderSelect.value;
-  // If the selected value is male, update the second select element based on the first select element
-  if (selectedGender == "male") {
-    // Clear the options of the second select element
-    secondSelect.innerHTML = "";
-    // Get the selected value of the first select element
-    var selectedValue = this.value;
-    // Get the corresponding options from the data object
-    var options = data[selectedValue];
-    // Add options to the second select element
-    for (var i = 0; i < options.length; i++) {
-      var option = document.createElement("option");
-      option.value = options[i];
-      option.text = options[i];
-      secondSelect.appendChild(option);
-    }
-  }
-});
-</script>
+<script src="realm-skill-select.js" type="text/javascript"></script>
 		  </td>
       </tr>
       <tr>
@@ -543,11 +280,11 @@ firstSelect.addEventListener("change", function() {
 		  <option value="acting">Acting</option>
 		  <option value="music">Music</option>
 		  <option value="rune-lore">Rune Lore</option>
-		<option value="social-skills">Social Skills</option>
-		<option value="healing">Healing</option>
-		<option value="religion">Religion</option>
-			<option value="world-lore">World Lore</option>
-		</select>
+	  	  <option value="social-skills">Social Skills</option>
+		  <option value="healing">Healing</option>
+		  <option value="religion">Religion</option>
+		  <option value="world-lore">World Lore</option>
+		  </select>
 
 		<select id="female-skill-3" disabled>
   		<option value="">Select skill 3</option>
@@ -559,35 +296,7 @@ firstSelect.addEventListener("change", function() {
   		<option value="religion">Religion</option>
   		<option value="world-lore">World Lore</option>
 		</select>
-		  <script>
-function genderChange() {
-  var gender = document.getElementById("gender").value;
-  
-  if (gender == "female") {
-    // enable the female skills selects
-    document.getElementById("female-skill-1").disabled = false;
-    document.getElementById("female-skill-2").disabled = false;
-    document.getElementById("female-skill-3").disabled = false;
-    
-    // set the default values for the female skills selects
-    document.getElementById("female-skill-1").value = "";
-    document.getElementById("female-skill-2").value = "";
-    document.getElementById("female-skill-3").value = "";
-    
-  } else {
-    // disable the female skills selects
-    document.getElementById("female-skill-1").disabled = true;
-    document.getElementById("female-skill-2").disabled = true;
-    document.getElementById("female-skill-3").disabled = true;
-    
-    // clear the values for the female skills selects
-    document.getElementById("female-skill-1").value = "";
-    document.getElementById("female-skill-2").value = "";
-    document.getElementById("female-skill-3").value = "";
-    
-  }
-}
-</script>
+<script src="female-skill-select.js" type="text/javascript"></script>
 		  </td>
       </tr>
       <tr>
@@ -617,67 +326,7 @@ function genderChange() {
         <td>
           <select id="favorite-deity" name="favorite-deity" class="extra-info-option">
           </select>
-		  <script>
-		  // Get the select elements by id
-var outlook = document.getElementById("outlook");
-var realm = document.getElementById("realm");
-var favoriteDeity = document.getElementById("favorite-deity");
-
-// Define an object that maps each realm to an array of deities
-var deitiesByRealm = {
-  cellus: ["UnaR", "Wotan", "Freya", "Herni", "The Horned Goddess", "BalthuR", "Erthi", "Hadr", "TyranaR"],
-  croesios: ["Tiri & Tishtyra", "Mithra", "Hvar Ksata", "Bumbo", "Shango", "Baal", "Melqart", "Isis", "Nephtys"],
-  illatium: ["Ephasos", "Athullos", "Violios", "Satanas", "Bacchus", "Milas", "Mertinas", "Epocchas", "Aphras"],
-  ionia: ["Ephasos", "Athullos", "Violios", "Satanas", "Bacchus", "Milas", "Mertinas", "Epocchas", "Aphras"],
-  libue: ["Tiri & Tishtyra", "Mithra", "Hvar Ksata", "Bumbo", "Shango", "Baal", "Melqart", "Isis", "Nephtys"],
-  sarmatae: ["UnaR", "Wotan", "Freya", "Herni", "The Horned Goddess", "BalthuR", "Erthi", "Hadr", "TyranaR"],
-  shim: ["Tiri & Tishtyra", "Mithra", "Hvar Ksata", "Bumbo", "Shango", "Baal", "Melqart", "Isis", "Nephtys"],
-  suebia: ["UnaR", "Wotan", "Freya", "Herni", "The Horned Goddess", "BalthuR","Erthi","Hadr","TyranaR"],
-  thracar: ["Ephasos","Athullos","Violios","Satanas","Bacchus","Milas","Mertinas","Epocchas","Aphras"]
-};
-
-// Define a function that updates the favorite deity options based on the realm value
-function updateFavoriteDeityOptions() {
-  // Get the current realm value
-  var realmValue = realm.value;
-  // Clear the favorite deity options
-  favoriteDeity.innerHTML = "";
-  // If the realm value is not empty and the favorite deity select is not disabled, add the corresponding deities as options
-  if (realmValue && !favoriteDeity.disabled) {
-    var deities = deitiesByRealm[realmValue];
-    for (var i = 0; i < deities.length; i++) {
-      var option = document.createElement("option");
-      option.value = deities[i];
-      option.text = deities[i];
-      favoriteDeity.appendChild(option);
-    }
-  }
-}
-
-// Define a function that disables or enables the favorite deity select based on the outlook value
-function disableOrEnableFavoriteDeity() {
-  // Get the current outlook value
-  var outlookValue = outlook.value;
-  // If the outlook value is Traditional, disable the favorite deity select and clear its value
-  if (outlookValue == 'Traditional') {
-    favoriteDeity.disabled = true;
-    favoriteDeity.value = "";
-  }
-  // Otherwise, enable the favorite deity select and update its options
-  else {
-    favoriteDeity.disabled = false;
-    updateFavoriteDeityOptions();
-  }
-}
-
-// Add event listeners to the outlook and realm select elements to call the functions when their values change
-outlook.addEventListener("change" , disableOrEnableFavoriteDeity);
-realm.addEventListener("change" , updateFavoriteDeityOptions);
-
-// Call the functions initially to set up the initial state of the select elements
-disableOrEnableFavoriteDeity();
-updateFavoriteDeityOptions();
-		  </script>
+<script src="favorite-deity-select.js" type="text/javascript"></script>
         </td>
 	  </th>
 	  </tr>
@@ -1026,71 +675,10 @@ updateFavoriteDeityOptions();
       </tr>
     </tbody>
   </table>
-</div><script>
+</div>
 
-// a function to create a new select element with the given id, name and options
-function createSelect(id, name, options) {
-  var select = document.createElement("select");
-  select.id = id;
-  select.name = name;
-  
-  // create an empty option
-  var emptyOption = document.createElement("option");
-  emptyOption.value = "";
-  emptyOption.text = "--Select Option--";
-  select.appendChild(emptyOption);
-  
-  // loop through the options and create option elements
-  for (var i = 0; i < options.length; i++) {
-    var option = document.createElement("option");
-    option.value = options[i];
-    option.text = options[i];
-    select.appendChild(option);
-  }
-  
-  return select;
-}
+<script src="level-select.js" type="text/javascript"></script>
 
-// a function to handle the reward change event
-function rewardChange(level) {
-  // get the reward value for the given level
-  var reward = document.getElementById("level" + level + "-reward").value;
-  
-  // get the option div for the given level
-  var optionDiv = document.getElementById("level" + level + "-option");
-  
-  // clear the option div
-  optionDiv.innerHTML = "";
-  
-  // check if the reward is not empty
-  if (reward != "") {
-    // create a new select element based on the reward type
-    var optionSelect;
-    
-    if (reward == "Skill") {
-      // create a skill select with the following options
-      var skillOptions = ["Acrobatics", "Acting", "Alchemy", "Climbing", "Craft", "Foraging", "Fortitude", "Healing", "Mechanics", "Melee", "Missile", "Music", "Navigation", "Religion", "Riding", "Rune Lore", "Seamanship", "Social Skills", "Stamina", "Stealth", "Swimming", "Tracking", "Tricery", "World Lore"];
-      optionSelect = createSelect("level" + level + "-skill", "level" + level + "-skill", skillOptions);
-      
-    } else if (reward == "Attribute") {
-      // create an attribute select with the following options
-      var attributeOptions = ["STR", "DEX", "CON", "WIL", "INT", "CHA"];
-      optionSelect = createSelect("level" + level + "-attribute", "level" + level + "-attribute", attributeOptions);
-      
-    } else if (reward == "Talent") {
-      // create a talent select with the following options
-      var talentOptions = ["Marked", "Rhythm", "Athlete", "Focused", "Fighter", "Aquatic", "Steady Hands", "Skirmisher", "Empathic"];
-      optionSelect = createSelect("level" + level + "-talent", "level" + level + "-talent", talentOptions);
-      
-      // TODO: add logic to remove selected talents from higher levels
-    }
-    
-    // append the new select element to the option div
-    optionDiv.appendChild(optionSelect);
-    
-  }
-}
-</script>
 
 </body>
 </html>

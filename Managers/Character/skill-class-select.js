@@ -55,34 +55,34 @@ function filterSkillClassOptions() {
       case "Ranger":
         show = outlookValue == "Religious" && (realmValue == "suebia" || realmValue == "sarmatae" || realmValue == "cellus");
         break;
-      case "sorcerer-geistmagen":
+      case "Sorcerer-Geistmagen":
         show = outlookValue == "Traditional" && tribeValue == "Bocci";
         break;
-      case "sorcerer-keeper":
+      case "Sorcerer-Keeper":
         show = outlookValue == "Traditional" && tribeValue == "Ruticai";
         break;
-      case "sorcerer-lector":
+      case "Sorcerer-Lector":
         show = outlookValue == "Traditional" && tribeValue == "Angavi";
         break;
-      case "sorcerer-spruzarii":
+      case "Sorcerer-Spruzarii":
         show = outlookValue == "Traditional" && tribeValue == "Sabines";
         break;
-      case "sorcerer-trollock":
+      case "Sorcerer-Trollock":
         show = outlookValue == "Traditional" && tribeValue == "Lugii";
         break;
-      case 'sorcerer-volva':
+      case 'Sorcerer-Volva':
         show = outlookValue =='Traditional' && tribeValue =='Lugii' && genderValue =='female';
         break;
-      case 'stalker':
+      case 'Stalker':
         show = realmValue =='suebia' || realmValue =='sarmatae' || realmValue =='cellus';
         break;
-      case 'trickster':
+      case 'Trickster':
         show = realmValue =='suebia' || realmValue =='sarmatae' || realmValue =='cellus';
         break;
-      case 'valkyrie':
+      case 'Valkyrie':
         show = outlookValue =='Religious' && (realmValue =='suebia' || realmValue =='sarmatae' || realmValue =='cellus') && genderValue =='female';
         break;
-      case 'warrior':
+      case 'Warrior':
         show = realmValue =='suebia' || realmValue =='sarmatae' || realmValue =='cellus';
         break;
 		case 'Maenad':

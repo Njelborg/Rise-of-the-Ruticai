@@ -188,8 +188,9 @@ th, td {
                         <input type="text" id="player-name" name="player-name" pattern="[A-Za-z]+" maxlength="20">
                     </div>					
                     <div class="selection-row">
+
                         <label for="gender">Gender:</label>
-                        <select id="gender" name="gender" onchange="genderChange()">
+                        <select id="gender" name="gender">
                           <option value="">--Select--</option>
                           <option value="male">Male</option>
                           <option value="female">Female</option>
@@ -256,8 +257,9 @@ th, td {
       <tr>
         <td><label for="realm-skill">Realm Skill:</label></td>
         <td>
-          <select id="realm-skill" name="realm-skill" class="extra-info-option">
-
+          <select id="realm-skill-1" name="realm-skill-1" class="extra-info-option">
+          </select>
+          <select id="realm-skill-2" name="realm-skill-2" class="extra-info-option">
           </select>
 <script src="realm-skill-select.js" type="text/javascript"></script>
 		  </td>
@@ -282,7 +284,7 @@ th, td {
 
 		<select id="female-skill-3" disabled>
 		</select>
-<script src="female-skill-select.js" type="text/javascript"></script>
+		<script src="female-skill-select.js" type="text/javascript"></script>
 		  </td>
       </tr>
       <tr>

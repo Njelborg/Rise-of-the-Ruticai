@@ -6,7 +6,7 @@ var outlook = document.getElementById("outlook");
 var skillClass = document.getElementById("skill-class");
 
 // Define an array of all possible skill classes
-var allSkillClasses = ["Bard", "Berserk", "Ranger", "sorcerer-geistmagen", "sorcerer-keeper", "sorcerer-lector", "sorcerer-spruzarii", "sorcerer-trollock", "sorcerer-volva", "stalker", "trickster", "valkyrie", "warrior", "Maenad", "Light Infantry", "Heavy Infantry", "Light Cavalry", "Heavy Cavalry", "Marine", "Medic", "Officer", "Pirate", "Explorer", "Merchant", "Chosen", "Oracle"];
+var allSkillClasses = ["--Select--", "Bard", "Berserk", "Ranger", "Sorcerer-Geistmagen", "Sorcerer-Keeper", "Sorcerer-Lector", "Sorcerer-Spruzarii", "Sorcerer-Trollock", "Sorcerer-Volva", "Stalker", "Trickster", "Valkyrie", "Warrior", "Maenad", "Light Infantry", "Heavy Infantry", "Light Cavalry", "Heavy Cavalry", "Marine", "Medic", "Officer", "Pirate", "Explorer", "Merchant", "Chosen", "Oracle"];
 // Define a function that adds all the skill classes as options to the skill-class select element
 function addAllSkillClassOptions() {
   // Clear the skill-class options

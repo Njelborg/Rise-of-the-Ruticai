@@ -31,7 +31,7 @@ saveBtn.onclick = function(e) {
   var name = $("#name").val();
 
   $.ajax({
-    url: "save_character.php", // replace this with the actual path to your PHP script
+    url: "https://incomparable-semolina-ac68b0.netlify.app/managers/character/save_character.php", // actual path to your PHP script
     type: "POST",
     data: {name: name},
     success: function(response) {

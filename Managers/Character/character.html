@@ -5,121 +5,129 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Character Manager</title>
     <style>
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+      }
+
+      /* Styles for tabs */
+      #tabs {
+        display: flex;
+      }
+
+      button {
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .active {
+        display: block;
+      }
+
+      /* Styles for info content */
+      #info-content,
+      #inventory-form,
+      .extra-info-options,
+      .level-selects {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      /* Styles for inventory inputs */
+      #inventory-form select,
+      #inventory-form input[type="text"] {
+        width: 150px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        background-color: #e0e0e0;
+      }
+
+      /* Styles for starting stats inputs */
+      #starting-stats input[type="number"] {
+        width: 40px;
+        text-align: center;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+      }
+
+      /* Styles for starting selections inputs */
+      #starting-selections input[type="text"],
+      #starting-selections select,
+      .extra-info-options input[type="text"],
+      .extra-info-options select,
+      .level-selects input[type="text"],
+      .level-selects select {
+        width: 150px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        background-color: #e0e0e0;
+      }
+
+      /* Styles for table */
+      table {
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      /* Styles for stat and selection rows */
+      .stat-row,
+      .selection-row,
+      .extra-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .stat-row label,
+      .selection-row label,
+      .extra-row label {
+        width: 150px;
+        margin-right: 10px;
+      }
+#inventory-form label {
+  display: inline-block;
+  width: 100px;
 }
 
-/* Styles for tabs */
-#tabs {
-    display: flex;
-}
-
-button {
-    cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-.tab-content {
-    display: none;
-}
-
-.active {
-    display: block;
-}
-
-/* Styles for info content */
-#info-content {
-    display: flex;
-}
-
-#starting-stats, #starting-selections {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Styles for starting stats inputs */
-#starting-stats input[type="number"] {
-    width: 40px;
-    text-align: center;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-}
-
-/* Styles for starting selections inputs */
-#starting-selections input[type="text"], #starting-selections select {
-    width: 150px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    background-color: #e0e0e0;
-}
-
-/* Styles for table */
-table {
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
-    vertical-align: top; 
-}
-
-/* Styles for stat and selection rows */
-.stat-row, .selection-row {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.stat-row label, .selection-row label {
-    width: 150px; /* Set a fixed width for the labels */
+#inventory-form input {
+  display: inline-block;
+  width: 150px;
+  margin-left: 10px;
 }
     </style>
-    <script>
-        function showTabContent(tabId) {
-            const tabContent = document.querySelectorAll('.tab-content');
-            for (let i = 0; i < tabContent.length; i++) {
-                tabContent[i].style.display = 'none';
-            }
-
-            document.getElementById(tabId).style.display = 'block';
-        }
-
-        function initTabs() {
-            const tabs = document.querySelectorAll('#tabs button');
-            for (let i = 0; i < tabs.length; i++) {
-                tabs[i].addEventListener('click', function () {
-                    showTabContent(tabs[i].dataset.target);
-                });
-            }
-
-            showTabContent('info');
-        }
-
-        document.addEventListener('DOMContentLoaded', initTabs);
-    </script>
 </head>
 <body>
+<button id="create-select">Create / Select Character</button>
+<button id="inventory">Inventory</button>
+<button id="character-sheet">Character Sheet</button>
+<script src="app.js" type="text/javascript"></script>
 
-
-    <div id="content">
-        <div id="info" class="tab-content">
+        <div id="create-form" style="display: none;">
             <table>
                 <tr>
                     <th>
                         <div id="starting-stats">
                             <h2>Starting Stats</h2>
-                            <form>
                 <div class="stat-row">
                     <label for="str">STR:</label>
                     <input type="number" id="str" name="str" required min="1" max="21" inputmode="numeric" pattern="[0-9]*" maxlength="2">
@@ -166,19 +174,18 @@ th, td {
 
 </dialog>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="create-new-character.js" type="text/javascript"></script>
 
 				
                 <button type="submit">Save Character</button>
                 <button type="submit">Load Character</button>
 
-							</form>
                         </div>
                     </th>
                     <th>
                         <div id="starting-selections">
                             <h2>Starting Selections</h2>
-                            <form>
                     <div class="selection-row">
                         <label for="character-name">Character Name:</label>
                         <input type="text" id="character-name" name="character-name" pattern="[A-Za-z]+" maxlength="20">
@@ -245,103 +252,87 @@ th, td {
                         <label for="age">Age:</label>
                         <input type="number" id="age" name="age" min="1" max="100">
                     </div>
-					</form>
 					
                         </div>
 						
                     </th>
 					<th>
-<div class="extra-info-options">
-    <h2>Extra Info Options</h2>
-    <table>
-      <tr>
-        <td><label for="realm-skill">Realm Skill:</label></td>
-        <td>
-          <select id="realm-skill-1" name="realm-skill-1" class="extra-info-option">
-          </select>
-          <select id="realm-skill-2" name="realm-skill-2" class="extra-info-option">
-          </select>
+                        <div class="extra-info-options">
+							<h2>Extra Info Options</h2>
+                <div class="extra-row">
+					<label for="realm-skill">Realm Skill:</label>
+					<select id="realm-skill-1" name="realm-skill-1" class="extra-info-option">
+					 </select>
+					<select id="realm-skill-2" name="realm-skill-2" class="extra-info-option">
+					 </select>
 <script src="realm-skill-select.js" type="text/javascript"></script>
-		  </td>
-      </tr>
-      <tr>
-        <td><label for="female-skill">Female Skill:</label></td>
+				 </div>
+                <div class="extra-row">
+					<label for="female-skill">Female Skill:</label>
+					<select id="female-skill-1" disabled>
+						<option value="">--Select--</option>
+						<option value="acting">Acting</option>
+						<option value="music">Music</option>
+						<option value="rune-lore">Rune Lore</option>
+						<option value="social-skills">Social Skills</option>
+						<option value="healing">Healing</option>
+						<option value="religion">Religion</option>
+						<option value="world-lore">World Lore</option>
+					</select>
 
-        <td>
-		<select id="female-skill-1" disabled>
-		  <option value="">--Select--</option>
-		  <option value="acting">Acting</option>
-		  <option value="music">Music</option>
-		  <option value="rune-lore">Rune Lore</option>
-		  <option value="social-skills">Social Skills</option>
-		  <option value="healing">Healing</option>
-		  <option value="religion">Religion</option>
-		  <option value="world-lore">World Lore</option>
-		</select>
+					<select id="female-skill-2" disabled>
+					</select>
 
-		<select id="female-skill-2" disabled>
-		  </select>
-
-		<select id="female-skill-3" disabled>
-		</select>
-		<script src="female-skill-select.js" type="text/javascript"></script>
-		  </td>
-      </tr>
-      <tr>
-        <td><label for="height">Height:</label></td>
-        <td><input type="text" id="height" name="height" class="extra-info-option"></td>
-      </tr>
-      <tr>
-        <td><label for="weight">Weight:</label></td>
-        <td><input type="text" id="weight" name="weight" class="extra-info-option"></td>
-      </tr>
-      <tr>
-        <td><label for="race">Race:</label></td>
-        <td>
-          <select id="race" name="race" class="extra-info-option">
-            <option value="">--Select--</option>
-            <option value="Human">Human</option>
-            <option value="Fairling">Fairling</option>
-            <option value="Half-Elf">Half-Elf</option>
-            <option value="Wood-Elf">Wood Elf</option>
-            <option value="God-Born">God-Born</option>
-            <option value="Satyr">Satyr</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td><label for="favorite-deity">Favorite Deity:</label></td>
-        <td>
-          <select id="favorite-deity" name="favorite-deity" class="extra-info-option">
-          </select>
+					<select id="female-skill-3" disabled>
+					</select>
+<script src="female-skill-select.js" type="text/javascript"></script>
+                </div>
+                <div class="extra-row">
+					<label for="height">Height:</label>
+					<input type="text" id="height" name="height" class="extra-info-option">
+                </div>
+                <div class="extra-row">
+					<label for="weight">Weight:</label>
+					<input type="text" id="weight" name="weight" class="extra-info-option">
+                </div>
+                <div class="extra-row">
+					<label for="race">Race:</label>
+					<select id="race" name="race" class="extra-info-option">
+					    <option value="">--Select--</option>
+					    <option value="Human">Human</option>
+					    <option value="Fairling">Fairling</option>
+					    <option value="Half-Elf">Half-Elf</option>
+					    <option value="Wood-Elf">Wood Elf</option>
+					    <option value="God-Born">God-Born</option>
+					    <option value="Satyr">Satyr</option>
+					</select>
+                </div>
+                <div class="extra-row">
+					<label for="favorite-deity">Favorite Deity:</label>       
+					<select id="favorite-deity" name="favorite-deity" class="extra-info-option">
+					</select>
+                </div>
 <script src="favorite-deity-select.js" type="text/javascript"></script>
-        </td>
-	  </th>
-	  </tr>
-	  </table>
-	  <th>
-<div class="level-selects">
+				 </div>
+                    </th>
+                    <th>
+                        <div class="level-selects">
   <h2>Leveling</h2>
   <table>
-    <thead>
-      <tr>
         <th>Level</th>
         <th>Reward</th>
-      </tr>
-    </thead>
-    <tbody>
-	  <tr>
-    <td>1</td>
-    <td>
-      <select id="level1-reward" name="level1-reward" onchange="rewardChange(1)">
+	<tr>
+	<td>1</td>
+	<td>
+    <select id="level1-reward" name="level1-reward" onchange="rewardChange(1)">
         <option value="">--Select Reward--</option>
         <option value="Skill">Skill</option>
         <option value="Talent">Talent</option>
-      </select>
+     </select>
       <div id="level1-option"></div>
     </td>
-  </tr>
-  <tr>
+	</tr>
+	<tr>
     <td>2</td>
     <td>
       <select id="level2-reward" name="level2-reward" onchange="rewardChange(2)">
@@ -352,7 +343,7 @@ th, td {
       <div id="level2-option"></div>
     </td>
   </tr>
-      <tr>
+    <tr>
         <td>3</td>
         <td>
           <select id="level3-reward" name="level3-reward" onchange="rewardChange(3)">
@@ -363,7 +354,7 @@ th, td {
       <div id="level3-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>4</td>
         <td>
           <select id="level4-reward" name="level4-reward" onchange="rewardChange(4)">
@@ -374,7 +365,7 @@ th, td {
 		        <div id="level4-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>5</td>
         <td>
           <select id="level5-reward" name="level5-reward" onchange="rewardChange(5)">
@@ -385,7 +376,7 @@ th, td {
 		  <div id="level5-option"></div>
         </td>
       </tr>
-	  	  <tr>
+	<tr>
         <td>6</td>
         <td>
           <select id="level6-reward" name="level6-reward" onchange="rewardChange(6)">
@@ -396,7 +387,7 @@ th, td {
 		  <div id="level6-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>7</td>
         <td>
           <select id="level7-reward" name="level7-reward" onchange="rewardChange(7)">
@@ -407,7 +398,7 @@ th, td {
 		  <div id="level7-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>8</td>
         <td>
           <select id="level8-reward" name="level8-reward" onchange="rewardChange(8)">
@@ -418,7 +409,7 @@ th, td {
 		  <div id="level8-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>9</td>
         <td>
           <select id="level9-reward" name="level9-reward" onchange="rewardChange(9)">
@@ -429,7 +420,7 @@ th, td {
 		  <div id="level9-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>10</td>
         <td>
           <select id="level10-reward" name="level10-reward" onchange="rewardChange(10)">
@@ -440,7 +431,7 @@ th, td {
 		  <div id="level10-option"></div>
         </td>
       </tr>
-	  	  <tr>
+	<tr>
         <td>11</td>
         <td>
           <select id="level11-reward" name="level11-reward" onchange="rewardChange(11)">
@@ -451,7 +442,7 @@ th, td {
 		  <div id="level11-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>12</td>
         <td>
           <select id="level12-reward" name="level12-reward" onchange="rewardChange(12)">
@@ -462,7 +453,7 @@ th, td {
 		  <div id="level12-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>13</td>
         <td>
           <select id="level13-reward" name="level13-reward" onchange="rewardChange(13)">
@@ -473,7 +464,7 @@ th, td {
 		  <div id="level13-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>14</td>
         <td>
           <select id="level14-reward" name="level14-reward" onchange="rewardChange(14)">
@@ -484,7 +475,7 @@ th, td {
 		  <div id="level14-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>15</td>
         <td>
           <select id="level15-reward" name="level15-reward" onchange="rewardChange(15)">
@@ -495,7 +486,7 @@ th, td {
 		  <div id="level15-option"></div>
         </td>
       </tr>
-	  	  <tr>
+	<tr>
         <td>16</td>
         <td>
           <select id="level16-reward" name="level16-reward" onchange="rewardChange(16)">
@@ -506,7 +497,7 @@ th, td {
 		  <div id="level16-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>17</td>
         <td>
           <select id="level17-reward" name="level17-reward" onchange="rewardChange(17)">
@@ -517,7 +508,7 @@ th, td {
 		  <div id="level17-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>18</td>
         <td>
           <select id="level18-reward" name="level18-reward" onchange="rewardChange(18)">
@@ -528,7 +519,7 @@ th, td {
 		  <div id="level18-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>19</td>
         <td>
           <select id="level19-reward" name="level19-reward" onchange="rewardChange(19)">
@@ -539,7 +530,7 @@ th, td {
 		  <div id="level19-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>20</td>
         <td>
           <select id="level20-reward" name="level20-reward" onchange="rewardChange(20)">
@@ -550,7 +541,7 @@ th, td {
 		  <div id="level20-option"></div>
         </td>
       </tr>
-	  	  <tr>
+	<tr>
         <td>21</td>
         <td>
           <select id="level21-reward" name="level21-reward" onchange="rewardChange(21)">
@@ -561,7 +552,7 @@ th, td {
 		  <div id="level21-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>22</td>
         <td>
           <select id="level22-reward" name="level22-reward" onchange="rewardChange(22)">
@@ -572,7 +563,7 @@ th, td {
 		  <div id="level22-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>23</td>
         <td>
           <select id="level23-reward" name="level23-reward" onchange="rewardChange(23)">
@@ -583,7 +574,7 @@ th, td {
 		  <div id="level23-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>24</td>
         <td>
           <select id="level24-reward" name="level24-reward" onchange="rewardChange(24)">
@@ -594,7 +585,7 @@ th, td {
 		  <div id="level24-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>25</td>
         <td>
           <select id="level25-reward" name="level25-reward" onchange="rewardChange(25)">
@@ -605,7 +596,7 @@ th, td {
 		  <div id="level25-option"></div>
         </td>
       </tr>
-	  	  <tr>
+	<tr>
         <td>26</td>
         <td>
           <select id="level26-reward" name="level26-reward" onchange="rewardChange(26)">
@@ -616,7 +607,7 @@ th, td {
 		  <div id="level26-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>27</td>
         <td>
           <select id="level27-reward" name="level27-reward" onchange="rewardChange(27)">
@@ -627,7 +618,7 @@ th, td {
 		  <div id="level27-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>28</td>
         <td>
           <select id="level28-reward" name="level28-reward" onchange="rewardChange(28)">
@@ -638,7 +629,7 @@ th, td {
 		  <div id="level28-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>29</td>
         <td>
           <select id="level29-reward" name="level29-reward" onchange="rewardChange(29)">
@@ -649,7 +640,7 @@ th, td {
 		  <div id="level29-option"></div>
         </td>
       </tr>
-      <tr>
+    <tr>
         <td>30</td>
         <td>
           <select id="level30-reward" name="level30-reward" onchange="rewardChange(30)">
@@ -659,12 +650,58 @@ th, td {
           </select>
 		  <div id="leve30-option"></div>
         </td>
-		<th>
       </tr>
-    </tbody>
   </table>
-</div>
+                        </div>
+					</th>
+                </tr>
+            </table>
+        </div>
 
+
+
+<div id="inventory-form" style="display: none;">
+  <h2>Character Inventory</h2>
+  <div>
+    <label for="head-slot">Head:</label>
+    <input type="text" id="head-slot" name="head-slot" placeholder="Search for item...">
+  </div>
+  <div>
+    <label for="right-hand-slot">Right Hand:</label>
+    <input type="text" id="right-hand-slot" name="right-hand-slot" placeholder="Search for item...">
+  </div>
+  <div>
+    <label for="left-hand-slot">Left Hand:</label>
+    <input type="text" id="left-hand-slot" name="left-hand-slot" placeholder="Search for item...">
+  </div>
+  <div>
+    <label for="armor-slot">Armor:</label>
+    <input type="text" id="armor-slot" name="armor-slot" placeholder="Search for item...">
+  </div>
+  <div>
+    <label for="clothing-slot">Clothing:</label>
+    <input type="text" id="clothing-slot" name="clothing-slot" placeholder="Search for item...">
+  </div>
+  <div>
+    <label for="jewelry-slot">Jewelry:</label>
+    <input type="text" id="jewelry-slot" name="jewelry-slot" placeholder="Search for item...">
+  </div>
+  <div>
+    <label for="back-slot">Back:</label>
+    <input type="text" id="back-slot" name="back-slot" placeholder="Search for item...">
+  </div>
+  <div>
+    <label for="left-waist-slot">Left Waist:</label>
+    <input type="text" id="left-waist-slot" name="left-waist-slot" placeholder="Search for item...">
+  </div>
+  <div>
+    <label for="right-waist-slot">Right Waist:</label>
+    <input type="text" id="right-waist-slot" name="right-waist-slot" placeholder="Search for item...">
+  </div>
+</div>
+   <div id="character-form" style="display: none;">
+   fdsgfsd
+</div>
 <script src="level-select.js" type="text/javascript"></script>
 
 

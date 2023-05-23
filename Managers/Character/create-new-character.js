@@ -25,9 +25,23 @@ span.onclick = function() {
 }
 
 // When the user clicks on save button, submit the form and close the modal
-saveBtn.onclick = function() {
-  form.submit();
-  modal.close();
+saveBtn.onclick = function(e) {
+  e.preventDefault(); // prevent the form from being submitted normally
+
+  var name = $("#name").val();
+
+  $.ajax({
+    url: "save_character.php", // replace this with the actual path to your PHP script
+    type: "POST",
+    data: {name: name},
+    success: function(response) {
+      alert(response); // handle the response from the PHP script
+      modal.close(); // close the modal
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+       console.log(textStatus, errorThrown);
+    }
+  });
 }
 
 // When the user clicks on cancel button, close the modal
